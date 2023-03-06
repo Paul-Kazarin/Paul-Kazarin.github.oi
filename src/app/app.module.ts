@@ -18,6 +18,9 @@ import {MatTableModule} from "@angular/material/table";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatSortModule} from "@angular/material/sort";
 import {RouterModule} from "@angular/router";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -45,7 +48,10 @@ import {RouterModule} from "@angular/router";
       {path: 'boats', component: BoatsComponent},
       {path: '', redirectTo: 'homepage', pathMatch: 'full'},
       {path: '**', redirectTo: 'homepage', pathMatch: 'full'}
-    ])
+    ]),
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

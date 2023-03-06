@@ -13,6 +13,7 @@ function compare(a: number | string, b: number | string, isAsc: boolean) {
 export class BoatsComponent {
 
   pageTitle = 'Rent Boat';
+  listFilter = '';
   boats: any[] = [
     {
       unitId: 1,
