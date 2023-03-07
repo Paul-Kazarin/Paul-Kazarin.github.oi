@@ -14,7 +14,7 @@ import { AtvsComponent } from './pages/atvs/atvs.component';
 import { RvsComponent } from './pages/rvs/rvs.component';
 import { ToursComponent } from './pages/tours/tours.component';
 import { ContactsComponent } from './pages/contacts/contacts.component';
-import {MatTableModule} from "@angular/material/table";
+import { MatTableModule} from "@angular/material/table";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatSortModule} from "@angular/material/sort";
 import {RouterModule} from "@angular/router";

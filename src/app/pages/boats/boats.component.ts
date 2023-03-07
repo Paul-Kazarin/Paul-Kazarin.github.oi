@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import {Sort, MatSortModule, MatSort} from "@angular/material/sort";
+import {Component, OnInit} from '@angular/core';
+import {Sort} from "@angular/material/sort";
 
 function compare(a: number | string, b: number | string, isAsc: boolean) {
   return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
@@ -10,10 +10,9 @@ function compare(a: number | string, b: number | string, isAsc: boolean) {
   templateUrl: './boats.component.html',
   styleUrls: ['./boats.component.scss']
 })
-export class BoatsComponent {
+export class BoatsComponent implements OnInit {
 
   pageTitle = 'Rent Boat';
-  listFilter = '';
   boats: any[] = [
     {
       unitId: 1,
@@ -60,9 +59,29 @@ export class BoatsComponent {
   ];
   displayedColumns = ['image', 'subType', 'brand', 'model', 'year', 'peopleCapacity', 'length', 'weight', 'pricePerHour', 'pricePerDay'];
   sortedData: any;
+  filteredList: any[] = [];
+  private _listFilter = '';
+  get listFilter(): string {
+    return this._listFilter;
+  }
+  set listFilter(value) {
+    this._listFilter = value;
+    console.log('in setter: ', value);
+    this.filteredList = this.performFilter(value);
+  }
 
   constructor() {
     this.sortedData = this.boats.slice();
+  }
+
+  ngOnInit() {
+    this.listFilter = 'yamaha';
+  }
+
+  performFilter(filterBy: string) {
+    filterBy = filterBy.toLocaleLowerCase();
+    return this.boats.filter((boat) =>
+    boat.brand.toLocaleLowerCase().includes(filterBy));
   }
 
   sortData(sort: Sort) {
