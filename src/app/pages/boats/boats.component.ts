@@ -58,7 +58,7 @@ export class BoatsComponent implements OnInit {
     }
   ];
   displayedColumns = ['image', 'subType', 'brand', 'model', 'year', 'peopleCapacity', 'length', 'weight', 'pricePerHour', 'pricePerDay'];
-  sortedData: any;
+  sortedData: any[] = [];
   filteredList: any[] = [];
   private _listFilter = '';
   get listFilter(): string {
@@ -75,17 +75,22 @@ export class BoatsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.listFilter = 'yamaha';
+    this.listFilter = '';
   }
 
   performFilter(filterBy: string) {
     filterBy = filterBy.toLocaleLowerCase();
-    return this.boats.filter((boat) =>
+    return this.boats.filter((boat: any) =>
     boat.brand.toLocaleLowerCase().includes(filterBy));
   }
 
+  performFilterSorted(filterBy: string) {
+    this.sortedData = this.filteredList;
+  }
+
   sortData(sort: Sort) {
-    const data = this.boats.slice();
+    this.performFilter(this.listFilter);
+    const data = this.filteredList.slice();
     if (!sort.active || sort.direction === '') {
       this.sortedData = data;
       return;

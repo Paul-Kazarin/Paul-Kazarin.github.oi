@@ -6,75 +6,13 @@
           [(ngModel)]="listFilter">
 </div>
 
+<button mat-button (click)="performFilterSorted(this.listFilter)">Filter</button>
+
 <div>
   <h2>Filtered By: {{listFilter}}</h2>
 </div>
 
-<table>
-  <thead>
-    <th> image </th>
-    <th> Type of Boat </th>
-    <th> Brand </th>
-    <th> Model </th>
-    <th> Year </th>
-    <th> Length, ft </th>
-    <th> Weight, lb </th>
-    <th> Price Per Hour </th>
-    <th> Price Per Day </th>
-    <th> People Capacity </th>
-  </thead>
-  <tbody>
-    <tr *ngFor="let boat of filteredList">
-      <td>
-        <img src={{boat.image}} [title]='boat.brand + " " + boat.model'
-             style="max-height:100px;padding:5px 5px 5px 5px" />
-      </td>
-      <td> {{boat.subType}} </td>
-      <td> {{boat.brand}} </td>
-      <td> {{boat.model}} </td>
-      <td> {{boat.year}} </td>
-      <td> {{boat.length}} </td>
-      <td> {{boat.weight}} </td>
-      <td> {{boat.pricePerHour | currency:'USD':'symbol':'1.2-2'}} </td>
-      <td> {{boat.pricePerDay | currency:'USD':'symbol':'1.2-2'}} </td>
-      <td> {{boat.peopleCapacity}} </td>
-    </tr>
-  </tbody>
-</table>
-
-<!--<table mat-table [dataSource]="sortedData" class="mat-elevation-z8" *ngIf="sortedData.length" matSort (matSortChange)="sortData($event)">-->
-<!--  <thead>-->
-<!--  <th mat-header-cell> image </th>-->
-<!--  <th mat-header-cell> Type of Boat </th>-->
-<!--  <th mat-header-cell> Brand </th>-->
-<!--  <th mat-header-cell> Model </th>-->
-<!--  <th mat-header-cell mat-sort-header="year"> Year </th>-->
-<!--  <th mat-header-cell mat-sort-header="length"> Length, ft </th>-->
-<!--  <th mat-header-cell mat-sort-header="weight"> Weight, lb </th>-->
-<!--  <th mat-header-cell mat-sort-header="pricePerHour"> Price Per Hour </th>-->
-<!--  <th mat-header-cell mat-sort-header="pricePerDay"> Price Per Day </th>-->
-<!--  <th mat-header-cell mat-sort-header="peopleCapacity"> People Capacity </th>-->
-<!--  </thead>-->
-<!--  <tbody>-->
-<!--  <tr *ngFor="let boat of filteredList">-->
-<!--    <td mat-cell >-->
-<!--      <img src={{boat.image}} [title]='boat.brand + " " + boat.model'-->
-<!--           style="max-height:100px;padding:5px 5px 5px 5px" />-->
-<!--    </td>-->
-<!--    <td mat-cell> {{boat.subType}} </td>-->
-<!--    <td mat-cell> {{boat.brand}} </td>-->
-<!--    <td mat-cell> {{boat.model}} </td>-->
-<!--    <td mat-cell> {{boat.year}} </td>-->
-<!--    <td mat-cell style="text-align: center"> {{boat.length}} </td>-->
-<!--    <td mat-cell style="text-align: center"> {{boat.weight}} </td>-->
-<!--    <td mat-cell style="text-align: center"> {{boat.pricePerHour | currency:'USD':'symbol':'1.2-2'}} </td>-->
-<!--    <td mat-cell style="text-align: center"> {{boat.pricePerDay | currency:'USD':'symbol':'1.2-2'}} </td>-->
-<!--    <td mat-cell style="text-align: center"> {{boat.peopleCapacity}} </td>-->
-<!--  </tr>-->
-<!--  </tbody>-->
-<!--</table>-->
-
-<table mat-table [dataSource]="sortedData" class="mat-elevation-z8" *ngIf="sortedData.length" matSort (matSortChange)="sortData($event)">
+<table mat-table [dataSource]="sortedData" class="mat-elevation-z8"  matSort (matSortChange)="sortData($event)">
 
   <ng-container matColumnDef="unitId">
     <th mat-header-cell *matHeaderCellDef> unitId | uppercase </th>
@@ -149,3 +87,35 @@
 </mat-paginator>
 
 <app-header class="footer"></app-header>
+
+<!--<table matSort (matSortChange)="sortData($event)">-->
+<!--  <thead>-->
+<!--  <th mat-sort-header="image"> image </th>-->
+<!--  <th mat-sort-header="subtype"> Type of Boat </th>-->
+<!--  <th> Brand </th>-->
+<!--  <th> Model </th>-->
+<!--  <th> Year </th>-->
+<!--  <th> Length, ft </th>-->
+<!--  <th> Weight, lb </th>-->
+<!--  <th> Price Per Hour </th>-->
+<!--  <th> Price Per Day </th>-->
+<!--  <th> People Capacity </th>-->
+<!--  </thead>-->
+<!--  <tbody>-->
+<!--  <tr *ngFor="let boat of filteredList">-->
+<!--    <td>-->
+<!--      <img src={{boat.image}} [title]='boat.brand + " " + boat.model'-->
+<!--           style="max-height:100px;padding:5px 5px 5px 5px" />-->
+<!--    </td>-->
+<!--    <td> {{boat.subType}} </td>-->
+<!--    <td> {{boat.brand}} </td>-->
+<!--    <td> {{boat.model}} </td>-->
+<!--    <td> {{boat.year}} </td>-->
+<!--    <td> {{boat.length}} </td>-->
+<!--    <td> {{boat.weight}} </td>-->
+<!--    <td> {{boat.pricePerHour | currency:'USD':'symbol':'1.2-2'}} </td>-->
+<!--    <td> {{boat.pricePerDay | currency:'USD':'symbol':'1.2-2'}} </td>-->
+<!--    <td> {{boat.peopleCapacity}} </td>-->
+<!--  </tr>-->
+<!--  </tbody>-->
+<!--</table>-->
