@@ -21,6 +21,8 @@ import {RouterModule} from "@angular/router";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {FormsModule} from "@angular/forms";
+import { LoginComponent } from './pages/login/login.component';
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 @NgModule({
   declarations: [
@@ -31,7 +33,8 @@ import {FormsModule} from "@angular/forms";
     AtvsComponent,
     RvsComponent,
     ToursComponent,
-    ContactsComponent
+    ContactsComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -46,12 +49,18 @@ import {FormsModule} from "@angular/forms";
     RouterModule.forRoot([
       {path: 'homepage', component: HomepageComponent},
       {path: 'boats', component: BoatsComponent},
+      {path: 'atvs', component: AtvsComponent},
+      {path: 'rvs', component: RvsComponent},
+      {path: 'tours', component: ToursComponent},
+      {path: 'contacts', component: ContactsComponent},
+      {path: 'login', component: LoginComponent},
       {path: '', redirectTo: 'homepage', pathMatch: 'full'},
       {path: '**', redirectTo: 'homepage', pathMatch: 'full'}
     ]),
     MatFormFieldModule,
     MatInputModule,
-    FormsModule
+    FormsModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,7 +1,30 @@
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%;}
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0 0 4em 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+input {
+  border: solid 1px darkblue !important;
+  height: 2em !important;
+  min-width: 100px;
+  max-width: 500px;
+  width: 30% !important;
+}
+
+td.mat-cell{
+  background-color: lightgrey !important;
+  color: dimgray;
+  border: dimgray;
+}
+
+a{
+  margin: 0.2em !important;
+  text-align: center !important;
+}
+
+mat-grid-tile {
+  background: lightblue;
+}
 
 .footer {
   position: fixed;
@@ -9,26 +32,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   width: 100%;
 }
 
-mat-label{
+.margin-02-em{
   margin: 0.2em !important;
 }
 
-h2{
-  margin: 0.2em !important;
-}
-
-input {
-  border: solid 1px darkblue !important;
-  height: 2em !important;
-  min-width: 150px;
-  max-width: 500px;
-  width: 50% !important;
-  margin: 0.2em !important;
-}
-
-td.mat-cell{
-  background-color: lightgrey !important;
-  color: dimgray;
-  border: dimgray;
+.image-in-table{
+  max-height:100px !important;
+  margin: 0.1em !important;
 }
 

@@ -15,7 +15,7 @@ export class BoatsComponent implements OnInit {
   pageTitle = 'Rent Boat';
   boats: any[] = [
     {
-      unitId: 1,
+      itemId: 1,
       type: "boat",
       subType: "pontoon",
       brand: "SeaDoo",
@@ -29,7 +29,7 @@ export class BoatsComponent implements OnInit {
       image: "assets/images/sea-doo-switch-16.webp"
     },
     {
-      unitId: 2,
+      itemId: 2,
       type: "boat",
       subType: "pontoon",
       brand: "SeaDoo",
@@ -43,7 +43,7 @@ export class BoatsComponent implements OnInit {
       image: "assets/images/sea-doo-switch-16.webp"
     },
     {
-      unitId: 2,
+      itemId: 3,
       type: "boat",
       subType: "jetboat",
       brand: "Yamaha",
@@ -54,6 +54,62 @@ export class BoatsComponent implements OnInit {
       pricePerHour: 130,
       pricePerDay: 500,
       peopleCapacity: 8,
+      image: "assets/images/yamaha-ar190.webp"
+    },
+    {
+      itemId: 4,
+      type: "boat",
+      subType: "wakesurf",
+      brand: "Malibu",
+      model: "Wakesetter",
+      year: "2012",
+      length: 22,
+      weight: 3500,
+      pricePerHour: 150,
+      pricePerDay: 550,
+      peopleCapacity: 10,
+      image: "assets/images/sea-doo-switch-16.webp"
+    },
+    {
+      itemId: 5,
+      type: "boat",
+      subType: "skiboat",
+      brand: "Tige",
+      model: "Ski",
+      year: "2015",
+      length: 21,
+      weight: 3400,
+      pricePerHour: 130,
+      pricePerDay: 500,
+      peopleCapacity: 8,
+      image: "assets/images/sea-doo-switch-16.webp"
+    },
+    {
+      itemId: 6,
+      type: "boat",
+      subType: "bowrider",
+      brand: "Sea Ray",
+      model: "240",
+      year: "2017",
+      length: 24,
+      weight: 4100,
+      pricePerHour: 140,
+      pricePerDay: 520,
+      peopleCapacity: 12,
+      image: "assets/images/yamaha-ar190.webp"
+    },
+    {
+      itemId: 7,
+      type: "boat",
+      subType: "cuddy cabin",
+      brand: "Sea Ray",
+      model: "260",
+      year: "2014",
+      length: 26,
+      weight: 5100,
+      pricePerHour: 170,
+      pricePerDay: 600,
+      peopleCapacity: 12,
       image: "assets/images/yamaha-ar190.webp"
     }
   ];
