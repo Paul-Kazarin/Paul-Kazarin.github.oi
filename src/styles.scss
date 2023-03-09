@@ -11,6 +11,10 @@ input {
   width: 30% !important;
 }
 
+table {
+  width: 100%;
+}
+
 td.mat-cell{
   background-color: lightgrey !important;
   color: dimgray;
@@ -20,10 +24,6 @@ td.mat-cell{
 a{
   margin: 0.2em !important;
   text-align: center !important;
-}
-
-mat-grid-tile {
-  background: lightblue;
 }
 
 .footer {

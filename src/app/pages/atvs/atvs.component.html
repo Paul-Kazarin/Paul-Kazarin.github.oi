@@ -1,11 +1,13 @@
-<app-header></app-header>
+<div fxLayout="row" fxLayoutAlign="space-between stretch">
+
+<app-header style="z-index: 1 !important;"></app-header>
 
 <mat-form-field>
   <mat-label>Filter</mat-label>
-  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Yamaha" #input>
 </mat-form-field>
 
-<div class="mat-elevation-z8">
+<div>
   <table mat-table [dataSource]="dataSource" matSort>
 
     <ng-container matColumnDef="image">
@@ -74,3 +76,4 @@
 </div>
 
 <app-header class="footer"></app-header>
+</div>
