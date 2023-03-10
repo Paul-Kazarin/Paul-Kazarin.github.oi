@@ -24,7 +24,7 @@
 
           <ng-container matColumnDef="subType">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Type of ATV </th>
-            <td mat-cell *matCellDef="let row"> {{row.subType}}% </td>
+            <td mat-cell *matCellDef="let row"> {{row.subType}} </td>
           </ng-container>
 
           <ng-container matColumnDef="brand">
@@ -38,33 +38,33 @@
           </ng-container>
 
           <ng-container matColumnDef="year">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> year </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Year </th>
             <td mat-cell *matCellDef="let row"> {{row.year}} </td>
           </ng-container>
 
           <ng-container matColumnDef="peopleCapacity">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> peopleCapacity </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> People Capacity </th>
             <td mat-cell *matCellDef="let row"> {{row.peopleCapacity}} </td>
           </ng-container>
 
           <ng-container matColumnDef="length">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> length </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Length, ft </th>
             <td mat-cell *matCellDef="let row"> {{row.length}} </td>
           </ng-container>
 
           <ng-container matColumnDef="weight">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> weight </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Weight, lb </th>
             <td mat-cell *matCellDef="let row"> {{row.weight}} </td>
           </ng-container>
 
           <ng-container matColumnDef="pricePerHour">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> pricePerHour </th>
-            <td mat-cell *matCellDef="let row"> {{row.pricePerHour}} </td>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Price Per Hour, $ </th>
+            <td mat-cell *matCellDef="let row"> {{row.pricePerHour | currency:'USD':'symbol':'1.2-2'}} </td>
           </ng-container>
 
           <ng-container matColumnDef="pricePerDay">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> pricePerDay </th>
-            <td mat-cell *matCellDef="let row"> {{row.pricePerDay}} </td>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Price Per Day, $ </th>
+            <td mat-cell *matCellDef="let row"> {{row.pricePerDay | currency:'USD':'symbol':'1.2-2'}} </td>
           </ng-container>
 
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
