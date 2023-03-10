@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%;}
-body { margin: 0 0 4em 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 input {
   border: solid 1px darkblue !important;
@@ -26,6 +26,10 @@ a{
   text-align: center !important;
 }
 
+mat-paginator{
+  margin-bottom: 4em !important;
+}
+
 .footer {
   position: fixed;
   bottom: 0;
@@ -40,4 +44,5 @@ a{
   max-height:100px !important;
   margin: 0.1em !important;
 }
+
 

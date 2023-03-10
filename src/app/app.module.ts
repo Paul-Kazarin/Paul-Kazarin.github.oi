@@ -4,8 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomepageComponent } from './pages/homepage/homepage.component';
-import {MatSlideToggleModule} from "@angular/material/slide-toggle";
-import {MatMenuModule} from "@angular/material/menu";
+import {MatLegacySlideToggleModule as MatSlideToggleModule} from "@angular/material/legacy-slide-toggle";
+import {MatLegacyMenuModule as MatMenuModule} from "@angular/material/legacy-menu";
 import {MatGridListModule} from "@angular/material/grid-list";
 import {MatSidenavModule} from "@angular/material/sidenav";
 import { HeaderComponent } from './shared/header/header.component';
@@ -14,15 +14,17 @@ import { AtvsComponent } from './pages/atvs/atvs.component';
 import { RvsComponent } from './pages/rvs/rvs.component';
 import { ToursComponent } from './pages/tours/tours.component';
 import { ContactsComponent } from './pages/contacts/contacts.component';
-import { MatTableModule} from "@angular/material/table";
-import {MatPaginatorModule} from "@angular/material/paginator";
+import { MatLegacyTableModule as MatTableModule} from "@angular/material/legacy-table";
+import {MatLegacyPaginatorModule as MatPaginatorModuleOld} from "@angular/material/legacy-paginator";
 import {MatSortModule} from "@angular/material/sort";
 import {RouterModule} from "@angular/router";
-import {MatFormFieldModule} from "@angular/material/form-field";
-import {MatInputModule} from "@angular/material/input";
+import {MatLegacyFormFieldModule as MatFormFieldModule} from "@angular/material/legacy-form-field";
+import {MatLegacyInputModule as MatInputModule} from "@angular/material/legacy-input";
 import {FormsModule} from "@angular/forms";
 import { LoginComponent } from './pages/login/login.component';
-import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {MatLegacyProgressSpinnerModule as MatProgressSpinnerModule} from "@angular/material/legacy-progress-spinner";
+import {FlexLayoutModule} from "@angular/flex-layout";
+import {MatPaginatorModule} from "@angular/material/paginator";
 
 @NgModule({
   declarations: [
@@ -44,7 +46,8 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     MatGridListModule,
     MatSidenavModule,
     MatTableModule,
-    MatPaginatorModule,
+    MatPaginatorModuleOld,
+    //MatPaginatorModule,
     MatSortModule,
     RouterModule.forRoot([
       {path: 'homepage', component: HomepageComponent},
@@ -60,7 +63,8 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]
