@@ -1,11 +1,11 @@
 <button class="margin-02-em" mat-raised-button (click)="onBack()">BACK</button>
 <div>
-  {{pageTitle + ': ' + boat?.brand + ' ' + boat?.model}}
+  {{pageTitle + ': ' + product?.brand + ' ' + product?.model}}
   <div fxLayout="row" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
     <div fxFlex="50%">
       <div fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
         <div fxFlex="50%">
-          <img src="{{boat?.image}}" class="image-detail-page">
+          <img src="{{product?.image}}" class="image-detail-page">
         </div>
         <div fxFlex="50%">SPECIFICATIONS:
           <table>
@@ -14,15 +14,15 @@
               <th></th>
             </thead>
             <tbody>
-              <tr><td>Type of Boat</td><td> {{boat?.subType}} </td></tr>
-              <tr><td>Make</td><td> {{boat?.brand}} </td></tr>
-              <tr><td>Model</td><td> {{boat?.model}} </td></tr>
-              <tr><td>Year</td><td> {{boat?.year}} </td></tr>
-              <tr><td>Lenth, ft</td><td> {{boat?.length}} </td></tr>
-              <tr><td>Weight, lb</td><td> {{boat?.weight}} </td></tr>
-              <tr><td>Price per hour, $</td><td> {{boat?.pricePerHour | currency:'USD':'symbol':'1.2-2'}} </td></tr>
-              <tr><td>Price per day, $</td><td> {{boat?.pricePerDay | currency:'USD':'symbol':'1.2-2'}} </td></tr>
-              <tr><td>People Capacity</td><td> {{boat?.peopleCapacity}} </td></tr>
+              <tr><td>Type of Boat</td><td> {{product?.subType}} </td></tr>
+              <tr><td>Make</td><td> {{product?.brand}} </td></tr>
+              <tr><td>Model</td><td> {{product?.model}} </td></tr>
+              <tr><td>Year</td><td> {{product?.year}} </td></tr>
+              <tr><td>Lenth, ft</td><td> {{product?.length}} </td></tr>
+              <tr><td>Weight, lb</td><td> {{product?.weight}} </td></tr>
+              <tr><td>Price per hour, $</td><td> {{product?.pricePerHour | currency:'USD':'symbol':'1.2-2'}} </td></tr>
+              <tr><td>Price per day, $</td><td> {{product?.pricePerDay | currency:'USD':'symbol':'1.2-2'}} </td></tr>
+              <tr><td>People Capacity</td><td> {{product?.peopleCapacity}} </td></tr>
             </tbody>
           </table>
         </div>

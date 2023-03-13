@@ -39,7 +39,7 @@ export class BoatsComponent implements OnInit {
     this.sub = this.inventoryService.getItems().subscribe({
       next: units => {
         this.boats = units;
-        this.filteredList = this.boats.filter((boat: any) => boat.type.toLocaleLowerCase().includes('boat'))
+        this.filteredList = this.boats.filter((boat: any) => boat.type.toLocaleLowerCase().includes('boat'));
         this.sortedData = this.filteredList.slice();
       },
       error: err => this.errorMessage = err
