@@ -39,8 +39,8 @@ export class BoatsComponent implements OnInit {
     this.sub = this.inventoryService.getItems().subscribe({
       next: units => {
         this.boats = units;
-        this.filteredList = this.boats;
-        this.sortedData = this.boats.slice();
+        this.filteredList = this.boats.filter((boat: any) => boat.type.toLocaleLowerCase().includes('boat'))
+        this.sortedData = this.filteredList.slice();
       },
       error: err => this.errorMessage = err
     });
@@ -49,9 +49,10 @@ export class BoatsComponent implements OnInit {
   performFilter(filterBy: string) {
     filterBy = filterBy.toLocaleLowerCase();
     return this.boats.filter((boat: any) =>
-      boat.brand.toLocaleLowerCase().includes(filterBy)
+      boat.type.toLocaleLowerCase().includes('boat') &&
+      (boat.brand.toLocaleLowerCase().includes(filterBy)
       || boat.model.toLocaleLowerCase().includes(filterBy)
-      || boat.subType.toLocaleLowerCase().includes(filterBy)
+      || boat.subType.toLocaleLowerCase().includes(filterBy))
     );
   }
 
