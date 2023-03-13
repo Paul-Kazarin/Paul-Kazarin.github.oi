@@ -194,5 +194,19 @@
     "pricePerDay": 600,
     "peopleCapacity": 12,
     "image": "assets/images/rv-trailer.jpg"
+  },
+  {
+    "itemId": 15,
+    "type": "rv",
+    "subType": "trailer",
+    "brand": "Venture",
+    "model": "260",
+    "year": "2014",
+    "length": 26,
+    "weight": 5100,
+    "pricePerHour": 170,
+    "pricePerDay": 600,
+    "peopleCapacity": 12,
+    "image": "assets/images/rv-trailer.jpg"
   }
 ]
