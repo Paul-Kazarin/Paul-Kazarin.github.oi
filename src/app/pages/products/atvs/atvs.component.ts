@@ -1,20 +1,23 @@
-import {AfterViewInit, Component, ViewChild, OnInit} from '@angular/core';
+import {AfterViewInit, Component, ViewChild, OnInit, OnDestroy} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
-import {Inventory} from "../../interfaces/inventory";
-import {InventoryService} from "../../services/inventory.service";
+import {Inventory} from "../../../interfaces/inventory";
+import {InventoryService} from "../../../services/inventory.service";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-atvs',
   templateUrl: './atvs.component.html',
   styleUrls: ['./atvs.component.scss']
 })
-export class AtvsComponent implements AfterViewInit, OnInit {
+export class AtvsComponent implements OnInit, AfterViewInit, OnDestroy {
 
   dataSource: MatTableDataSource<Inventory>;
   displayedColumns = ['image', 'subType', 'brand', 'model', 'year', 'peopleCapacity', 'length', 'weight', 'pricePerHour', 'pricePerDay'];
   units: Inventory[] = [];
+  errorMessage: string = '';
+  sub!: Subscription;
 
   @ViewChild(MatPaginator) paginator: any = MatPaginator;
   @ViewChild(MatSort) sort: any = MatSort;
@@ -24,13 +27,24 @@ export class AtvsComponent implements AfterViewInit, OnInit {
   }
 
   ngOnInit(): void {
-    this.units = this.inventoryService.getItems();
-    this.dataSource = new MatTableDataSource(this.units);
+    this.sub = this.inventoryService.getItems().subscribe({
+      next: units => {
+        this.units = units;
+        this.dataSource = new MatTableDataSource(this.units);
+      },
+      error: err => this.errorMessage = err
+    });
   }
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
+    console.log(this.paginator);
     this.dataSource.sort = this.sort;
+    console.log(this.sort);
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 
   applyFilter(event: Event) {

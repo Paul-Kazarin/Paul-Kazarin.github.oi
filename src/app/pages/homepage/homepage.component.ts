@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class HomepageComponent implements OnInit {
 
   pageTitle: string = 'Welcome to "&Ride!"';
+  selected: Date | null = new Date();
 
   constructor() { }
 

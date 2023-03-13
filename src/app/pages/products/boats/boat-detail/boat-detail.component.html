@@ -1,0 +1,45 @@
+<button class="margin-02-em" mat-raised-button (click)="onBack()">BACK</button>
+<div>
+  {{pageTitle + ': ' + boat?.brand + ' ' + boat?.model}}
+  <div fxLayout="row" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
+    <div fxFlex="50%">
+      <div fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
+        <div fxFlex="50%">
+          <img src="{{boat?.image}}" class="image-detail-page">
+        </div>
+        <div fxFlex="50%">SPECIFICATIONS:
+          <table>
+            <thead>
+              <th></th>
+              <th></th>
+            </thead>
+            <tbody>
+              <tr><td>Type of Boat</td><td> {{boat?.subType}} </td></tr>
+              <tr><td>Make</td><td> {{boat?.brand}} </td></tr>
+              <tr><td>Model</td><td> {{boat?.model}} </td></tr>
+              <tr><td>Year</td><td> {{boat?.year}} </td></tr>
+              <tr><td>Lenth, ft</td><td> {{boat?.length}} </td></tr>
+              <tr><td>Weight, lb</td><td> {{boat?.weight}} </td></tr>
+              <tr><td>Price per hour, $</td><td> {{boat?.pricePerHour | currency:'USD':'symbol':'1.2-2'}} </td></tr>
+              <tr><td>Price per day, $</td><td> {{boat?.pricePerDay | currency:'USD':'symbol':'1.2-2'}} </td></tr>
+              <tr><td>People Capacity</td><td> {{boat?.peopleCapacity}} </td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div fxFlex="50%">
+      <div fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
+        <div fxFlex="50%">Availability Calendar
+          <mat-card class="demo-inline-calendar-card">
+            <mat-calendar [(selected)]="selected"></mat-calendar>
+          </mat-card>
+          <p>Selected date: {{selected}}</p>
+        </div>
+        <div fxFlex="50%">Book/Reserve
+          <button class="margin-02-em" mat-raised-button (click)="onBack()">BOOK/RESERVE</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

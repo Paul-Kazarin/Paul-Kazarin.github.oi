@@ -1,0 +1,47 @@
+.mat-mdc-table{
+  table-layout: fixed !important;
+}
+
+.mat-mdc-form-field {
+  display: block;
+  min-width: 0;
+  text-align: left;
+}
+
+::ng-deep .mat-mdc-form-field-bottom-align::before {
+  content: none !important;
+  display: inline-block;
+  height: 16px;
+}
+
+::ng-deep .mdc-text-field .mdc-floating-label {
+  top: 35% !important;
+  transform: translateY(-100%) !important;
+}
+
+.mdc-data-table__cell, .mdc-data-table__header-cell {
+  padding: 1px;
+  text-align: center;
+}
+
+.mdc-data-table__table {
+  min-width: 100%;
+  border: 0;
+  //white-space: nowrap;
+  border-spacing: 1px;
+  table-layout: fixed;
+}
+
+::ng-deep .mat-sort-header-container {
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  letter-spacing: normal;
+  outline: 0;
+  text-align: center;
+  flex-direction: column !important;
+}
+
+
+
+
