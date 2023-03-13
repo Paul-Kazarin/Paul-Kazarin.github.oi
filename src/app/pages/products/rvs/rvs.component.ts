@@ -1,44 +1,91 @@
-import {AfterViewInit, Component, ViewChild, OnInit} from '@angular/core';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatSort} from '@angular/material/sort';
-import {MatTableDataSource} from '@angular/material/table';
-import {Inventory} from "../../../interfaces/inventory";
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {Sort} from "@angular/material/sort";
+import {Subscription} from "rxjs";
 import {InventoryService} from "../../../services/inventory.service";
+import {Inventory} from "../../../interfaces/inventory";
+
+function compare(a: number | string, b: number | string, isAsc: boolean) {
+  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
+}
 
 @Component({
   selector: 'app-rvs',
   templateUrl: './rvs.component.html',
   styleUrls: ['./rvs.component.scss']
 })
-export class RvsComponent implements OnInit, AfterViewInit {
+export class RvsComponent implements OnInit {
 
-  dataSource: MatTableDataSource<Inventory>;
+  pageTitle = 'Rent Boat';
+  boats: Inventory[] = [];
+  sortedData: Inventory[] = [];
+  filteredList: Inventory[] = [];
   displayedColumns = ['image', 'subType', 'brand', 'model', 'year', 'peopleCapacity', 'length', 'weight', 'pricePerHour', 'pricePerDay'];
-  units: Inventory[] = [];
-
-  @ViewChild(MatPaginator) paginator: any = MatPaginator;
-  @ViewChild(MatSort) sort: any = MatSort;
-
-  constructor(public inventoryService: InventoryService) {
-    this.dataSource = new MatTableDataSource(this.units);
+  sub!: Subscription;
+  errorMessage: string = '';
+  private _listFilter = '';
+  get listFilter(): string {
+    return this._listFilter;
+  }
+  set listFilter(value) {
+    this._listFilter = value;
+    console.log('in setter: ', value);
+    this.filteredList = this.performFilter(value);
   }
 
-  ngOnInit(): void {
-    this.units = this.inventoryService.getItemsOld();
-    this.dataSource = new MatTableDataSource(this.units);
+  constructor(public inventoryService: InventoryService) {}
+
+  ngOnInit() {
+    this.listFilter = '';
+    this.sub = this.inventoryService.getItems().subscribe({
+      next: units => {
+        this.boats = units;
+        this.filteredList = this.boats.filter((boat: any) => boat.type.toLocaleLowerCase().includes('rv'))
+        this.sortedData = this.filteredList.slice();
+      },
+      error: err => this.errorMessage = err
+    });
   }
 
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+  performFilter(filterBy: string) {
+    filterBy = filterBy.toLocaleLowerCase();
+    return this.boats.filter((boat: any) =>
+      boat.type.toLocaleLowerCase().includes('rv') &&
+      (boat.brand.toLocaleLowerCase().includes(filterBy)
+        || boat.model.toLocaleLowerCase().includes(filterBy)
+        || boat.subType.toLocaleLowerCase().includes(filterBy))
+    );
   }
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
+  performFilterSorted(filterBy: string) {
+    this.sortedData = this.filteredList;
+  }
+
+  sortData(sort: Sort) {
+    this.performFilter(this.listFilter);
+    const data = this.filteredList.slice();
+    if (!sort.active || sort.direction === '') {
+      this.sortedData = data;
+      return;
     }
-  }
 
+    this.sortedData = data.sort((a, b) => {
+      const isAsc = sort.direction === 'asc';
+      switch (sort.active) {
+        case 'year':
+          return compare(a.year, b.year, isAsc);
+        case 'peopleCapacity':
+          return compare(a.peopleCapacity, b.peopleCapacity, isAsc);
+        case 'length':
+          return compare(a.length, b.length, isAsc);
+        case 'weight':
+          return compare(a.weight, b.weight, isAsc);
+        case 'pricePerHour':
+          return compare(a.pricePerHour, b.pricePerHour, isAsc);
+        case 'pricePerDay':
+          return compare(a.pricePerDay, b.pricePerDay, isAsc);
+        default:
+          return 0;
+      }
+    });
+  }
 }
