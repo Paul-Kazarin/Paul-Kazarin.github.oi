@@ -4,7 +4,7 @@ export interface Inventory {
   subType: string;
   brand: string;
   model: string;
-  year: string;
+  year: number;
   length: number;
   weight: number;
   pricePerHour: number;
