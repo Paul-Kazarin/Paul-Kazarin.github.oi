@@ -22,7 +22,7 @@ export class InventoryService {
   getItem(id: number): Observable<Inventory | undefined> {
     return this.getItems()
     .pipe(
-      map((items: Inventory[]) => items.find(p => p.itemId === id))
+      map((items: Inventory[]) => items.find(p => p.id === id))
     );
   }
 
@@ -45,7 +45,7 @@ export class InventoryService {
   getItemsOld(): Inventory[] {
     return [
       {
-        itemId: 1,
+        id: 1,
         type: "boat",
         subType: "pontoon",
         brand: "SeaDoo",
@@ -59,7 +59,7 @@ export class InventoryService {
         image: "assets/images/sea-doo-switch-16.webp"
       },
       {
-        itemId: 2,
+        id: 2,
         type: "boat",
         subType: "pontoon",
         brand: "SeaDoo",
@@ -73,7 +73,7 @@ export class InventoryService {
         image: "assets/images/sea-doo-switch-16.webp"
       },
       {
-        itemId: 3,
+        id: 3,
         type: "boat",
         subType: "jetboat",
         brand: "Yamaha",
@@ -87,7 +87,7 @@ export class InventoryService {
         image: "assets/images/yamaha-ar190.webp"
       },
       {
-        itemId: 4,
+        id: 4,
         type: "boat",
         subType: "wakesurf",
         brand: "Malibu",
@@ -101,7 +101,7 @@ export class InventoryService {
         image: "assets/images/kakesetter.jpg"
       },
       {
-        itemId: 5,
+        id: 5,
         type: "boat",
         subType: "skiboat",
         brand: "Tige",
@@ -115,7 +115,7 @@ export class InventoryService {
         image: "assets/images/tige-rzr-lead.jpg"
       },
       {
-        itemId: 6,
+        id: 6,
         type: "boat",
         subType: "bowrider",
         brand: "Sea Ray",
@@ -129,7 +129,7 @@ export class InventoryService {
         image: "assets/images/Sea-Ray-250-560px.jpg"
       },
       {
-        itemId: 7,
+        id: 7,
         type: "boat",
         subType: "cuddy cabin",
         brand: "Sea Ray",
@@ -143,7 +143,7 @@ export class InventoryService {
         image: "assets/images/sea-ray-cuddy-cabin.jpg"
       },
       {
-        itemId: 8,
+        id: 8,
         type: "atv",
         subType: "razor",
         brand: "Polaris",
@@ -157,7 +157,7 @@ export class InventoryService {
         image: "assets/images/polaris-rzr.png"
       },
       {
-        itemId: 9,
+        id: 9,
         type: "atv",
         subType: "4-wheeller",
         brand: "Polaris",
@@ -171,7 +171,7 @@ export class InventoryService {
         image: "assets/images/polaris-4-wheeller.webp"
       },
       {
-        itemId: 10,
+        id: 10,
         type: "atv",
         subType: "off-road-car",
         brand: "Jeep",
@@ -185,7 +185,7 @@ export class InventoryService {
         image: "assets/images/lifted-jeep.jpg"
       },
       {
-        itemId: 11,
+        id: 11,
         type: "atv",
         subType: "dirt-bike",
         brand: "Suzuki",
@@ -199,7 +199,7 @@ export class InventoryService {
         image: "assets/images/suzuki-dirt-bike.jpg"
       },
       {
-        itemId: 12,
+        id: 12,
         type: "atv",
         subType: "utv",
         brand: "Polaris",
@@ -213,7 +213,7 @@ export class InventoryService {
         image: "assets/images/utv.jpg"
       },
       {
-        itemId: 13,
+        id: 13,
         type: "rv",
         subType: "class-b",
         brand: "Dodge",
@@ -227,7 +227,7 @@ export class InventoryService {
         image: "assets/images/rv-class-b.webp"
       },
       {
-        itemId: 14,
+        id: 14,
         type: "rv",
         subType: "trailer",
         brand: "Venture",

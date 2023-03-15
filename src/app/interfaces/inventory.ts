@@ -1,5 +1,5 @@
 export interface Inventory {
-  itemId: number;
+  id: number;
   type: string;
   subType: string;
   brand: string;
