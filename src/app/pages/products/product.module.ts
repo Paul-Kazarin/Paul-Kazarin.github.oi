@@ -6,6 +6,8 @@ import {RvsComponent} from "./rvs/rvs.component";
 import {ToursComponent} from "./tours/tours.component";
 import {RouterModule} from "@angular/router";
 import { SharedModule } from '../../shared/shared.module';
+import { AddnewitemComponent } from './addnewitem/addnewitem.component';
+import { AddNewItemModalComponent } from './add-new-item-modal/add-new-item-modal.component';
 
 @NgModule({
   declarations: [
@@ -13,7 +15,9 @@ import { SharedModule } from '../../shared/shared.module';
     ProductDetailComponent,
     AtvsComponent,
     RvsComponent,
-    ToursComponent
+    ToursComponent,
+    AddnewitemComponent,
+    AddNewItemModalComponent
   ],
   imports: [
     RouterModule.forChild([
@@ -21,6 +25,7 @@ import { SharedModule } from '../../shared/shared.module';
       {path: 'products/atv', component: AtvsComponent},
       {path: 'products/rv', component: RvsComponent},
       {path: 'products/tour', component: ToursComponent},
+      {path: 'products/addnewitem', component: AddnewitemComponent},
       {path: 'products/:id', component: ProductDetailComponent}
     ]),
     SharedModule

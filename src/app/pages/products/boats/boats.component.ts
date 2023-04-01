@@ -3,6 +3,9 @@ import {Sort} from "@angular/material/sort";
 import {Subscription} from "rxjs";
 import {InventoryService} from "../../../services/inventory.service";
 import {Inventory} from "../../../interfaces/inventory";
+import {Router} from "@angular/router";
+import {AddNewItemModalComponent} from "../add-new-item-modal/add-new-item-modal.component";
+import {MatDialog} from "@angular/material/dialog";
 
 function compare(a: number | string, b: number | string, isAsc: boolean) {
   return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
@@ -32,7 +35,11 @@ export class BoatsComponent implements OnInit {
     this.filteredList = this.performFilter(value);
   }
 
-  constructor(public inventoryService: InventoryService) {}
+  constructor(
+    public inventoryService: InventoryService,
+    private router: Router,
+    public dialog: MatDialog
+  ) {}
 
   ngOnInit() {
     this.listFilter = '';
@@ -88,4 +95,15 @@ export class BoatsComponent implements OnInit {
       }
     });
   }
+
+  addNewItem(): void {
+    const dialogRef = this.dialog.open(AddNewItemModalComponent, {
+      width: '70%',
+      height: '70%',
+      data: {
+        type: 'boat'
+      }
+    })
+  }
+
 }

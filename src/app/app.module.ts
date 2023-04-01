@@ -13,6 +13,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {MatCardModule} from "@angular/material/card";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import { ProductModule } from './pages/products/product.module';
+import {MatDialogModule} from "@angular/material/dialog";
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { ProductModule } from './pages/products/product.module';
     MatInputModule,
     MatCardModule,
     MatDatepickerModule,
+    MatDialogModule,
     ProductModule
   ],
   providers: [],

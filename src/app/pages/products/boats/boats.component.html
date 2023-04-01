@@ -4,14 +4,19 @@
   </div>
   <div fxFlex="80%" style="margin-bottom: 4em !important;">
     <div fxLayout="row" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
-      <div fxFlex="60%">
+      <div fxFlex="50%">
         <mat-label class="margin-02-em">Search and Filter</mat-label>
         <input class="margin-02-em" type="text" matInput placeholder="Ex. Yamaha"
                 [(ngModel)]="listFilter">
         <button class="margin-02-em" mat-raised-button (click)="performFilterSorted(this.listFilter)">Apply Filter</button>
       </div>
-      <div fxFlex="40%">
+      <div fxFlex="38%">
         <h3 class="margin-02-em" style="color: grey !important;">Filtered By: {{listFilter}}</h3>
+      </div>
+      <div fxFlex="12%" style="alignment: right !important;">
+        <div style="alignment: right !important;">
+          <button class="margin-02-em" mat-raised-button (click)="addNewItem()">Add new boat</button>
+        </div>
       </div>
     </div>
 

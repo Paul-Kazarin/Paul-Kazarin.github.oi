@@ -8,7 +8,8 @@ import {catchError, map, tap} from "rxjs/operators";
   providedIn: 'root'
 })
 export class InventoryService {
-  productUrl = 'api/units/units.json'
+  //productUrl = 'api/units/units.json'
+  productUrl = 'http://localhost:8080/item/all'
 
   constructor(private http: HttpClient) { }
 
