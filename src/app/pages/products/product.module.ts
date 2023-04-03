@@ -8,6 +8,7 @@ import {RouterModule} from "@angular/router";
 import { SharedModule } from '../../shared/shared.module';
 import { AddnewitemComponent } from './addnewitem/addnewitem.component';
 import { AddNewItemModalComponent } from './add-new-item-modal/add-new-item-modal.component';
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { AddNewItemModalComponent } from './add-new-item-modal/add-new-item-moda
       {path: 'products/addnewitem', component: AddnewitemComponent},
       {path: 'products/:id', component: ProductDetailComponent}
     ]),
-    SharedModule
+    SharedModule,
+    MatCheckboxModule
   ]
 })
 export class ProductModule { }

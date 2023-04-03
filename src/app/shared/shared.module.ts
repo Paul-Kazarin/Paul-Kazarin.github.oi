@@ -17,6 +17,7 @@ import {MatNativeDateModule} from "@angular/material/core";
 import {MatButtonModule} from "@angular/material/button";
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {MatDialogModule} from "@angular/material/dialog";
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import {MatDialogModule} from "@angular/material/dialog";
     MatNativeDateModule,
     MatButtonModule,
     MatDialogModule,
+    MatCheckboxModule,
     FlexLayoutModule
   ]
 })

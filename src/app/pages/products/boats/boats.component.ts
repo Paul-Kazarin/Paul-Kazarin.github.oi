@@ -19,6 +19,17 @@ function compare(a: number | string, b: number | string, isAsc: boolean) {
 export class BoatsComponent implements OnInit {
 
   pageTitle = 'Rent Boat';
+  subType: string = '';
+  brand: string = '';
+  model: string = '';
+  year: string = '';
+  length: string = '';
+  weight: string = '';
+  pricePerHour: string = '';
+  pricePerDay: string = '';
+  peopleCapacity: string = '';
+  image: string = '';
+  active: string = '';
   boats: Inventory[] = [];
   sortedData: Inventory[] = [];
   filteredList: Inventory[] = [];
@@ -101,7 +112,18 @@ export class BoatsComponent implements OnInit {
       width: '70%',
       height: '70%',
       data: {
-        type: 'boat'
+        type: 'boat',
+        subType: this.subType,
+        brand: this.brand,
+        model: this.model,
+        year: this.year,
+        length: this.length,
+        weight: this.weight,
+        pricePerHour: this.pricePerHour,
+        pricePerDay: this.pricePerDay,
+        peopleCapacity: this.peopleCapacity,
+        image: this.image,
+        active: this.active
       }
     })
   }

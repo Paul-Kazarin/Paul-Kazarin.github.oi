@@ -13,6 +13,7 @@ export class ProductDetailComponent implements OnInit{
   errorMessage = '';
   product: Inventory | undefined;
   type: string | undefined;
+  active: boolean | undefined;
   selected: Date | null = new Date();
 
   constructor(private route: ActivatedRoute,
@@ -31,6 +32,7 @@ export class ProductDetailComponent implements OnInit{
       next: product => {
         this.product = product;
         this.type = product?.type;
+        this.active = product?.active;
       },
       error: err => this.errorMessage = err
     });

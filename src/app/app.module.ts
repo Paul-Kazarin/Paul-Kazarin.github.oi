@@ -14,6 +14,8 @@ import {MatCardModule} from "@angular/material/card";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import { ProductModule } from './pages/products/product.module';
 import {MatDialogModule} from "@angular/material/dialog";
+import {FormsModule} from "@angular/forms";
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 @NgModule({
   declarations: [
@@ -25,6 +27,7 @@ import {MatDialogModule} from "@angular/material/dialog";
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
     RouterModule.forRoot([
@@ -39,6 +42,7 @@ import {MatDialogModule} from "@angular/material/dialog";
     MatCardModule,
     MatDatepickerModule,
     MatDialogModule,
+    MatCheckboxModule,
     ProductModule
   ],
   providers: [],

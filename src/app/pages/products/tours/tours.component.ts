@@ -3,6 +3,8 @@ import {Sort} from "@angular/material/sort";
 import {Subscription} from "rxjs";
 import {InventoryService} from "../../../services/inventory.service";
 import {Inventory} from "../../../interfaces/inventory";
+import {AddNewItemModalComponent} from "../add-new-item-modal/add-new-item-modal.component";
+import {MatDialog} from "@angular/material/dialog";
 
 function compare(a: number | string, b: number | string, isAsc: boolean) {
   return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
@@ -16,6 +18,7 @@ function compare(a: number | string, b: number | string, isAsc: boolean) {
 export class ToursComponent implements OnInit {
 
   pageTitle = 'Rent Boat';
+  subType: string = '';
   boats: Inventory[] = [];
   sortedData: Inventory[] = [];
   filteredList: Inventory[] = [];
@@ -32,7 +35,10 @@ export class ToursComponent implements OnInit {
     this.filteredList = this.performFilter(value);
   }
 
-  constructor(public inventoryService: InventoryService) {}
+  constructor(
+    public inventoryService: InventoryService,
+    public dialog: MatDialog
+  ) {}
 
   ngOnInit() {
     this.listFilter = '';
@@ -88,4 +94,16 @@ export class ToursComponent implements OnInit {
       }
     });
   }
+
+  addNewItem(): void {
+    const dialogRef = this.dialog.open(AddNewItemModalComponent, {
+      width: '70%',
+      height: '70%',
+      data: {
+        type: 'tour',
+        subType: this.subType
+      }
+    })
+  }
+
 }

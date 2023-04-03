@@ -3,7 +3,7 @@
   {{pageTitle + ': ' + product?.brand + ' ' + product?.model}}
   <div fxLayout="row" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
     <div fxFlex="50%">
-      <div fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
+      <div fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutGap="10px" style="margin-bottom: 5em !important;">
         <div fxFlex="50%">
           <img src="{{product?.image}}" class="image-detail-page">
         </div>
@@ -23,6 +23,7 @@
               <tr><td>Price per hour, $</td><td> {{product?.pricePerHour | currency:'USD':'symbol':'1.2-2'}} </td></tr>
               <tr><td>Price per day, $</td><td> {{product?.pricePerDay | currency:'USD':'symbol':'1.2-2'}} </td></tr>
               <tr><td>People Capacity</td><td> {{product?.peopleCapacity}} </td></tr>
+              <tr><td>Active</td><td><mat-checkbox [(ngModel)]="active" [disabled]="true"></mat-checkbox></td></tr>
             </tbody>
           </table>
         </div>
