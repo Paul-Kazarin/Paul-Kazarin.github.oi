@@ -9,12 +9,12 @@ import {catchError, map, tap} from "rxjs/operators";
 })
 export class InventoryService {
   //productUrl = 'api/units/units.json'
-  productUrl = 'http://localhost:8080/item/all'
+  productUrl = 'http://localhost:4200'
 
   constructor(private http: HttpClient) { }
 
   getItems(): Observable<Inventory[]> {
-    return this.http.get<Inventory[]>(this.productUrl).pipe(
+    return this.http.get<Inventory[]>(this.productUrl + '/item/all').pipe(
       //tap(data => console.log('All', JSON.stringify(data))),
       catchError(this.handleError)
     );
@@ -28,7 +28,8 @@ export class InventoryService {
   }
 
   postAddNewItemForm(inventory: Inventory) : Observable<any> {
-    return of(inventory);
+    //return of(inventory);
+    return this.http.post(this.productUrl + '/item/add', inventory);
     //return this.http.post('http://localhost:8080/item/add', inventory);
   }
 
