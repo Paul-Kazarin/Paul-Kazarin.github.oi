@@ -37,12 +37,15 @@ export class AddNewItemModalComponent implements OnInit {
     this.item.type = this.data.type;
   }
 
-  onSubmit(addNewItem: NgForm) {
-    console.log('in onSubmit: ', addNewItem.valid);
+  onSubmit() {
     this.inventoryService.postAddNewItemForm(this.item).subscribe(
       result => console.log('success: ', result),
       error => console.log('error: ', error),
     );
+  }
+
+  onClose(): void {
+    this.dialogRef.close("closed");
   }
 
 }

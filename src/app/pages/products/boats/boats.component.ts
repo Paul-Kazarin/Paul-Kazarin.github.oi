@@ -110,7 +110,7 @@ export class BoatsComponent implements OnInit {
   addNewItem(): void {
     const dialogRef = this.dialog.open(AddNewItemModalComponent, {
       width: '70%',
-      height: '70%',
+      height: '90%',
       data: {
         type: 'boat',
         subType: this.subType,

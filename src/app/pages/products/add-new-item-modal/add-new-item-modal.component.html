@@ -1,8 +1,14 @@
 <div class="container">
   <h2>add-new-item-modal works! {{item.type}} </h2>
-  <form #addNewItem="ngForm" (ngSubmit)="onSubmit(addNewItem)">
+  <form #addNewItem="ngForm" (submit)="onSubmit()">
 
     <div *ngIf="data.type === 'boat'">
+
+<!--      <label for="boatId">ID</label>-->
+<!--      <input id="boatId" name="id" class="form-control" [(ngModel)]="item.id" required type="number" #idField="ngModel" [class.field-error]="addNewItem.submitted && idField.invalid">-->
+<!--      <div [hidden]="!addNewItem.submitted || idField.valid" class="alert alert-danger">-->
+<!--        Enter ID of {{data.type}}-->
+<!--      </div>-->
 
       <label for="boatSubType">Type of {{data.type}}</label>
       <select id="boatSubType" name="subType" class="form-select form-control" aria-label="Type of boat" [(ngModel)]="item.subType" required type="string" #subTypeField="ngModel" [class.field-error]="addNewItem.submitted && subTypeField.invalid">
@@ -55,6 +61,12 @@
         Enter weight of {{data.type}}
       </div>
 
+      <label for="boatPeopleCapacity">People Capacity</label>
+      <input id="boatPeopleCapacity" name="peopleCapacity" class="form-control" [(ngModel)]="item.peopleCapacity" required type="number" #peopleCapacityField="ngModel" [class.field-error]="addNewItem.submitted && peopleCapacityField.invalid">
+      <div [hidden]="!addNewItem.submitted || peopleCapacityField.valid" class="alert alert-danger">
+        Enter People Capacity of {{data.type}}
+      </div>
+
       <label for="boatPricePerHour">Price Per Hour, $</label>
       <input id="boatPricePerHour" name="pricePerHour" class="form-control" [(ngModel)]="item.pricePerHour" required type="number" #pricePerHourField="ngModel" [class.field-error]="addNewItem.submitted && pricePerHourField.invalid">
       <div [hidden]="pricePerHourField.valid || !addNewItem.submitted" class="alert alert-danger">
@@ -90,9 +102,8 @@
     </div>
 
     <button class="btn btn-primary" type="submit">SAVE</button>
+    <button class="btn btn-primary" type="cancel" (click)="onClose()">Close</button>
 
   </form>
 </div>
 
-{{addNewItem.value | json}}
-{{item.subType}}, {{item.brand}}, {{item.model}}, {{item.year}}, {{item.length}}, {{item.weight}}, {{item.pricePerHour}}, {{item.pricePerDay}}, {{item.peopleCapacity}}, {{item.active}}

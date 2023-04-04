@@ -27,7 +27,7 @@ export class InventoryService {
     );
   }
 
-  postAddNewItemForm(inventory: Inventory) : Observable<any> {
+  postAddNewItemForm(inventory: Inventory): Observable<any> {
     //return of(inventory);
     return this.http.post(this.productUrl + '/item/add', inventory);
     //return this.http.post('http://localhost:8080/item/add', inventory);
