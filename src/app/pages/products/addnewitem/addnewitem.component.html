@@ -1,1 +1,106 @@
-<button class="margin-02-em" mat-raised-button (click)="onBack()">BACK</button>
+<div class="container">
+  <h2>{{data.type}} </h2>
+
+  <form [formGroup]="addNewItem" >
+    <div fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
+      <div fxFlex="30%">
+        <div fxLayout="row" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
+
+          <div fxFlex="33%">
+            <div fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
+              <div fxFlex="33%">
+                <mat-form-field appearance="outline" class="form-field">
+                  <mat-label>Type of {{data.type}}</mat-label>
+                  <mat-select formControlName="subType">
+                    <mat-option *ngFor="let subType of subTypes" [value]="subType?.value" >
+                      {{subType?.viewValue}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div fxFlex="33%">
+                <mat-form-field appearance="outline" class="form-field">
+                  <mat-label>Year</mat-label>
+                  <input matInput formControlName="year">
+                </mat-form-field>
+              </div>
+              <div fxFlex="33%">
+                <mat-form-field appearance="outline" class="form-field">
+                  <mat-label>Price per hour, $</mat-label>
+                  <input matInput formControlName="pricePerHour">
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+
+          <div fxFlex="33%">
+            <div fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
+              <div fxFlex="33%">
+                <mat-form-field appearance="outline" class="form-field">
+                  <mat-label>Brand of {{data.type}}</mat-label>
+                  <mat-select formControlName="brand">
+                    <mat-option *ngFor="let brand of brands" [value]="brand?.value" >
+                      {{brand?.viewValue}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div fxFlex="33%">
+                <mat-form-field appearance="outline" class="form-field">
+                  <mat-label>Length, Ft</mat-label>
+                  <input matInput formControlName="length">
+                </mat-form-field>
+              </div>
+              <div fxFlex="33%">
+                <mat-form-field appearance="outline" class="form-field">
+                  <mat-label>Price per hour, $</mat-label>
+                  <input matInput formControlName="pricePerDay">
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+
+          <div fxFlex="33%">
+            <div fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
+              <div fxFlex="33%">
+                <mat-form-field appearance="outline" class="form-field">
+                  <mat-label>Model of {{data.type}}</mat-label>
+                  <mat-select formControlName="model">
+                    <mat-option *ngFor="let model of models" [value]="model?.value" >
+                      {{model?.viewValue}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div fxFlex="33%">
+                <mat-form-field appearance="outline" class="form-field">
+                  <mat-label>Weight, Lb</mat-label>
+                  <input matInput formControlName="weight">
+                </mat-form-field>
+              </div>
+              <div fxFlex="33%">
+                <mat-checkbox name="active" type="boolean" formControlName="active" class="form-field">Active</mat-checkbox>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div fxFlex="60%">
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Image</mat-label>
+          <input matInput formControlName="image">
+        </mat-form-field>
+      </div>
+
+      <div fxFlex="10%">
+        <button mat-raised-button class="button" type="submit" (click)="onSubmit()">SAVE</button>
+        <button mat-raised-button class="button" (click)="clearForm()">CLEAR FORM</button>
+        <button mat-raised-button class="button" (click)="onClose()">CLOSE</button>
+      </div>
+    </div>
+
+  </form>
+
+</div>

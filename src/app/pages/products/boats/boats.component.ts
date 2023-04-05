@@ -6,6 +6,7 @@ import {Inventory} from "../../../interfaces/inventory";
 import {Router} from "@angular/router";
 import {AddNewItemModalComponent} from "../add-new-item-modal/add-new-item-modal.component";
 import {MatDialog} from "@angular/material/dialog";
+import {AddnewitemComponent} from "../addnewitem/addnewitem.component";
 
 function compare(a: number | string, b: number | string, isAsc: boolean) {
   return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
@@ -107,8 +108,29 @@ export class BoatsComponent implements OnInit {
     });
   }
 
-  addNewItem(): void {
+  addNewItemNg(): void {
     const dialogRef = this.dialog.open(AddNewItemModalComponent, {
+      width: '70%',
+      height: '90%',
+      data: {
+        type: 'boat',
+        subType: this.subType,
+        brand: this.brand,
+        model: this.model,
+        year: this.year,
+        length: this.length,
+        weight: this.weight,
+        pricePerHour: this.pricePerHour,
+        pricePerDay: this.pricePerDay,
+        peopleCapacity: this.peopleCapacity,
+        image: this.image,
+        active: this.active
+      }
+    })
+  }
+
+  addNewItemReact(): void {
+    const dialogRef = this.dialog.open(AddnewitemComponent, {
       width: '70%',
       height: '90%',
       data: {

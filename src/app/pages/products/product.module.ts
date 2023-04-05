@@ -9,6 +9,8 @@ import { SharedModule } from '../../shared/shared.module';
 import { AddnewitemComponent } from './addnewitem/addnewitem.component';
 import { AddNewItemModalComponent } from './add-new-item-modal/add-new-item-modal.component';
 import {MatCheckboxModule} from "@angular/material/checkbox";
+import {ReactiveFormsModule} from "@angular/forms";
+import {MatSelectModule} from "@angular/material/select";
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
       {path: 'products/:id', component: ProductDetailComponent}
     ]),
     SharedModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    ReactiveFormsModule,
+    MatSelectModule
   ]
 })
 export class ProductModule { }
