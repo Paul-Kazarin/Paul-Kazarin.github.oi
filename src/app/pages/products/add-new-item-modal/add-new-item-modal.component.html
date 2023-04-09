@@ -1,87 +1,87 @@
 <div class="container">
   <h2>add-new-item-modal works! {{item.type}} </h2>
-  <form #addNewItem="ngForm" (submit)="onSubmit()">
+  <form #editItem="ngForm" (submit)="onSubmit()">
 
     <div *ngIf="data.type === 'boat'">
 
-<!--      <label for="boatId">ID</label>-->
-<!--      <input id="boatId" name="id" class="form-control" [(ngModel)]="item.id" required type="number" #idField="ngModel" [class.field-error]="addNewItem.submitted && idField.invalid">-->
-<!--      <div [hidden]="!addNewItem.submitted || idField.valid" class="alert alert-danger">-->
-<!--        Enter ID of {{data.type}}-->
-<!--      </div>-->
+      <label for="boatId">ID</label>
+      <input id="boatId" name="id" class="form-control" [(ngModel)]="item.id" required type="number" #idField="ngModel" [class.field-error]="editItem.submitted && idField.invalid" value="{{item.id}}">
+      <div [hidden]="!editItem.submitted || idField.valid" class="alert alert-danger">
+        Enter ID of {{data.type}}
+      </div>
 
       <label for="boatSubType">Type of {{data.type}}</label>
-      <select id="boatSubType" name="subType" class="form-select form-control" aria-label="Type of boat" [(ngModel)]="item.subType" required type="string" #subTypeField="ngModel" [class.field-error]="addNewItem.submitted && subTypeField.invalid">
+      <select id="boatSubType" name="subType" class="form-select form-control" aria-label="Type of boat" [(ngModel)]="item.subType" required type="string" #subTypeField="ngModel" [class.field-error]="editItem.submitted && subTypeField.invalid">
         <option value="jetboat">Jetboat</option>
         <option value="pontoon">Pontoon</option>
         <option value="surfboat">Surfboat</option>
         <option value="cruiser">Cruiser</option>
       </select>
-      <div [hidden]="!addNewItem.submitted || subTypeField.valid" class="alert alert-danger">
+      <div [hidden]="!editItem.submitted || subTypeField.valid" class="alert alert-danger">
         Enter type of {{data.type}}
       </div>
 
       <label for="boatBrand">Brand of {{data.type}}</label>
-      <select id="boatBrand" name="brand" class="form-select form-control" aria-label="Brand of boat" [(ngModel)]="item.brand" required type="string" #brandField="ngModel" [class.field-error]="addNewItem.submitted && brandField.invalid">
+      <select id="boatBrand" name="brand" class="form-select form-control" aria-label="Brand of boat" [(ngModel)]="item.brand" required type="string" #brandField="ngModel" [class.field-error]="editItem.submitted && brandField.invalid">
         <option value="yamaha">Yamaha</option>
         <option value="seadoo">SeaDoo</option>
         <option value="sea ray">Sea Ray</option>
         <option value="bayliner">Bayliner</option>
       </select>
-      <div [hidden]="!addNewItem.submitted || brandField.valid" class="alert alert-danger">
+      <div [hidden]="!editItem.submitted || brandField.valid" class="alert alert-danger">
         Enter brand of {{data.type}}
       </div>
 
       <label for="boatModel">Model of {{data.type}}</label>
-      <select id="boatModel" name="model" class="form-select form-control" aria-label="Model of boat" [(ngModel)]="item.model" required type="string" #modelField="ngModel" [class.field-error]="addNewItem.submitted && modelField.invalid">
+      <select id="boatModel" name="model" class="form-select form-control" aria-label="Model of boat" [(ngModel)]="item.model" required type="string" #modelField="ngModel" [class.field-error]="editItem.submitted && modelField.invalid">
         <option value="ar190">AR 190</option>
         <option value="220">220</option>
         <option value="switch">Switch</option>
         <option value="245">245</option>
       </select>
-      <div [hidden]="!addNewItem.submitted || modelField.valid" class="alert alert-danger">
+      <div [hidden]="!editItem.submitted || modelField.valid" class="alert alert-danger">
         Enter model of {{data.type}}
       </div>
 
       <label for="boatYear">Year</label>
-      <input id="boatYear" name="year" class="form-control" [(ngModel)]="item.year" required type="number" #yearField="ngModel" [class.field-error]="addNewItem.submitted && yearField.invalid">
-      <div [hidden]="!addNewItem.submitted || yearField.valid" class="alert alert-danger">
+      <input id="boatYear" name="year" class="form-control" [(ngModel)]="item.year" required type="number" #yearField="ngModel" [class.field-error]="editItem.submitted && yearField.invalid">
+      <div [hidden]="!editItem.submitted || yearField.valid" class="alert alert-danger">
         Enter year of {{data.type}}
       </div>
 
       <label for="boatLength">Length, ft</label>
-      <input id="boatLength" name="length" class="form-control" [(ngModel)]="item.length" required type="number" #lengthField="ngModel" [class.field-error]="addNewItem.submitted && lengthField.invalid">
-      <div [hidden]="lengthField.valid || !addNewItem.submitted" class="alert alert-danger">
+      <input id="boatLength" name="length" class="form-control" [(ngModel)]="item.length" required type="number" #lengthField="ngModel" [class.field-error]="editItem.submitted && lengthField.invalid">
+      <div [hidden]="lengthField.valid || !editItem.submitted" class="alert alert-danger">
         Enter length of {{data.type}}
       </div>
 
       <label for="boatWeight">Weight, lb</label>
-      <input id="boatWeight" name="weight" class="form-control" [(ngModel)]="item.weight" required type="number" #weightField="ngModel" [class.field-error]="addNewItem.submitted && weightField.invalid">
-      <div [hidden]="weightField.valid || !addNewItem.submitted" class="alert alert-danger">
+      <input id="boatWeight" name="weight" class="form-control" [(ngModel)]="item.weight" required type="number" #weightField="ngModel" [class.field-error]="editItem.submitted && weightField.invalid">
+      <div [hidden]="weightField.valid || !editItem.submitted" class="alert alert-danger">
         Enter weight of {{data.type}}
       </div>
 
       <label for="boatPeopleCapacity">People Capacity</label>
-      <input id="boatPeopleCapacity" name="peopleCapacity" class="form-control" [(ngModel)]="item.peopleCapacity" required type="number" #peopleCapacityField="ngModel" [class.field-error]="addNewItem.submitted && peopleCapacityField.invalid">
-      <div [hidden]="!addNewItem.submitted || peopleCapacityField.valid" class="alert alert-danger">
+      <input id="boatPeopleCapacity" name="peopleCapacity" class="form-control" [(ngModel)]="item.peopleCapacity" required type="number" #peopleCapacityField="ngModel" [class.field-error]="editItem.submitted && peopleCapacityField.invalid">
+      <div [hidden]="!editItem.submitted || peopleCapacityField.valid" class="alert alert-danger">
         Enter People Capacity of {{data.type}}
       </div>
 
       <label for="boatPricePerHour">Price Per Hour, $</label>
-      <input id="boatPricePerHour" name="pricePerHour" class="form-control" [(ngModel)]="item.pricePerHour" required type="number" #pricePerHourField="ngModel" [class.field-error]="addNewItem.submitted && pricePerHourField.invalid">
-      <div [hidden]="pricePerHourField.valid || !addNewItem.submitted" class="alert alert-danger">
+      <input id="boatPricePerHour" name="pricePerHour" class="form-control" [(ngModel)]="item.pricePerHour" required type="number" #pricePerHourField="ngModel" [class.field-error]="editItem.submitted && pricePerHourField.invalid">
+      <div [hidden]="pricePerHourField.valid || !editItem.submitted" class="alert alert-danger">
         Enter price per hour for this {{data.type}}
       </div>
 
       <label for="boatPricePerDay">Price Per Day, $</label>
-      <input id="boatPricePerDay" name="pricePerDay" class="form-control" [(ngModel)]="item.pricePerDay" required type="number" #pricePerDayField="ngModel" [class.field-error]="addNewItem.submitted && pricePerDayField.invalid">
-      <div [hidden]="pricePerDayField.valid || !addNewItem.submitted" class="alert alert-danger">
+      <input id="boatPricePerDay" name="pricePerDay" class="form-control" [(ngModel)]="item.pricePerDay" required type="number" #pricePerDayField="ngModel" [class.field-error]="editItem.submitted && pricePerDayField.invalid">
+      <div [hidden]="pricePerDayField.valid || !editItem.submitted" class="alert alert-danger">
         Enter price per day for this {{data.type}}
       </div>
 
       <label for="boatImage">Image</label>
-      <input id="boatImage" name="image" class="form-control" [(ngModel)]="item.image" required type="string" #imageField="ngModel" [class.field-error]="addNewItem.submitted && imageField.invalid">
-      <div [hidden]="imageField.valid || !addNewItem.submitted" class="alert alert-danger">
+      <input id="boatImage" name="image" class="form-control" [(ngModel)]="item.image" required type="string" #imageField="ngModel" [class.field-error]="editItem.submitted && imageField.invalid">
+      <div [hidden]="imageField.valid || !editItem.submitted" class="alert alert-danger">
         Upload image for this {{data.type}}
       </div>
 

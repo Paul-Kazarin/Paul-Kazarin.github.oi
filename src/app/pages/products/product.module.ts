@@ -11,6 +11,8 @@ import { AddNewItemModalComponent } from './add-new-item-modal/add-new-item-moda
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatSelectModule} from "@angular/material/select";
+import { AddImageComponent } from './add-image/add-image.component';
+import { EditItemComponent } from './edit-item/edit-item.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import {MatSelectModule} from "@angular/material/select";
     RvsComponent,
     ToursComponent,
     AddnewitemComponent,
-    AddNewItemModalComponent
+    AddNewItemModalComponent,
+    AddImageComponent,
+    EditItemComponent
   ],
   imports: [
     RouterModule.forChild([

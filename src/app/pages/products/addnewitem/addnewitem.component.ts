@@ -4,6 +4,7 @@ import {InventoryService} from "../../../services/inventory.service";
 import {FormControl, FormGroup} from "@angular/forms";
 import {Inventory} from "../../../interfaces/inventory";
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
+import {AddImageComponent} from "../add-image/add-image.component";
 
 @Component({
   selector: 'app-addnewitem',
@@ -13,6 +14,7 @@ import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog
 export class AddnewitemComponent implements OnInit{
 
   addNewItem!: FormGroup;
+  productUrl: string = this.inventoryService.productUrl;
   item: Inventory[] = [];
   brands = [
     { value: 'Yamaha', viewValue: 'Yamaha' },
@@ -58,6 +60,22 @@ export class AddnewitemComponent implements OnInit{
       image: new FormControl('', {}),
       active: new FormControl(true, {})
     })
+  }
+
+  addImage(): void {
+    const dialogRef = this.dialog.open(AddImageComponent, {
+      width: '50%',
+      height: '50%',
+      data: {
+        type: 'boat'
+      }
+    })
+  }
+
+  goToAddImagePage(): void {
+    this.router.navigateByUrl(
+      'http://localhost:8080/item'
+    );
   }
 
   clearForm(): void {

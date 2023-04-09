@@ -20,21 +20,22 @@ function compare(a: number | string, b: number | string, isAsc: boolean) {
 export class BoatsComponent implements OnInit {
 
   pageTitle = 'Rent Boat';
+  id: number = 0;
   subType: string = '';
   brand: string = '';
   model: string = '';
-  year: string = '';
-  length: string = '';
-  weight: string = '';
-  pricePerHour: string = '';
-  pricePerDay: string = '';
-  peopleCapacity: string = '';
+  year: number = 0;
+  length: number = 0;
+  weight: number = 0;
+  pricePerHour: number = 0;
+  pricePerDay: number = 0;
+  peopleCapacity: number = 0;
   image: string = '';
-  active: string = '';
+  active: boolean = true;
   boats: Inventory[] = [];
   sortedData: Inventory[] = [];
   filteredList: Inventory[] = [];
-  displayedColumns = ['image', 'subType', 'brand', 'model', 'year', 'peopleCapacity', 'length', 'weight', 'pricePerHour', 'pricePerDay'];
+  displayedColumns = ['image', 'subType', 'brand', 'model', 'year', 'peopleCapacity', 'length', 'weight', 'pricePerHour', 'pricePerDay', 'active'];
   sub!: Subscription;
   errorMessage: string = '';
   private _listFilter = '';
@@ -108,10 +109,10 @@ export class BoatsComponent implements OnInit {
     });
   }
 
-  addNewItemNg(): void {
-    const dialogRef = this.dialog.open(AddNewItemModalComponent, {
+  addNewItem(): void {
+    const dialogRef = this.dialog.open(AddnewitemComponent, {
       width: '70%',
-      height: '90%',
+      height: '70%',
       data: {
         type: 'boat',
         subType: this.subType,
@@ -129,25 +130,10 @@ export class BoatsComponent implements OnInit {
     })
   }
 
-  addNewItemReact(): void {
-    const dialogRef = this.dialog.open(AddnewitemComponent, {
-      width: '70%',
-      height: '90%',
-      data: {
-        type: 'boat',
-        subType: this.subType,
-        brand: this.brand,
-        model: this.model,
-        year: this.year,
-        length: this.length,
-        weight: this.weight,
-        pricePerHour: this.pricePerHour,
-        pricePerDay: this.pricePerDay,
-        peopleCapacity: this.peopleCapacity,
-        image: this.image,
-        active: this.active
-      }
-    })
+  goToAddImagePage(): void {
+    this.router.navigateByUrl(
+      'http://localhost:8080/item'
+    );
   }
 
 }

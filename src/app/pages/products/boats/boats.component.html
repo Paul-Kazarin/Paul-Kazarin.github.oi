@@ -4,23 +4,18 @@
   </div>
   <div fxFlex="80%" style="margin-bottom: 4em !important;">
     <div fxLayout="row" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
-      <div fxFlex="40%">
+      <div fxFlex="45%">
         <mat-label class="margin-02-em">Search and Filter</mat-label>
         <input class="margin-02-em" type="text" matInput placeholder="Ex. Yamaha"
                 [(ngModel)]="listFilter">
         <button class="margin-02-em" mat-raised-button (click)="performFilterSorted(this.listFilter)">Apply Filter</button>
       </div>
-      <div fxFlex="36%">
+      <div fxFlex="40%">
         <h3 class="margin-02-em" style="color: grey !important;">Filtered By: {{listFilter}}</h3>
       </div>
-      <div fxFlex="12%" style="alignment: right !important;">
+      <div fxFlex="15%" style="alignment: right !important;">
         <div style="alignment: right !important;">
-          <button class="margin-02-em" mat-raised-button (click)="addNewItemNg()">Add new boat(ngForm)</button>
-        </div>
-      </div>
-      <div fxFlex="12%" style="alignment: right !important;">
-        <div style="alignment: right !important;">
-          <button class="margin-02-em" mat-raised-button (click)="addNewItemReact()">Add new boat(ReactForm)</button>
+          <button class="margin-02-em" mat-raised-button (click)="addNewItem()">Add new Boat</button>
         </div>
       </div>
     </div>
@@ -29,57 +24,79 @@
 
       <ng-container matColumnDef="unitId">
         <th mat-header-cell *matHeaderCellDef> id | uppercase </th>
-        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        <td mat-cell *matCellDef="let element">
+          <a [routerLink]="['/products', element.id]" >{{element.id}} </a>
+        </td>
       </ng-container>
 
       <ng-container matColumnDef="type">
         <th mat-header-cell *matHeaderCellDef> Type </th>
-        <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+        <td mat-cell *matCellDef="let element">
+          <a [routerLink]="['/products', element.id]" >{{element.type}} </a>
+        </td>
       </ng-container>
 
       <ng-container matColumnDef="subType">
         <th mat-header-cell *matHeaderCellDef> Type of Boat </th>
-        <td mat-cell *matCellDef="let element"> {{element.subType}} </td>
+        <td mat-cell *matCellDef="let element">
+          <a [routerLink]="['/products', element.id]" >{{element.subType}} </a>
+        </td>
       </ng-container>
 
       <ng-container matColumnDef="brand">
         <th mat-header-cell *matHeaderCellDef> Brand </th>
-        <td mat-cell *matCellDef="let element"> {{element.brand}} </td>
+        <td mat-cell *matCellDef="let element">
+          <a [routerLink]="['/products', element.id]" >{{element.brand}} </a>
+        </td>
       </ng-container>
 
       <ng-container matColumnDef="model">
         <th mat-header-cell *matHeaderCellDef> Model </th>
-        <td mat-cell *matCellDef="let element"> {{element.model}} </td>
+        <td mat-cell *matCellDef="let element">
+          <a [routerLink]="['/products', element.id]" >{{element.model}} </a>
+        </td>
       </ng-container>
 
       <ng-container matColumnDef="year">
         <th mat-header-cell *matHeaderCellDef mat-sort-header="year"> Year </th>
-        <td mat-cell *matCellDef="let element"> {{element.year}} </td>
+        <td mat-cell *matCellDef="let element">
+          <a [routerLink]="['/products', element.id]" >{{element.year}} </a>
+        </td>
       </ng-container>
 
       <ng-container matColumnDef="length">
         <th mat-header-cell *matHeaderCellDef mat-sort-header="length"> Length, ft </th>
-        <td mat-cell *matCellDef="let element" style="text-align: center"> {{element.length}} </td>
+        <td mat-cell *matCellDef="let element" style="text-align: center">
+          <a [routerLink]="['/products', element.id]" >{{element.length}} </a>
+        </td>
       </ng-container>
 
       <ng-container matColumnDef="weight">
         <th mat-header-cell *matHeaderCellDef mat-sort-header="weight"> Weight, lb </th>
-        <td mat-cell *matCellDef="let element" style="text-align: center"> {{element.weight}} </td>
+        <td mat-cell *matCellDef="let element" style="text-align: center">
+          <a [routerLink]="['/products', element.id]" >{{element.weight}} </a>
+        </td>
       </ng-container>
 
       <ng-container matColumnDef="pricePerHour">
         <th mat-header-cell *matHeaderCellDef mat-sort-header="pricePerHour"> Price Per Hour </th>
-        <td mat-cell *matCellDef="let element" style="text-align: center"> {{element.pricePerHour | currency:'USD':'symbol':'1.2-2'}} </td>
+        <td mat-cell *matCellDef="let element" style="text-align: center">
+          <a [routerLink]="['/products', element.id]" >{{element.pricePerHour | currency:'USD':'symbol':'1.2-2'}} </a>
+        </td>
       </ng-container>
 
       <ng-container matColumnDef="pricePerDay">
         <th mat-header-cell *matHeaderCellDef mat-sort-header="pricePerDay"> Price Per Day </th>
-        <td mat-cell *matCellDef="let element" style="text-align: center"> {{element.pricePerDay | currency:'USD':'symbol':'1.2-2'}} </td>
+        <td mat-cell *matCellDef="let element" style="text-align: center">
+          <a [routerLink]="['/products', element.id]" >{{element.pricePerDay | currency:'USD':'symbol':'1.2-2'}} </a>
+        </td>
       </ng-container>
 
       <ng-container matColumnDef="peopleCapacity">
         <th mat-header-cell *matHeaderCellDef mat-sort-header="peopleCapacity"> People Capacity </th>
-        <td mat-cell *matCellDef="let element" style="text-align: center"> {{element.peopleCapacity}} </td>
+        <td mat-cell *matCellDef="let element" style="text-align: center">
+          <a [routerLink]="['/products', element.id]" >{{element.peopleCapacity}} </a>
+        </td>
       </ng-container>
 
       <ng-container matColumnDef="image">
@@ -94,7 +111,11 @@
 
       <ng-container matColumnDef="active">
         <th mat-header-cell *matHeaderCellDef mat-sort-header="active"> Active </th>
-        <td mat-cell *matCellDef="let element" style="text-align: center"> {{element.active}} </td>
+        <td mat-cell *matCellDef="let element" style="text-align: center">
+          <a [routerLink]="['/products', element.id]" >
+          <mat-checkbox name="active" type="boolean" class="form-field" checked="{{element.active}}"></mat-checkbox>
+          </a>
+        </td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

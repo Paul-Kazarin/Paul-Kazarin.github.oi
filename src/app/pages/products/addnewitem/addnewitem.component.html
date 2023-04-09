@@ -1,5 +1,5 @@
 <div class="container">
-  <h2>{{data.type}} </h2>
+  <h2 class="margin-1-em">Add new {{data.type}} </h2>
 
   <form [formGroup]="addNewItem" >
     <div fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
@@ -78,6 +78,10 @@
                   <input matInput formControlName="weight">
                 </mat-form-field>
               </div>
+              <mat-form-field appearance="outline" class="form-field">
+                <mat-label>People Capacity</mat-label>
+                <input matInput formControlName="peopleCapacity">
+              </mat-form-field>
               <div fxFlex="33%">
                 <mat-checkbox name="active" type="boolean" formControlName="active" class="form-field">Active</mat-checkbox>
               </div>
@@ -88,10 +92,14 @@
       </div>
 
       <div fxFlex="60%">
+
+        <a href="{{productUrl}}/item/" target="_blank">Add Image for this {{data.type}}</a>
+
         <mat-form-field appearance="outline" class="form-field">
           <mat-label>Image</mat-label>
           <input matInput formControlName="image">
         </mat-form-field>
+
       </div>
 
       <div fxFlex="10%">
