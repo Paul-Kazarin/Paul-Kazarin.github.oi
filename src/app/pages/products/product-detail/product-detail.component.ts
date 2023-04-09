@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {Inventory} from "../../../interfaces/inventory";
 import {InventoryService} from "../../../services/inventory.service";
 import {FormControl, FormGroup} from "@angular/forms";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-product-detail',
@@ -36,6 +37,8 @@ export class ProductDetailComponent implements OnInit{
     { value: 'Wakesurf', viewValue: 'Wakesurf' },
     { value: 'Cruiser', viewValue: 'Cruiser' }
   ];
+  sub!: Subscription;
+  items: Inventory[] = [];
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -46,6 +49,12 @@ export class ProductDetailComponent implements OnInit{
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.id = id;
     this.pageTitle += ` id: ${id}`;
+    this.sub = this.inventoryService.getItems().subscribe({
+      next: units => {
+        this.items = units;
+      },
+      error: err => this.errorMessage = err
+    });
     this.getProduct(id);
   }
 
@@ -73,8 +82,26 @@ export class ProductDetailComponent implements OnInit{
     });
   }
 
-  onDelete(id: number): void {
-    this.inventoryService.deleteItem(id);
+  onDeleteById(id: number): void {
+    this.inventoryService
+    .deleteItemById(id)
+    .subscribe((resp) => {
+      this.items = this.items.filter((element) => {
+        return element.id !== id;
+      });
+    });
+    this.onBack();
+  }
+
+  onDelete(item: any): void {
+    this.inventoryService
+    .deleteItem(item)
+    .subscribe((resp) => {
+      this.items = this.items.filter((element) => {
+        return element.id !== item.id;
+      });
+    });
+    this.onBack();
   }
 
   onBack(): void {
