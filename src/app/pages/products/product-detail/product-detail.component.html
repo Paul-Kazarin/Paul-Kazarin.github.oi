@@ -5,19 +5,6 @@
 
   <form [formGroup]="editItem" >
     <div fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
-      <div fxFlex="10%">
-        <div fxLayout="row" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
-          <div fxFlex="50%">
-            <mat-form-field appearance="outline" class="form-field">
-              <mat-label>ID</mat-label>
-              <input matInput formControlName="ID" value="{{product?.id}}">
-            </mat-form-field>
-          </div>
-          <div fxFlex="50%">
-            <mat-checkbox name="active" type="boolean" formControlName="active" class="form-field">Active</mat-checkbox>
-          </div>
-        </div>
-      </div>
       <div fxFlex="30%">
         <div fxLayout="row" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
 
@@ -99,6 +86,7 @@
                   <mat-label>People Capacity</mat-label>
                   <input matInput formControlName="peopleCapacity" value="{{product?.peopleCapacity}}">
                 </mat-form-field>
+                <mat-checkbox name="active" type="boolean" formControlName="active" class="form-field">Active</mat-checkbox>
               </div>
             </div>
           </div>
@@ -117,10 +105,11 @@
 
       </div>
 
-      <div fxFlex="10%">
+      <div fxFlex="20%">
         <button mat-raised-button class="button" type="submit" (click)="onSubmit()">SAVE</button>
         <button mat-raised-button class="button" (click)="clearForm()">CLEAR FORM</button>
         <button mat-raised-button class="button" (click)="onBack()">BACK</button>
+        <button mat-raised-button class="button" (click)="onDelete(id)">DELETE THIS ITEM (id: {{id}})</button>
       </div>
     </div>
 

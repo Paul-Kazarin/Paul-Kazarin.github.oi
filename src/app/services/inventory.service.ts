@@ -25,6 +25,12 @@ export class InventoryService {
     );
   }
 
+  deleteItem(id: number): Observable<Inventory[]> {
+    return this.http.delete<Inventory[]>(this.productUrl + '/item/delete/' + id).pipe(
+      catchError(this.handleError)
+    );
+  }
+
   postAddNewItemForm(inventory: Inventory): Observable<any> {
     return this.http.post(this.productUrl + '/item/add', inventory);
   }

@@ -84,6 +84,11 @@ export class AddnewitemComponent implements OnInit{
 
   onClose(): void {
     this.dialogRef.close("closed");
+    this.onBack();
+  }
+
+  onBack(): void {
+    this.router.navigate(['products/', this.data.type]);
   }
 
   onSubmit(): void {
@@ -109,6 +114,7 @@ export class AddnewitemComponent implements OnInit{
         result => console.log('success: ', result),
         error => console.log('error: ', error),
       );
+      this.onBack();
       this.onClose();
     }
   }

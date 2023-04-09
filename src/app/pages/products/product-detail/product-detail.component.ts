@@ -13,6 +13,7 @@ export class ProductDetailComponent implements OnInit{
   pageTitle: string = 'Product Detail:';
   errorMessage = '';
   product: Inventory | undefined;
+  id: number = 0;
   editItem!: FormGroup;
   productUrl: string = this.inventoryService.productUrl;
   brands = [
@@ -43,6 +44,7 @@ export class ProductDetailComponent implements OnInit{
 
   ngOnInit() {
     const id = Number(this.route.snapshot.paramMap.get('id'));
+    this.id = id;
     this.pageTitle += ` id: ${id}`;
     this.getProduct(id);
   }
@@ -69,6 +71,10 @@ export class ProductDetailComponent implements OnInit{
       },
       error: err => this.errorMessage = err
     });
+  }
+
+  onDelete(id: number): void {
+    this.inventoryService.deleteItem(id);
   }
 
   onBack(): void {
