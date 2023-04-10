@@ -3,7 +3,7 @@ import {Sort} from "@angular/material/sort";
 import {Subscription} from "rxjs";
 import {InventoryService} from "../../../services/inventory.service";
 import {Inventory} from "../../../interfaces/inventory";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
 import {AddnewitemComponent} from "../addnewitem/addnewitem.component";
 
@@ -12,13 +12,13 @@ function compare(a: number | string, b: number | string, isAsc: boolean) {
 }
 
 @Component({
-  selector: 'app-boats',
-  templateUrl: './boats.component.html',
-  styleUrls: ['./boats.component.scss']
+  selector: 'app-items',
+  templateUrl: './items.component.html',
+  styleUrls: ['./items.component.scss']
 })
-export class BoatsComponent implements OnInit {
+export class ItemsComponent implements OnInit {
 
-  pageTitle = 'Rent Boat';
+  type: string = '';
   id: number = 0;
   subType: string = '';
   brand: string = '';
@@ -32,7 +32,7 @@ export class BoatsComponent implements OnInit {
   image: string = '';
   comment: string = '';
   active: boolean = true;
-  boats: Inventory[] = [];
+  items: Inventory[] = [];
   sortedData: Inventory[] = [];
   filteredList: Inventory[] = [];
   displayedColumns = ['image', 'subType', 'brand', 'model', 'year', 'peopleCapacity', 'length', 'weight', 'pricePerHour', 'pricePerDay', 'active'];
@@ -51,16 +51,20 @@ export class BoatsComponent implements OnInit {
   constructor(
     public inventoryService: InventoryService,
     private router: Router,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private route: ActivatedRoute,
   ) {}
 
   ngOnInit() {
+    const type = String(this.route.snapshot.paramMap.get('type'));
+    this.type = type;
     this.listFilter = '';
     this.sub = this.inventoryService.getItems().subscribe({
       next: units => {
-        this.boats = units;
-        this.filteredList = this.boats.filter((boat: any) => boat.type.toLocaleLowerCase().includes('boat'));
+        this.items = units;
+        this.filteredList = this.items.filter((item: any) => item.type.toLocaleLowerCase().includes(this.type));
         this.sortedData = this.filteredList.slice();
+        //this.type = this.filteredList[0].type;
       },
       error: err => this.errorMessage = err
     });
@@ -68,11 +72,11 @@ export class BoatsComponent implements OnInit {
 
   performFilter(filterBy: string) {
     filterBy = filterBy.toLocaleLowerCase();
-    return this.boats.filter((boat: any) =>
-      boat.type.toLocaleLowerCase().includes('boat') &&
-      (boat.brand.toLocaleLowerCase().includes(filterBy)
-      || boat.model.toLocaleLowerCase().includes(filterBy)
-      || boat.subType.toLocaleLowerCase().includes(filterBy))
+    return this.items.filter((item: any) =>
+      item.type.toLocaleLowerCase().includes(this.type) &&
+      (item.brand.toLocaleLowerCase().includes(filterBy)
+      || item.model.toLocaleLowerCase().includes(filterBy)
+      || item.subType.toLocaleLowerCase().includes(filterBy))
     );
   }
 
@@ -114,7 +118,7 @@ export class BoatsComponent implements OnInit {
       width: '70%',
       height: '80%',
       data: {
-        type: 'boat',
+        type: this.type,
         subType: this.subType,
         brand: this.brand,
         model: this.model,

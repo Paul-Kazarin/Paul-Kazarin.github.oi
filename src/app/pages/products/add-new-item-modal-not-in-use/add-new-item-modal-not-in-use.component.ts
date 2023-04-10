@@ -23,7 +23,8 @@ export class AddNewItemModalNotInUseComponent implements OnInit {
     pricePerDay: 0,
     peopleCapacity: 0,
     image: '',
-    active: false
+    active: false,
+    comment: ''
   }
 
   constructor(
