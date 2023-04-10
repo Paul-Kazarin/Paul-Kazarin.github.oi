@@ -1,14 +1,34 @@
-<div>
-  <h1>{{pageTitle}}</h1>
-  <img src="./assets/images/reflection-canyon.avif"
-       style="max-height:200px;padding-bottom:10px" />
-</div>
+<div class="margin-1-em">
 
-<div>
-  <mat-card class="demo-inline-calendar-card">
-    <mat-calendar [(selected)]="selected"></mat-calendar>
-  </mat-card>
-  <p>Selected date: {{selected}}</p>
+  <div fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
+    <div fxFlex="10%">
+      <h2>Welcome to Inventory working page!</h2>
+      <h3>Select the type of inventory you want to work with.</h3>
+    </div>
+  </div>
+
+  <div fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
+    <div fxFlex="80%">
+      <mat-grid-list cols="4" rowHeight="1.5:1" gutterSize="5">
+        <mat-grid-tile *ngFor="let type of types">
+          <mat-card class="card">
+            <a [routerLink]="['/products/', type.type]">
+              <mat-card-content>{{type.type}}
+
+              </mat-card-content>
+            </a>
+          </mat-card>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </div>
+  </div>
+
+  <div fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
+    <div fxFlex="10%">
+
+    </div>
+  </div>
+
 </div>
 
 

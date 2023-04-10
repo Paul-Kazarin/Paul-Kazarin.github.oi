@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {InventoryService} from "../../services/inventory.service";
+import {ItemType} from "../../interfaces/itemType";
 
 @Component({
   selector: 'app-homepage',
@@ -7,12 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomepageComponent implements OnInit {
 
-  pageTitle: string = 'Welcome to "&Ride!"';
-  selected: Date | null = new Date();
+  types: ItemType[] = [];
+  type: string = '';
 
-  constructor() { }
+  constructor(private inventoryService: InventoryService) { }
 
   ngOnInit(): void {
+    this.getTypes();
+  }
+
+  getTypes() {
+    this.inventoryService.getTypes().subscribe({
+      next: types => {
+        this.types = types;
+      }
+    });
   }
 
 }

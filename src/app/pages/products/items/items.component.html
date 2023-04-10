@@ -1,6 +1,6 @@
-<div fxLayout="row" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
-  <div fxFlex="10%">left side bar
-
+<div fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutGap="10px" class="container">
+  <div fxFlex="10%">
+    <h2>Work with {{type}}s</h2>
   </div>
   <div fxFlex="80%" style="margin-bottom: 4em !important;">
     <div fxLayout="row" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
@@ -122,7 +122,7 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
   </div>
-  <div fxFlex="10%">right side bar
+  <div fxFlex="10%">
 
   </div>
 </div>
