@@ -1,0 +1,16 @@
+<div class="container">
+  <h3 class="margin-1-em">Add new Model for {{data.type}} </h3>
+
+  <form [formGroup]="addNewModel" >
+
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Model of {{data.type}}</mat-label>
+      <input matInput formControlName="model">
+    </mat-form-field>
+
+    <button mat-raised-button class="button" type="submit" (click)="onSubmit()">SAVE</button>
+    <button mat-raised-button class="button" (click)="clearForm()">CLEAR FORM</button>
+    <button mat-raised-button class="button" (click)="onClose()">CLOSE</button>
+
+  </form>
+</div>

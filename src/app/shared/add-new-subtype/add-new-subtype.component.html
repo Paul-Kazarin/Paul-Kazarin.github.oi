@@ -1,0 +1,16 @@
+<div class="container">
+  <h3 class="margin-1-em">Add new sub-type for {{data.type}} </h3>
+
+  <form [formGroup]="addNewSubType" >
+
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Type of {{data.type}}</mat-label>
+      <input matInput formControlName="subType">
+    </mat-form-field>
+
+    <button mat-raised-button class="button" type="submit" (click)="onSubmit()">SAVE</button>
+    <button mat-raised-button class="button" (click)="clearForm()">CLEAR FORM</button>
+    <button mat-raised-button class="button" (click)="onClose()">CLOSE</button>
+
+  </form>
+</div>

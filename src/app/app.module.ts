@@ -16,6 +16,7 @@ import { ProductModule } from './pages/products/product.module';
 import {MatDialogModule} from "@angular/material/dialog";
 import {FormsModule} from "@angular/forms";
 import {MatCheckboxModule} from "@angular/material/checkbox";
+import {SharedModule} from "./shared/shared.module";
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
     MatDatepickerModule,
     MatDialogModule,
     MatCheckboxModule,
-    ProductModule
+    ProductModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

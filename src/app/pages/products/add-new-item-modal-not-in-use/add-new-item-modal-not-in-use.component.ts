@@ -5,11 +5,11 @@ import {InventoryService} from "../../../services/inventory.service";
 import {Inventory} from "../../../interfaces/inventory";
 
 @Component({
-  selector: 'app-add-new-item-modal',
-  templateUrl: './add-new-item-modal.component.html',
-  styleUrls: ['./add-new-item-modal.component.scss']
+  selector: 'app-add-new-item-modal-not-in-use',
+  templateUrl: './add-new-item-modal-not-in-use.component.html',
+  styleUrls: ['./add-new-item-modal-not-in-use.component.scss']
 })
-export class AddNewItemModalComponent implements OnInit {
+export class AddNewItemModalNotInUseComponent implements OnInit {
   item: Inventory = {
     id: 0,
     type: '',
@@ -27,7 +27,7 @@ export class AddNewItemModalComponent implements OnInit {
   }
 
   constructor(
-    public dialogRef: MatDialogRef<AddNewItemModalComponent>,
+    public dialogRef: MatDialogRef<AddNewItemModalNotInUseComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialog: MatDialog,
     private inventoryService: InventoryService

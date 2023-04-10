@@ -7,12 +7,10 @@ import {ToursComponent} from "./tours/tours.component";
 import {RouterModule} from "@angular/router";
 import { SharedModule } from '../../shared/shared.module';
 import { AddnewitemComponent } from './addnewitem/addnewitem.component';
-import { AddNewItemModalComponent } from './add-new-item-modal/add-new-item-modal.component';
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatSelectModule} from "@angular/material/select";
 import { AddImageComponent } from './add-image/add-image.component';
-import { EditItemComponent } from './edit-item/edit-item.component';
 
 @NgModule({
   declarations: [
@@ -22,9 +20,7 @@ import { EditItemComponent } from './edit-item/edit-item.component';
     RvsComponent,
     ToursComponent,
     AddnewitemComponent,
-    AddNewItemModalComponent,
-    AddImageComponent,
-    EditItemComponent
+    AddImageComponent
   ],
   imports: [
     RouterModule.forChild([

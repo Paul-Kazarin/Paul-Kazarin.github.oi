@@ -4,7 +4,6 @@ import {Subscription} from "rxjs";
 import {InventoryService} from "../../../services/inventory.service";
 import {Inventory} from "../../../interfaces/inventory";
 import {Router} from "@angular/router";
-import {AddNewItemModalComponent} from "../add-new-item-modal/add-new-item-modal.component";
 import {MatDialog} from "@angular/material/dialog";
 import {AddnewitemComponent} from "../addnewitem/addnewitem.component";
 
@@ -112,7 +111,7 @@ export class BoatsComponent implements OnInit {
   addNewItem(): void {
     const dialogRef = this.dialog.open(AddnewitemComponent, {
       width: '70%',
-      height: '70%',
+      height: '80%',
       data: {
         type: 'boat',
         subType: this.subType,

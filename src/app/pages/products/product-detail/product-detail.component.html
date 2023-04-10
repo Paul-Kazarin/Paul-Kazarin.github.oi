@@ -1,7 +1,7 @@
-<button class="margin-02-em" mat-raised-button (click)="onBack()">BACK</button>
+<button class="button" mat-raised-button (click)="onBack()">GO BACK</button>
 
 <div class="container">
-  <h2 class="margin-1-em">Add new {{product?.type}} </h2>
+  <h2 class="margin-1-em">Edit {{product?.type}} </h2>
 
   <form [formGroup]="editItem" >
     <div fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
@@ -95,8 +95,9 @@
       </div>
 
       <div fxFlex="50%">
-
-        <a href="{{productUrl}}/item/" target="_blank">Add Image for this {{product?.type}}</a>
+        <button mat-raised-button class="button" >
+          <a href="{{productUrl}}/item/" target="_blank">Add Image for this {{product?.type}}</a>
+        </button>
 
         <mat-form-field appearance="outline" class="form-field">
           <mat-label>Image</mat-label>
@@ -108,7 +109,7 @@
       <div fxFlex="20%">
         <button mat-raised-button class="button" type="submit" (click)="onSubmit()">SAVE</button>
         <button mat-raised-button class="button" (click)="clearForm()">CLEAR FORM</button>
-        <button mat-raised-button class="button" (click)="onBack()">BACK</button>
+        <button mat-raised-button class="button" (click)="onBack()">CLOSE</button>
         <button mat-raised-button class="button" (click)="onDeleteById(id)">DELETE THIS ITEM (id: {{id}})</button>
       </div>
     </div>

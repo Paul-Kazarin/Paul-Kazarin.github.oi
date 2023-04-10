@@ -3,6 +3,10 @@ import {Inventory} from "../interfaces/inventory";
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {Observable, throwError} from "rxjs";
 import {catchError, map} from "rxjs/operators";
+import {SubTypes} from "../interfaces/subTypes";
+import {ItemType} from "../interfaces/itemType";
+import {Brand} from "../interfaces/brand";
+import {Model} from "../interfaces/model";
 
 @Injectable({
   providedIn: 'root'
@@ -35,6 +39,42 @@ export class InventoryService {
 
   postAddNewItemForm(inventory: Inventory): Observable<any> {
     return this.http.post(this.productUrl + '/item/add', inventory);
+  }
+
+  postAddNewSubTypeForm(subType: SubTypes): Observable<any> {
+    return this.http.post(this.productUrl + '/item/subtype/add', subType);
+  }
+
+  postAddNewBrandForm(brand: Brand): Observable<any> {
+    return this.http.post(this.productUrl + '/item/brand/add', brand);
+  }
+
+  postAddNewModelForm(model: Model): Observable<any> {
+    return this.http.post(this.productUrl + '/item/model/add', model);
+  }
+
+  getTypes(): Observable<ItemType[]> {
+    return this.http.get<ItemType[]>(this.productUrl + '/item/type/all').pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  getSubTypes(): Observable<SubTypes[]> {
+    return this.http.get<SubTypes[]>(this.productUrl + '/item/subtype/all').pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  getBrands(): Observable<Brand[]> {
+    return this.http.get<Brand[]>(this.productUrl + '/item/brand/all').pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  getModels(): Observable<Model[]> {
+    return this.http.get<Model[]>(this.productUrl + '/item/model/all').pipe(
+      catchError(this.handleError)
+    );
   }
 
   private handleError(err: HttpErrorResponse): Observable<never> {
