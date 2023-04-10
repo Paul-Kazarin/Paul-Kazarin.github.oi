@@ -30,6 +30,7 @@ export class BoatsComponent implements OnInit {
   pricePerDay: number = 0;
   peopleCapacity: number = 0;
   image: string = '';
+  comment: string = '';
   active: boolean = true;
   boats: Inventory[] = [];
   sortedData: Inventory[] = [];
@@ -124,7 +125,8 @@ export class BoatsComponent implements OnInit {
         pricePerDay: this.pricePerDay,
         peopleCapacity: this.peopleCapacity,
         image: this.image,
-        active: this.active
+        active: this.active,
+        comment: this.image
       }
     })
   }

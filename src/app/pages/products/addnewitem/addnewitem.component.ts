@@ -49,7 +49,8 @@ export class AddnewitemComponent implements OnInit{
       pricePerDay: new FormControl('', {}),
       peopleCapacity: new FormControl('', {}),
       image: new FormControl('', {}),
-      active: new FormControl(true, {})
+      active: new FormControl(true, {}),
+      comment: new FormControl('', {})
     })
     this.getSubTypes();
     this.getBrands();
@@ -116,7 +117,8 @@ export class AddnewitemComponent implements OnInit{
         pricePerDay: this.addNewItem.value.pricePerDay,
         peopleCapacity: this.addNewItem.value.peopleCapacity,
         image: this.addNewItem.value.image,
-        active: this.addNewItem.value.active
+        active: this.addNewItem.value.active,
+        comment: this.addNewItem.value.comment
       };
       this.inventoryService.postAddNewItemForm(inventory).subscribe(
         result => console.log('success: ', result),

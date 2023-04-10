@@ -4,6 +4,9 @@ import {Inventory} from "../../../interfaces/inventory";
 import {InventoryService} from "../../../services/inventory.service";
 import {FormControl, FormGroup} from "@angular/forms";
 import {Subscription} from "rxjs";
+import {Brand} from "../../../interfaces/brand";
+import {Model} from "../../../interfaces/model";
+import {SubTypes} from "../../../interfaces/subTypes";
 
 @Component({
   selector: 'app-product-detail',
@@ -17,28 +20,14 @@ export class ProductDetailComponent implements OnInit{
   id: number = 0;
   editItem!: FormGroup;
   productUrl: string = this.inventoryService.productUrl;
-  brands = [
-    { value: 'Yamaha', viewValue: 'Yamaha' },
-    { value: 'SeaDoo', viewValue: 'SeaDoo' },
-    { value: 'Sea Ray', viewValue: 'Sea Ray' },
-    { value: 'Bayliner', viewValue: 'Bayliner' },
-    { value: 'Malibu', viewValue: 'Malibu' },
-    { value: 'MasterCraft', viewValue: 'MasterCraft' }
-  ];
-  models = [
-    { value: 'AR190', viewValue: 'AR190' },
-    { value: 'Switch', viewValue: 'Switch' },
-    { value: 'Wakesetter', viewValue: 'Wakesetter' },
-    { value: '245', viewValue: '245' }
-  ];
-  subTypes = [
-    { value: 'Jetboat', viewValue: 'Jetboat' },
-    { value: 'Pontoon', viewValue: 'Pontoon' },
-    { value: 'Wakesurf', viewValue: 'Wakesurf' },
-    { value: 'Cruiser', viewValue: 'Cruiser' }
-  ];
   sub!: Subscription;
   items: Inventory[] = [];
+  brands: Brand[] = [];
+  models: Model[] = [];
+  subTypes: SubTypes[] = [];
+  subType: string = '';
+  brand: string = '';
+  model: string = '';
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -56,6 +45,33 @@ export class ProductDetailComponent implements OnInit{
       error: err => this.errorMessage = err
     });
     this.getProduct(id);
+    this.getSubTypes();
+    this.getBrands();
+    this.getModels();
+  }
+
+  getSubTypes() {
+    this.inventoryService.getSubTypes().subscribe({
+      next: subTypes => {
+        this.subTypes = subTypes;
+      }
+    });
+  }
+
+  getBrands() {
+    this.inventoryService.getBrands().subscribe({
+      next: brands => {
+        this.brands = brands;
+      }
+    });
+  }
+
+  getModels() {
+    this.inventoryService.getModels().subscribe({
+      next: models => {
+        this.models = models;
+      }
+    });
   }
 
   getProduct(id: number): void {
@@ -75,7 +91,8 @@ export class ProductDetailComponent implements OnInit{
           pricePerDay: new FormControl(this.product?.pricePerDay, {}),
           peopleCapacity: new FormControl(this.product?.peopleCapacity, {}),
           image: new FormControl(this.product?.image, {}),
-          active: new FormControl(this.product?.active, {})
+          active: new FormControl(this.product?.active, {}),
+          comment: new FormControl(this.product?.comment, {})
         })
       },
       error: err => this.errorMessage = err
@@ -129,7 +146,8 @@ export class ProductDetailComponent implements OnInit{
         pricePerDay: this.editItem.value.pricePerDay,
         peopleCapacity: this.editItem.value.peopleCapacity,
         image: this.editItem.value.image,
-        active: this.editItem.value.active
+        active: this.editItem.value.active,
+        comment: this.editItem.value.comment
       };
       this.inventoryService.postAddNewItemForm(inventory).subscribe(
         result => console.log('success: ', result),

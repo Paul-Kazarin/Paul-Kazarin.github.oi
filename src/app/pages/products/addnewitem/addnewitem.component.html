@@ -3,7 +3,7 @@
 
   <form [formGroup]="addNewItem" >
     <div fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
-      <div fxFlex="30%">
+      <div fxFlex="10%">
         <div fxLayout="row" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
           <div fxFlex="33%">
             <button mat-raised-button class="button" (click)="addNewSubType()">ADD NEW TYPE</button>
@@ -91,12 +91,11 @@
                   <input matInput formControlName="weight" type="number">
                 </mat-form-field>
               </div>
-              <mat-form-field appearance="outline" class="form-field">
-                <mat-label>People Capacity</mat-label>
-                <input matInput formControlName="peopleCapacity" type="number">
-              </mat-form-field>
               <div fxFlex="33%">
-                <mat-checkbox name="active" type="boolean" formControlName="active" class="form-field">Active</mat-checkbox>
+                <mat-form-field appearance="outline" class="form-field">
+                  <mat-label>People Capacity</mat-label>
+                  <input matInput formControlName="peopleCapacity" type="number">
+                </mat-form-field>
               </div>
             </div>
           </div>
@@ -104,7 +103,22 @@
         </div>
       </div>
 
-      <div fxFlex="50%">
+      <div fxFlex="25%">
+        <div fxLayout="row" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
+          <div fxFlex="80%">
+            <mat-form-field appearance="outline" class="form-field">
+              <mat-label>Comment</mat-label>
+              <textarea matInput formControlName="comment" type="text"></textarea>
+            </mat-form-field>
+          </div>
+          <div fxFlex="20%">
+            <mat-checkbox name="active" type="boolean" formControlName="active" class="form-field">Active</mat-checkbox>
+          </div>
+        </div>
+
+      </div>
+
+      <div fxFlex="25%">
         <button mat-raised-button class="button">
           <a href="{{productUrl}}/item/" target="_blank">Add Image for this {{data.type}}</a>
         </button>

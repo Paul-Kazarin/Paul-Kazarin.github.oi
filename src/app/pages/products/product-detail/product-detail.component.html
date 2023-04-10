@@ -1,10 +1,17 @@
-<button class="button" mat-raised-button (click)="onBack()">GO BACK</button>
-
 <div class="container">
-  <h2 class="margin-1-em">Edit {{product?.type}} </h2>
 
   <form [formGroup]="editItem" >
     <div fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
+      <div fxFlex="10%">
+        <div fxLayout="row" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
+          <div fxFlex="70%">
+            <h3 class="margin-1-em">Edit {{product?.type}} </h3>
+          </div>
+          <div fxFlex="30%">
+            <button class="button" mat-raised-button (click)="onBack()">GO BACK</button>
+          </div>
+        </div>
+      </div>
       <div fxFlex="30%">
         <div fxLayout="row" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
 
@@ -14,8 +21,8 @@
                 <mat-form-field appearance="outline" class="form-field">
                   <mat-label>{{product?.subType}}</mat-label>
                   <mat-select formControlName="subType">
-                    <mat-option *ngFor="let subType of subTypes" [value]="subType?.value" >
-                      {{subType?.viewValue}}
+                    <mat-option *ngFor="let subType of subTypes" [value]="subType?.subType" >
+                      {{subType?.subType}}
                     </mat-option>
                   </mat-select>
                 </mat-form-field>
@@ -42,8 +49,8 @@
                 <mat-form-field appearance="outline" class="form-field">
                   <mat-label>{{product?.brand}}</mat-label>
                   <mat-select formControlName="brand">
-                    <mat-option *ngFor="let brand of brands" [value]="brand?.value" >
-                      {{brand?.viewValue}}
+                    <mat-option *ngFor="let brand of brands" [value]="brand?.brand" >
+                      {{brand?.brand}}
                     </mat-option>
                   </mat-select>
                 </mat-form-field>
@@ -69,8 +76,8 @@
                 <mat-form-field appearance="outline" class="form-field">
                   <mat-label>{{product?.model}}</mat-label>
                   <mat-select formControlName="model">
-                    <mat-option *ngFor="let model of models" [value]="model?.value" >
-                      {{model?.viewValue}}
+                    <mat-option *ngFor="let model of models" [value]="model?.model" >
+                      {{model?.model}}
                     </mat-option>
                   </mat-select>
                 </mat-form-field>
@@ -86,7 +93,6 @@
                   <mat-label>People Capacity</mat-label>
                   <input matInput formControlName="peopleCapacity" value="{{product?.peopleCapacity}}">
                 </mat-form-field>
-                <mat-checkbox name="active" type="boolean" formControlName="active" class="form-field">Active</mat-checkbox>
               </div>
             </div>
           </div>
@@ -94,16 +100,36 @@
         </div>
       </div>
 
-      <div fxFlex="50%">
-        <button mat-raised-button class="button" >
-          <a href="{{productUrl}}/item/" target="_blank">Add Image for this {{product?.type}}</a>
-        </button>
+      <div fxFlex="40%">
+        <div fxLayout="row" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
 
-        <mat-form-field appearance="outline" class="form-field">
-          <mat-label>Image</mat-label>
-          <input matInput formControlName="image" value="{{product?.image}}">
-        </mat-form-field>
+          <div fxFlex="70%">
+            <img src="{{product?.image}}" class="image-detail-page">
+          </div>
 
+          <div fxFlex="30%">
+            <div fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
+              <div fxFlex="10%">
+                <mat-checkbox name="active" type="boolean" formControlName="active" class="form-field">Active</mat-checkbox>
+              </div>
+              <div fxFlex="40%">
+                <button mat-raised-button class="button" >
+                  <a href="{{productUrl}}/item/" target="_blank">Add Image for this {{product?.type}}</a>
+                </button>
+                <mat-form-field appearance="outline" class="form-field">
+                  <mat-label>Image</mat-label>
+                  <input matInput formControlName="image" value="{{product?.image}}">
+                </mat-form-field>
+              </div>
+              <div fxFlex="50%">
+                <mat-form-field appearance="outline" class="form-field">
+                  <mat-label>Comment</mat-label>
+                  <textarea matInput formControlName="comment" value="{{product?.comment}}"></textarea>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div fxFlex="20%">
