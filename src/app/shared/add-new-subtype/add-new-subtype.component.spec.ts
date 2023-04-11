@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ToursComponent } from './tours.component';
+import { AddNewSubtypeComponent } from './add-new-subtype.component';
 
-describe('ToursComponent', () => {
-  let component: ToursComponent;
-  let fixture: ComponentFixture<ToursComponent>;
+describe('AddNewSubtypeComponent', () => {
+  let component: AddNewSubtypeComponent;
+  let fixture: ComponentFixture<AddNewSubtypeComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ToursComponent ]
+      declarations: [ AddNewSubtypeComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ToursComponent);
+    fixture = TestBed.createComponent(AddNewSubtypeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

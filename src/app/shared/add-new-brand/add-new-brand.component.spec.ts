@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RvsComponent } from './rvs.component';
+import { AddNewBrandComponent } from './add-new-brand.component';
 
-describe('RvsComponent', () => {
-  let component: RvsComponent;
-  let fixture: ComponentFixture<RvsComponent>;
+describe('AddNewBrandComponent', () => {
+  let component: AddNewBrandComponent;
+  let fixture: ComponentFixture<AddNewBrandComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RvsComponent ]
+      declarations: [ AddNewBrandComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RvsComponent);
+    fixture = TestBed.createComponent(AddNewBrandComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

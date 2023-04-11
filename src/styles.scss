@@ -5,14 +5,15 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 input {
   border: solid 1px darkblue !important;
+  border-radius: 5px;
   height: 2em !important;
   min-width: 100px;
   max-width: 500px;
-  width: 30% !important;
+  width: 100% !important;
 }
 
 table {
-  width: 100%;
+  //width: 100%;
 }
 
 td.mat-mdc-cell{
@@ -41,17 +42,38 @@ mat-paginator{
   margin: 0.2em !important;
 }
 
+.margin-1-em{
+  margin: 1em !important;
+}
+
 .image-in-table{
   max-height:100px !important;
   margin: 0.1em !important;
 }
 
 .image-detail-page{
-  max-width: 100% !important;
+  max-width: 70% !important;
 }
 
 .demo-inline-calendar-card {
   width: 300px;
+}
+
+.button {
+  background-color: lightblue !important;
+  margin: 0.5em
+}
+
+.form-field {
+  display: flex !important;
+  margin: 0.1em
+}
+
+.card {
+  margin: 1em !important;
+  width: 95% !important;
+  height: 85% !important;
+  background-color: #b0bec5 !important;
 }
 
 

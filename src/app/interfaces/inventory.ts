@@ -11,5 +11,6 @@ export interface Inventory {
   pricePerDay: number;
   peopleCapacity: number;
   image: string;
-  active: boolean
+  active: boolean;
+  comment: string;
 }

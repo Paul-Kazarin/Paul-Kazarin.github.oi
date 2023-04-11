@@ -3,37 +3,42 @@ import {Sort} from "@angular/material/sort";
 import {Subscription} from "rxjs";
 import {InventoryService} from "../../../services/inventory.service";
 import {Inventory} from "../../../interfaces/inventory";
-import {Router} from "@angular/router";
-import {AddNewItemModalComponent} from "../add-new-item-modal/add-new-item-modal.component";
+import {ActivatedRoute, Router} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
+import {AddnewitemComponent} from "../addnewitem/addnewitem.component";
+import {AddNewSubtypeComponent} from "../../../shared/add-new-subtype/add-new-subtype.component";
+import {AddNewBrandComponent} from "../../../shared/add-new-brand/add-new-brand.component";
+import {AddNewModelComponent} from "../../../shared/add-new-model/add-new-model.component";
 
 function compare(a: number | string, b: number | string, isAsc: boolean) {
   return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }
 
 @Component({
-  selector: 'app-boats',
-  templateUrl: './boats.component.html',
-  styleUrls: ['./boats.component.scss']
+  selector: 'app-items',
+  templateUrl: './items.component.html',
+  styleUrls: ['./items.component.scss']
 })
-export class BoatsComponent implements OnInit {
+export class ItemsComponent implements OnInit {
 
-  pageTitle = 'Rent Boat';
+  type: string = '';
+  id: number = 0;
   subType: string = '';
   brand: string = '';
   model: string = '';
-  year: string = '';
-  length: string = '';
-  weight: string = '';
-  pricePerHour: string = '';
-  pricePerDay: string = '';
-  peopleCapacity: string = '';
+  year: number = 0;
+  length: number = 0;
+  weight: number = 0;
+  pricePerHour: number = 0;
+  pricePerDay: number = 0;
+  peopleCapacity: number = 0;
   image: string = '';
-  active: string = '';
-  boats: Inventory[] = [];
+  comment: string = '';
+  active: boolean = true;
+  items: Inventory[] = [];
   sortedData: Inventory[] = [];
   filteredList: Inventory[] = [];
-  displayedColumns = ['image', 'subType', 'brand', 'model', 'year', 'peopleCapacity', 'length', 'weight', 'pricePerHour', 'pricePerDay'];
+  displayedColumns = ['image', 'subType', 'brand', 'model', 'year', 'peopleCapacity', 'length', 'weight', 'pricePerHour', 'pricePerDay', 'active'];
   sub!: Subscription;
   errorMessage: string = '';
   private _listFilter = '';
@@ -49,16 +54,20 @@ export class BoatsComponent implements OnInit {
   constructor(
     public inventoryService: InventoryService,
     private router: Router,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private route: ActivatedRoute,
   ) {}
 
   ngOnInit() {
+    const type = String(this.route.snapshot.paramMap.get('type'));
+    this.type = type;
     this.listFilter = '';
     this.sub = this.inventoryService.getItems().subscribe({
       next: units => {
-        this.boats = units;
-        this.filteredList = this.boats.filter((boat: any) => boat.type.toLocaleLowerCase().includes('boat'));
+        this.items = units;
+        this.filteredList = this.items.filter((item: any) => item.type.toLocaleLowerCase().includes(this.type));
         this.sortedData = this.filteredList.slice();
+        //this.type = this.filteredList[0].type;
       },
       error: err => this.errorMessage = err
     });
@@ -66,11 +75,11 @@ export class BoatsComponent implements OnInit {
 
   performFilter(filterBy: string) {
     filterBy = filterBy.toLocaleLowerCase();
-    return this.boats.filter((boat: any) =>
-      boat.type.toLocaleLowerCase().includes('boat') &&
-      (boat.brand.toLocaleLowerCase().includes(filterBy)
-      || boat.model.toLocaleLowerCase().includes(filterBy)
-      || boat.subType.toLocaleLowerCase().includes(filterBy))
+    return this.items.filter((item: any) =>
+      item.type.toLocaleLowerCase().includes(this.type) &&
+      (item.brand.toLocaleLowerCase().includes(filterBy)
+      || item.model.toLocaleLowerCase().includes(filterBy)
+      || item.subType.toLocaleLowerCase().includes(filterBy))
     );
   }
 
@@ -108,11 +117,11 @@ export class BoatsComponent implements OnInit {
   }
 
   addNewItem(): void {
-    const dialogRef = this.dialog.open(AddNewItemModalComponent, {
+    const dialogRef = this.dialog.open(AddnewitemComponent, {
       width: '70%',
-      height: '90%',
+      height: '80%',
       data: {
-        type: 'boat',
+        type: this.type,
         subType: this.subType,
         brand: this.brand,
         model: this.model,
@@ -123,9 +132,53 @@ export class BoatsComponent implements OnInit {
         pricePerDay: this.pricePerDay,
         peopleCapacity: this.peopleCapacity,
         image: this.image,
-        active: this.active
+        active: this.active,
+        comment: this.image
       }
     })
+  }
+
+  addNewSubType(): void {
+    const dialogRef = this.dialog.open(AddNewSubtypeComponent, {
+      width: '60%',
+      height: '30%',
+      data: {
+        type: this.type,
+        subType: this.subType
+      }
+    })
+  }
+
+  addNewBrand(): void {
+    const dialogRef = this.dialog.open(AddNewBrandComponent, {
+      width: '60%',
+      height: '30%',
+      data: {
+        type: this.type,
+        brand: this.brand
+      }
+    })
+  }
+
+  addNewModel(): void {
+    const dialogRef = this.dialog.open(AddNewModelComponent, {
+      width: '60%',
+      height: '30%',
+      data: {
+        type: this.type,
+        model: this.model
+      }
+    })
+  }
+
+  goToAddImagePage(): void {
+    this.router.navigateByUrl(
+      'http://localhost:8080/item'
+    );
+  }
+
+  onHome(): void {
+    this.router.navigate(['/homepage']);
   }
 
 }

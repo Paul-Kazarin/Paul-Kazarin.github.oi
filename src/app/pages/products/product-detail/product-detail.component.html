@@ -1,46 +1,198 @@
-<button class="margin-02-em" mat-raised-button (click)="onBack()">BACK</button>
-<div>
-  {{pageTitle + ': ' + product?.brand + ' ' + product?.model}}
-  <div fxLayout="row" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
-    <div fxFlex="50%">
-      <div fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutGap="10px" style="margin-bottom: 5em !important;">
-        <div fxFlex="50%">
-          <img src="{{product?.image}}" class="image-detail-page">
-        </div>
-        <div fxFlex="50%">SPECIFICATIONS:
-          <table>
-            <thead>
-              <th></th>
-              <th></th>
-            </thead>
-            <tbody>
-              <tr><td>Type of Boat</td><td> {{product?.subType}} </td></tr>
-              <tr><td>Make</td><td> {{product?.brand}} </td></tr>
-              <tr><td>Model</td><td> {{product?.model}} </td></tr>
-              <tr><td>Year</td><td> {{product?.year}} </td></tr>
-              <tr><td>Lenth, ft</td><td> {{product?.length}} </td></tr>
-              <tr><td>Weight, lb</td><td> {{product?.weight}} </td></tr>
-              <tr><td>Price per hour, $</td><td> {{product?.pricePerHour | currency:'USD':'symbol':'1.2-2'}} </td></tr>
-              <tr><td>Price per day, $</td><td> {{product?.pricePerDay | currency:'USD':'symbol':'1.2-2'}} </td></tr>
-              <tr><td>People Capacity</td><td> {{product?.peopleCapacity}} </td></tr>
-              <tr><td>Active</td><td><mat-checkbox [(ngModel)]="active" [disabled]="true"></mat-checkbox></td></tr>
-            </tbody>
-          </table>
+<div class="container">
+
+  <form #editItem="ngForm" >
+    <div fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
+      <div fxFlex="10%">
+        <div fxLayout="row" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
+          <div fxFlex="40%">
+            <button class="button" mat-raised-button (click)="onHome()">HOME PAGE</button>
+            <button class="button" mat-raised-button (click)="onBack()">BACK TO {{product.type | uppercase}}S</button>
+          </div>
+          <div fxFlex="60%">
+            <h3 class="margin-1-em">Edit {{product.type}} </h3>
+          </div>
         </div>
       </div>
-    </div>
-    <div fxFlex="50%">
-      <div fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
-        <div fxFlex="50%">Availability Calendar
-          <mat-card class="demo-inline-calendar-card">
-            <mat-calendar [(selected)]="selected"></mat-calendar>
-          </mat-card>
-          <p>Selected date: {{selected}}</p>
-        </div>
-        <div fxFlex="50%">Book/Reserve
-          <button class="margin-02-em" mat-raised-button (click)="onBack()">BOOK/RESERVE</button>
+      <div fxFlex="30%">
+        <div fxLayout="row" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
+
+          <div fxFlex="33%">
+            <div fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
+              <div fxFlex="33%">
+                <mat-form-field appearance="outline" class="form-field">
+                  <mat-label>Type of {{product.type}}</mat-label>
+                  <mat-select name="subType" [(ngModel)]=product.subType value="{{product.subType}}">
+                    <mat-option *ngFor="let subType of subTypes" [value]="subType.subType" >
+                      {{subType.subType}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div fxFlex="33%">
+                <mat-form-field appearance="outline" class="form-field">
+                  <mat-label>Year</mat-label>
+                  <input matInput name="year" [(ngModel)]=product.year value="{{product.year}}" type="number">
+                </mat-form-field>
+              </div>
+
+              <div fxFlex="33%">
+                <mat-form-field appearance="outline" class="form-field">
+                  <mat-label>Price per hour, $</mat-label>
+                  <input matInput name="pricePerHour" [(ngModel)]=product.pricePerHour value="{{product.pricePerHour}}" type="number">
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+
+          <div fxFlex="33%">
+            <div fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
+              <div fxFlex="33%">
+                <mat-form-field appearance="outline" class="form-field">
+                  <mat-label>Brand of {{product.type}}</mat-label>
+                  <mat-select name="brand" [(ngModel)]=product.brand value="{{product.brand}}">
+                    <mat-option *ngFor="let brand of brands" [value]="brand.brand" >
+                      {{brand.brand}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div fxFlex="33%">
+                <mat-form-field appearance="outline" class="form-field">
+                  <mat-label>Length, Ft</mat-label>
+                  <input matInput name="length" [(ngModel)]=product.length value="{{product.length}}" type="number">
+                </mat-form-field>
+              </div>
+              <div fxFlex="33%">
+                <mat-form-field appearance="outline" class="form-field">
+                  <mat-label>Price per day, $</mat-label>
+                  <input matInput name="pricePerDay" [(ngModel)]=product.pricePerDay value="{{product.pricePerDay}}" type="number">
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+
+          <div fxFlex="33%">
+            <div fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
+              <div fxFlex="33%">
+                <mat-form-field appearance="outline" class="form-field">
+                  <mat-label>Model of {{product.type}}</mat-label>
+                  <mat-select name="model" [(ngModel)]=product.model value="{{product.model}}">
+                    <mat-option *ngFor="let model of models" [value]="model.model" >
+                      {{model.model}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div fxFlex="33%">
+                <mat-form-field appearance="outline" class="form-field">
+                  <mat-label>Weight, Lb</mat-label>
+                  <input matInput name="weight" [(ngModel)]=product.weight value="{{product.weight}}" type="number">
+                </mat-form-field>
+              </div>
+              <div fxFlex="33%">
+                <mat-form-field appearance="outline" class="form-field">
+                  <mat-label>People Capacity</mat-label>
+                  <input matInput name="peopleCapacity" [(ngModel)]=product.peopleCapacity value="{{product.peopleCapacity}}" type="number">
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
+
+      <div fxFlex="40%">
+        <div fxLayout="row" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
+
+          <div fxFlex="50%">
+            <img src="{{product?.image}}" class="image-detail-page">
+          </div>
+
+          <div fxFlex="50%">
+            <div fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
+              <div fxFlex="10%">
+                <mat-checkbox name="active" type="boolean" name="active" [(ngModel)]=product.active value="{{product.active}}" class="form-field">Active</mat-checkbox>
+              </div>
+              <div fxFlex="40%">
+                <button mat-raised-button class="button" >
+                  <a href="{{productUrl}}/item/" target="_blank">Add Image for this {{product.type}}</a>
+                </button>
+                <mat-form-field appearance="outline" class="form-field">
+                  <mat-label>Image URL</mat-label>
+                  <input matInput name="image" [(ngModel)]=product.image value="{{product.image}}">
+                </mat-form-field>
+              </div>
+              <div fxFlex="50%">
+                <mat-form-field appearance="outline" class="form-field">
+                  <mat-label>Comment</mat-label>
+                  <textarea matInput name="comment" [(ngModel)]=product.comment value="{{product.comment}}"></textarea>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div fxFlex="20%">
+        <button mat-raised-button class="button" type="submit" (click)="onSubmit()">SAVE</button>
+        <button mat-raised-button class="button" (click)="onBack()">CLOSE</button>
+        <button mat-raised-button class="button" (click)="onDeleteById(id)">DELETE THIS ITEM (id: {{id}})</button>
+      </div>
     </div>
-  </div>
+
+  </form>
+
 </div>
+
+
+
+
+
+
+
+
+<!--<div>-->
+<!--  {{pageTitle + ': ' + product?.brand + ' ' + product?.model}}-->
+<!--  <div fxLayout="row" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">-->
+<!--    <div fxFlex="50%">-->
+<!--      <div fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutGap="10px" style="margin-bottom: 5em !important;">-->
+<!--        <div fxFlex="50%">-->
+<!--          <img src="{{product?.image}}" class="image-detail-page">-->
+<!--        </div>-->
+<!--        <div fxFlex="50%">SPECIFICATIONS:-->
+<!--          <table>-->
+<!--            <thead>-->
+<!--              <th></th>-->
+<!--              <th></th>-->
+<!--            </thead>-->
+<!--            <tbody>-->
+<!--              <tr><td>Type of Boat</td><td> {{product?.subType}} </td></tr>-->
+<!--              <tr><td>Make</td><td> {{product?.brand}} </td></tr>-->
+<!--              <tr><td>Model</td><td> {{product?.model}} </td></tr>-->
+<!--              <tr><td>Year</td><td> {{product?.year}} </td></tr>-->
+<!--              <tr><td>Lenth, ft</td><td> {{product?.length}} </td></tr>-->
+<!--              <tr><td>Weight, lb</td><td> {{product?.weight}} </td></tr>-->
+<!--              <tr><td>Price per hour, $</td><td> {{product?.pricePerHour | currency:'USD':'symbol':'1.2-2'}} </td></tr>-->
+<!--              <tr><td>Price per day, $</td><td> {{product?.pricePerDay | currency:'USD':'symbol':'1.2-2'}} </td></tr>-->
+<!--              <tr><td>People Capacity</td><td> {{product?.peopleCapacity}} </td></tr>-->
+<!--              <tr><td>Active</td><td><mat-checkbox [(ngModel)]="active" [disabled]="true"></mat-checkbox></td></tr>-->
+<!--            </tbody>-->
+<!--          </table>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div fxFlex="50%">-->
+<!--      <div fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">-->
+<!--        <div fxFlex="50%">Availability Calendar-->
+<!--          <mat-card class="demo-inline-calendar-card">-->
+<!--            <mat-calendar [(selected)]="selected"></mat-calendar>-->
+<!--          </mat-card>-->
+<!--          <p>Selected date: {{selected}}</p>-->
+<!--        </div>-->
+<!--        <div fxFlex="50%">Book/Reserve-->
+<!--          <button class="margin-02-em" mat-raised-button (click)="onBack()">BOOK/RESERVE</button>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
