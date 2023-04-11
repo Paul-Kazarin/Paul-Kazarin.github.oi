@@ -134,7 +134,7 @@ export class AddnewitemComponent implements OnInit{
       width: '60%',
       height: '30%',
       data: {
-        type: 'boat',
+        type: this.data.type,
         subType: this.subType
       }
     })
@@ -145,7 +145,7 @@ export class AddnewitemComponent implements OnInit{
       width: '60%',
       height: '30%',
       data: {
-        type: 'boat',
+        type: this.data.type,
         brand: this.brand
       }
     })
@@ -156,7 +156,7 @@ export class AddnewitemComponent implements OnInit{
       width: '60%',
       height: '30%',
       data: {
-        type: 'boat',
+        type: this.data.type,
         model: this.model
       }
     })

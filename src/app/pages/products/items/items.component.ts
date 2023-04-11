@@ -6,6 +6,9 @@ import {Inventory} from "../../../interfaces/inventory";
 import {ActivatedRoute, Router} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
 import {AddnewitemComponent} from "../addnewitem/addnewitem.component";
+import {AddNewSubtypeComponent} from "../../../shared/add-new-subtype/add-new-subtype.component";
+import {AddNewBrandComponent} from "../../../shared/add-new-brand/add-new-brand.component";
+import {AddNewModelComponent} from "../../../shared/add-new-model/add-new-model.component";
 
 function compare(a: number | string, b: number | string, isAsc: boolean) {
   return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
@@ -131,6 +134,39 @@ export class ItemsComponent implements OnInit {
         image: this.image,
         active: this.active,
         comment: this.image
+      }
+    })
+  }
+
+  addNewSubType(): void {
+    const dialogRef = this.dialog.open(AddNewSubtypeComponent, {
+      width: '60%',
+      height: '30%',
+      data: {
+        type: this.type,
+        subType: this.subType
+      }
+    })
+  }
+
+  addNewBrand(): void {
+    const dialogRef = this.dialog.open(AddNewBrandComponent, {
+      width: '60%',
+      height: '30%',
+      data: {
+        type: this.type,
+        brand: this.brand
+      }
+    })
+  }
+
+  addNewModel(): void {
+    const dialogRef = this.dialog.open(AddNewModelComponent, {
+      width: '60%',
+      height: '30%',
+      data: {
+        type: this.type,
+        model: this.model
       }
     })
   }
