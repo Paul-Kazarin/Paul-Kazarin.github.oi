@@ -4,11 +4,12 @@
     <div fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
       <div fxFlex="10%">
         <div fxLayout="row" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
-          <div fxFlex="70%">
-            <h3 class="margin-1-em">Edit {{product.type}} </h3>
+          <div fxFlex="40%">
+            <button class="button" mat-raised-button (click)="onHome()">HOME PAGE</button>
+            <button class="button" mat-raised-button (click)="onBack()">BACK TO {{product.type | uppercase}}S</button>
           </div>
-          <div fxFlex="30%">
-            <button class="button" mat-raised-button (click)="onBack()">GO BACK</button>
+          <div fxFlex="60%">
+            <h3 class="margin-1-em">Edit {{product.type}} </h3>
           </div>
         </div>
       </div>
@@ -103,11 +104,11 @@
       <div fxFlex="40%">
         <div fxLayout="row" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
 
-          <div fxFlex="70%">
+          <div fxFlex="50%">
             <img src="{{product?.image}}" class="image-detail-page">
           </div>
 
-          <div fxFlex="30%">
+          <div fxFlex="50%">
             <div fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
               <div fxFlex="10%">
                 <mat-checkbox name="active" type="boolean" name="active" [(ngModel)]=product.active value="{{product.active}}" class="form-field">Active</mat-checkbox>

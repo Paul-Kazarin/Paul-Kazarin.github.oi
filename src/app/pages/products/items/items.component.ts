@@ -141,4 +141,8 @@ export class ItemsComponent implements OnInit {
     );
   }
 
+  onHome(): void {
+    this.router.navigate(['/homepage']);
+  }
+
 }

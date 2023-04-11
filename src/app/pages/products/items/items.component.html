@@ -1,21 +1,26 @@
 <div fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutGap="10px" class="container">
   <div fxFlex="10%">
+    <button mat-raised-button class="button" (click)="onHome()">HOME PAGE</button>
     <h2>Work with {{type}}s</h2>
   </div>
-  <div fxFlex="80%" style="margin-bottom: 4em !important;">
+  <div fxFlex="90%">
     <div fxLayout="row" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
-      <div fxFlex="45%">
+      <div fxFlex="15%">
         <mat-label class="margin-02-em">Search and Filter</mat-label>
-        <input class="margin-02-em" type="text" matInput placeholder="Ex. Yamaha"
-                [(ngModel)]="listFilter">
-        <button class="margin-02-em" mat-raised-button (click)="performFilterSorted(this.listFilter)">Apply Filter</button>
       </div>
-      <div fxFlex="40%">
-        <h3 class="margin-02-em" style="color: grey !important;">Filtered By: {{listFilter}}</h3>
+      <div fxFlex="30%">
+        <input class="margin-02-em" type="text" matInput placeholder="Ex. Yamaha"
+               [(ngModel)]="listFilter">
+      </div>
+      <div fxFlex="15%">
+        <button class="button" mat-raised-button (click)="performFilterSorted(this.listFilter)">Apply Filter</button>
+      </div>
+      <div fxFlex="25%">
+        <p class="margin-02-em" style="color: grey !important;">Filtered By: {{listFilter}}</p>
       </div>
       <div fxFlex="15%" style="alignment: right !important;">
         <div style="alignment: right !important;">
-          <button class="margin-02-em" mat-raised-button (click)="addNewItem()">Add new {{type}}</button>
+          <button class="button" mat-raised-button (click)="addNewItem()">ADD NEW {{type | uppercase}}</button>
         </div>
       </div>
     </div>
@@ -37,7 +42,7 @@
       </ng-container>
 
       <ng-container matColumnDef="subType">
-        <th mat-header-cell *matHeaderCellDef> Type of Boat </th>
+        <th mat-header-cell *matHeaderCellDef> Type of {{type}} </th>
         <td mat-cell *matCellDef="let element">
           <a [routerLink]="['/products/', type, element.id]" >{{element.subType}} </a>
         </td>
@@ -100,7 +105,7 @@
       </ng-container>
 
       <ng-container matColumnDef="image">
-        <th mat-header-cell *matHeaderCellDef> image </th>
+        <th mat-header-cell *matHeaderCellDef> Image </th>
         <td mat-cell *matCellDef="let element">
           <a [routerLink]="['/products/', type, element.id]" >
           <img src={{element.image}} [title]='element.brand + " " + element.model'
@@ -121,9 +126,6 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
-  </div>
-  <div fxFlex="10%">
-
   </div>
 </div>
 

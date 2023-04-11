@@ -5,14 +5,15 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 input {
   border: solid 1px darkblue !important;
+  border-radius: 5px;
   height: 2em !important;
   min-width: 100px;
   max-width: 500px;
-  width: 30% !important;
+  width: 100% !important;
 }
 
 table {
-  width: 100%;
+  //width: 100%;
 }
 
 td.mat-mdc-cell{

@@ -120,6 +120,10 @@ export class ProductDetailComponent implements OnInit{
     this.router.navigate(['products/', this.product?.type]);
   }
 
+  onHome(): void {
+    this.router.navigate(['/homepage']);
+  }
+
   onSubmit(): void {
       this.inventoryService.postAddNewItemForm(this.product).subscribe(
         result => console.log('success: ', result),

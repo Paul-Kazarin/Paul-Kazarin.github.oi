@@ -12,7 +12,9 @@ export class HomepageComponent implements OnInit {
   types: ItemType[] = [];
   type: string = '';
 
-  constructor(private inventoryService: InventoryService) { }
+  constructor(
+    private inventoryService: InventoryService
+  ) { }
 
   ngOnInit(): void {
     this.getTypes();
