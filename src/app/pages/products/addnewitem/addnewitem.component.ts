@@ -118,7 +118,9 @@ export class AddnewitemComponent implements OnInit{
         peopleCapacity: this.addNewItem.value.peopleCapacity,
         image: this.addNewItem.value.image,
         active: this.addNewItem.value.active,
-        comment: this.addNewItem.value.comment
+        comment: this.addNewItem.value.comment,
+        dateCreated: this.addNewItem.value.dateCreated,
+        dateUpdated: this.addNewItem.value.dateCreated
       };
       this.inventoryService.postAddNewItemForm(inventory).subscribe(
         result => console.log('success: ', result),

@@ -13,4 +13,6 @@ export interface Inventory {
   image: string;
   active: boolean;
   comment: string;
+  dateCreated: string;
+  dateUpdated: string;
 }

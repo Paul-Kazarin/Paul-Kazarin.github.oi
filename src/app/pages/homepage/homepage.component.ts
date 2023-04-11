@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {InventoryService} from "../../services/inventory.service";
 import {ItemType} from "../../interfaces/itemType";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-homepage',
@@ -14,7 +15,8 @@ export class HomepageComponent implements OnInit {
   image: string = '';
 
   constructor(
-    private inventoryService: InventoryService
+    private inventoryService: InventoryService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -27,6 +29,10 @@ export class HomepageComponent implements OnInit {
         this.types = types;
       }
     });
+  }
+
+  onReport(): void {
+    this.router.navigate(['/reportpage']);
   }
 
 }
