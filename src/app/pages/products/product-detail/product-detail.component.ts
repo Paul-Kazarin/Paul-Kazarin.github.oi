@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {Inventory} from "../../../interfaces/inventory";
 import {InventoryService} from "../../../services/inventory.service";
-import {FormControl, FormGroup} from "@angular/forms";
 import {Subscription} from "rxjs";
 import {Brand} from "../../../interfaces/brand";
 import {Model} from "../../../interfaces/model";
@@ -16,18 +15,30 @@ import {SubTypes} from "../../../interfaces/subTypes";
 export class ProductDetailComponent implements OnInit{
   pageTitle: string = 'Product Detail:';
   errorMessage = '';
-  product: Inventory | undefined;
+  product: any = {
+    id: 0,
+    type: '',
+    subType: '',
+    brand: '',
+    model: '',
+    year: 0,
+    length: 0,
+    weight: 0,
+    pricePerHour: 0,
+    pricePerDay: 0,
+    peopleCapacity: 0,
+    image: '',
+    active: false,
+    comment: ''
+  };
   id: number = 0;
-  editItem!: FormGroup;
   productUrl: string = this.inventoryService.productUrl;
-  sub!: Subscription;
+  subItems!: Subscription;
   items: Inventory[] = [];
   brands: Brand[] = [];
   models: Model[] = [];
   subTypes: SubTypes[] = [];
-  subType: string = '';
-  brand: string = '';
-  model: string = '';
+
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -38,7 +49,7 @@ export class ProductDetailComponent implements OnInit{
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.id = id;
     this.pageTitle += ` id: ${id}`;
-    this.sub = this.inventoryService.getItems().subscribe({
+    this.subItems = this.inventoryService.getItems().subscribe({
       next: units => {
         this.items = units;
       },
@@ -78,22 +89,6 @@ export class ProductDetailComponent implements OnInit{
     this.inventoryService.getItem(id).subscribe({
       next: product => {
         this.product = product;
-        this.editItem = new FormGroup({
-          id: new FormControl(this.product?.id, {}),
-          type: new FormControl(this.product?.type, {}),
-          subType: new FormControl(this.product?.subType, {}),
-          brand: new FormControl(this.product?.brand, {}),
-          model: new FormControl(this.product?.model, {}),
-          year: new FormControl(this.product?.year, {}),
-          length: new FormControl(this.product?.length, {}),
-          weight: new FormControl(this.product?.weight, {}),
-          pricePerHour: new FormControl(this.product?.pricePerHour, {}),
-          pricePerDay: new FormControl(this.product?.pricePerDay, {}),
-          peopleCapacity: new FormControl(this.product?.peopleCapacity, {}),
-          image: new FormControl(this.product?.image, {}),
-          active: new FormControl(this.product?.active, {}),
-          comment: new FormControl(this.product?.comment, {})
-        })
       },
       error: err => this.errorMessage = err
     });
@@ -125,36 +120,12 @@ export class ProductDetailComponent implements OnInit{
     this.router.navigate(['products/', this.product?.type]);
   }
 
-  clearForm(): void {
-    this.editItem.reset();
-  }
-
   onSubmit(): void {
-    if (this.editItem.invalid) {
-      return;
-    } else {
-      const inventory = {
-        id: this.editItem.value.id,
-        type: this.editItem.value.type,
-        subType: this.editItem.value.subType,
-        brand: this.editItem.value.brand,
-        model: this.editItem.value.model,
-        year: this.editItem.value.year,
-        length: this.editItem.value.length,
-        weight: this.editItem.value.weight,
-        pricePerHour: this.editItem.value.pricePerHour,
-        pricePerDay: this.editItem.value.pricePerDay,
-        peopleCapacity: this.editItem.value.peopleCapacity,
-        image: this.editItem.value.image,
-        active: this.editItem.value.active,
-        comment: this.editItem.value.comment
-      };
-      this.inventoryService.postAddNewItemForm(inventory).subscribe(
+      this.inventoryService.postAddNewItemForm(this.product).subscribe(
         result => console.log('success: ', result),
         error => console.log('error: ', error),
       );
       this.onBack();
-    }
   }
 
 }

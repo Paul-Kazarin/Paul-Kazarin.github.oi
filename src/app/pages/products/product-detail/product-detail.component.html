@@ -1,11 +1,11 @@
 <div class="container">
 
-  <form [formGroup]="editItem" >
+  <form #editItem="ngForm" >
     <div fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
       <div fxFlex="10%">
         <div fxLayout="row" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
           <div fxFlex="70%">
-            <h3 class="margin-1-em">Edit {{product?.type}} </h3>
+            <h3 class="margin-1-em">Edit {{product.type}} </h3>
           </div>
           <div fxFlex="30%">
             <button class="button" mat-raised-button (click)="onBack()">GO BACK</button>
@@ -19,10 +19,10 @@
             <div fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
               <div fxFlex="33%">
                 <mat-form-field appearance="outline" class="form-field">
-                  <mat-label>{{product?.subType}}</mat-label>
-                  <mat-select formControlName="subType">
-                    <mat-option *ngFor="let subType of subTypes" [value]="subType?.subType" >
-                      {{subType?.subType}}
+                  <mat-label>Type of {{product.type}}</mat-label>
+                  <mat-select name="subType" [(ngModel)]=product.subType value="{{product.subType}}">
+                    <mat-option *ngFor="let subType of subTypes" [value]="subType.subType" >
+                      {{subType.subType}}
                     </mat-option>
                   </mat-select>
                 </mat-form-field>
@@ -30,14 +30,14 @@
               <div fxFlex="33%">
                 <mat-form-field appearance="outline" class="form-field">
                   <mat-label>Year</mat-label>
-                  <input matInput formControlName="year" value="{{product?.year}}">
+                  <input matInput name="year" [(ngModel)]=product.year value="{{product.year}}" type="number">
                 </mat-form-field>
               </div>
 
               <div fxFlex="33%">
                 <mat-form-field appearance="outline" class="form-field">
                   <mat-label>Price per hour, $</mat-label>
-                  <input matInput formControlName="pricePerHour" value="{{product?.pricePerHour}}">
+                  <input matInput name="pricePerHour" [(ngModel)]=product.pricePerHour value="{{product.pricePerHour}}" type="number">
                 </mat-form-field>
               </div>
             </div>
@@ -47,10 +47,10 @@
             <div fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
               <div fxFlex="33%">
                 <mat-form-field appearance="outline" class="form-field">
-                  <mat-label>{{product?.brand}}</mat-label>
-                  <mat-select formControlName="brand">
-                    <mat-option *ngFor="let brand of brands" [value]="brand?.brand" >
-                      {{brand?.brand}}
+                  <mat-label>Brand of {{product.type}}</mat-label>
+                  <mat-select name="brand" [(ngModel)]=product.brand value="{{product.brand}}">
+                    <mat-option *ngFor="let brand of brands" [value]="brand.brand" >
+                      {{brand.brand}}
                     </mat-option>
                   </mat-select>
                 </mat-form-field>
@@ -58,13 +58,13 @@
               <div fxFlex="33%">
                 <mat-form-field appearance="outline" class="form-field">
                   <mat-label>Length, Ft</mat-label>
-                  <input matInput formControlName="length" value="{{product?.length}}">
+                  <input matInput name="length" [(ngModel)]=product.length value="{{product.length}}" type="number">
                 </mat-form-field>
               </div>
               <div fxFlex="33%">
                 <mat-form-field appearance="outline" class="form-field">
                   <mat-label>Price per day, $</mat-label>
-                  <input matInput formControlName="pricePerDay" value="{{product?.pricePerDay}}">
+                  <input matInput name="pricePerDay" [(ngModel)]=product.pricePerDay value="{{product.pricePerDay}}" type="number">
                 </mat-form-field>
               </div>
             </div>
@@ -74,10 +74,10 @@
             <div fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
               <div fxFlex="33%">
                 <mat-form-field appearance="outline" class="form-field">
-                  <mat-label>{{product?.model}}</mat-label>
-                  <mat-select formControlName="model">
-                    <mat-option *ngFor="let model of models" [value]="model?.model" >
-                      {{model?.model}}
+                  <mat-label>Model of {{product.type}}</mat-label>
+                  <mat-select name="model" [(ngModel)]=product.model value="{{product.model}}">
+                    <mat-option *ngFor="let model of models" [value]="model.model" >
+                      {{model.model}}
                     </mat-option>
                   </mat-select>
                 </mat-form-field>
@@ -85,13 +85,13 @@
               <div fxFlex="33%">
                 <mat-form-field appearance="outline" class="form-field">
                   <mat-label>Weight, Lb</mat-label>
-                  <input matInput formControlName="weight" value="{{product?.weight}}">
+                  <input matInput name="weight" [(ngModel)]=product.weight value="{{product.weight}}" type="number">
                 </mat-form-field>
               </div>
               <div fxFlex="33%">
                 <mat-form-field appearance="outline" class="form-field">
                   <mat-label>People Capacity</mat-label>
-                  <input matInput formControlName="peopleCapacity" value="{{product?.peopleCapacity}}">
+                  <input matInput name="peopleCapacity" [(ngModel)]=product.peopleCapacity value="{{product.peopleCapacity}}" type="number">
                 </mat-form-field>
               </div>
             </div>
@@ -110,21 +110,21 @@
           <div fxFlex="30%">
             <div fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
               <div fxFlex="10%">
-                <mat-checkbox name="active" type="boolean" formControlName="active" class="form-field">Active</mat-checkbox>
+                <mat-checkbox name="active" type="boolean" name="active" [(ngModel)]=product.active value="{{product.active}}" class="form-field">Active</mat-checkbox>
               </div>
               <div fxFlex="40%">
                 <button mat-raised-button class="button" >
-                  <a href="{{productUrl}}/item/" target="_blank">Add Image for this {{product?.type}}</a>
+                  <a href="{{productUrl}}/item/" target="_blank">Add Image for this {{product.type}}</a>
                 </button>
                 <mat-form-field appearance="outline" class="form-field">
                   <mat-label>Image</mat-label>
-                  <input matInput formControlName="image" value="{{product?.image}}">
+                  <input matInput name="image" [(ngModel)]=product.image value="{{product.image}}">
                 </mat-form-field>
               </div>
               <div fxFlex="50%">
                 <mat-form-field appearance="outline" class="form-field">
                   <mat-label>Comment</mat-label>
-                  <textarea matInput formControlName="comment" value="{{product?.comment}}"></textarea>
+                  <textarea matInput name="comment" [(ngModel)]=product.comment value="{{product.comment}}"></textarea>
                 </mat-form-field>
               </div>
             </div>
@@ -134,7 +134,6 @@
 
       <div fxFlex="20%">
         <button mat-raised-button class="button" type="submit" (click)="onSubmit()">SAVE</button>
-        <button mat-raised-button class="button" (click)="clearForm()">CLEAR FORM</button>
         <button mat-raised-button class="button" (click)="onBack()">CLOSE</button>
         <button mat-raised-button class="button" (click)="onDeleteById(id)">DELETE THIS ITEM (id: {{id}})</button>
       </div>
