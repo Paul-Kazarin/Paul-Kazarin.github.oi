@@ -11,6 +11,7 @@ export class HomepageComponent implements OnInit {
 
   types: ItemType[] = [];
   type: string = '';
+  image: string = '';
 
   constructor(
     private inventoryService: InventoryService
