@@ -6,7 +6,11 @@
       <h3>REPORT FOR {{data.type | uppercase}}</h3>
     </div>
     <div fxFlex="80%">
-      <h3 *ngIf="!data.type">{{all | uppercase}}</h3>
+      <h3 *ngIf="!data.type &&
+      (data.typeCheck || data.subType || data.brand || data.model || data.year || data.length || data.weight || data.pricePerDay || data.pricePerHour || data.peopleCapacity || data.active || data.image || data.comment || data.dateCreated || data.dateUpdated)"
+      >{{all | uppercase}}</h3>
+      <h3 *ngIf="!data.type && !data.typeCheck && !data.subType && !data.brand && !data.model && !data.year && !data.length && !data.weight && !data.pricePerHour && !data.pricePerDay && !data.peopleCapacity && !data.active && !data.image && !data.comment && !data.dateCreated && !data.dateUpdated">NOTHING. You did not select any data for report.</h3>
+      <h3 *ngIf="data.type && !data.typeCheck && !data.subType && !data.brand && !data.model && !data.year && !data.length && !data.weight && !data.pricePerHour && !data.pricePerDay && !data.peopleCapacity && !data.active && !data.image && !data.comment && !data.dateCreated && !data.dateUpdated">You did not select any field for report.</h3>
     </div>
   </div>
 
@@ -43,10 +47,12 @@
       <td style="border: solid black 1px" *ngIf="data.pricePerDay === true">{{ product.pricePerDay | currency:'USD':'symbol':'1.2-2' }}</td>
       <td style="border: solid black 1px" *ngIf="data.peopleCapacity === true">{{ product.peopleCapacity }}</td>
       <td style="border: solid black 1px" *ngIf="data.active === true">{{ product.active }}</td>
-      <td style="border: solid black 1px" *ngIf="data.image === true">{{ product.image }}</td>
+      <td style="border: solid black 1px" *ngIf="data.image === true">
+        <img src="{{product.image}}" style="height: 100px">
+      </td>
       <td style="border: solid black 1px" *ngIf="data.comment === true">{{ product.comment }}</td>
-      <td style="border: solid black 1px" *ngIf="data.dateCreated === true">{{ product.dateCreated }}</td>
-      <td style="border: solid black 1px" *ngIf="data.dateUpdated === true">{{ product.dateUpdated }}</td>
+      <td style="border: solid black 1px" *ngIf="data.dateCreated === true">{{ product.dateCreated | date}}</td>
+      <td style="border: solid black 1px" *ngIf="data.dateUpdated === true">{{ product.dateUpdated | date}}</td>
     </tr>
     </tbody>
   </table>

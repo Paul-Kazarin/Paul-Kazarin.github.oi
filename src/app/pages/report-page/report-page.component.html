@@ -23,7 +23,15 @@
 
     <div fxFlex="40%">
       <mat-card>
-        <h4>Select the fields you want to see in the report</h4>
+        <div fxLayout="row" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
+          <div fxFlex="85%">
+            <h4>Select the fields you want to see in the report</h4>
+          </div>
+          <div fxFlex="15%">
+            <button mat-raised-button class="button" (click)="selectAll()" *ngIf="selectedAll === false">SELECT ALL</button>
+            <button mat-raised-button class="button" (click)="selectAll()" *ngIf="selectedAll === true">DESELECT ALL</button>
+          </div>
+        </div>
         <div fxLayout="row" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
           <div fxFlex="33%">
             <mat-checkbox name="type" type="boolean" [(ngModel)]="typeCheck" class="form-field">Type</mat-checkbox>

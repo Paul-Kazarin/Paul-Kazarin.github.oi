@@ -31,6 +31,7 @@ export class ReportPageComponent implements OnInit {
   dateUpdated: boolean = false;
   startDate: string = '';
   endDate: string = '';
+  selectedAll: boolean = false;
 
   constructor(
     private router: Router,
@@ -76,9 +77,29 @@ export class ReportPageComponent implements OnInit {
         dateCreated: this.dateCreated,
         dateUpdated: this.dateUpdated,
         startDate: this.startDate,
-        endDate: this.endDate
+        endDate: this.endDate,
+        selectedAll: this.selectedAll
       }
     })
+  }
+
+  selectAll(): void {
+    this.typeCheck = !this.typeCheck;
+    this.subType = !this.subType;
+    this.brand = !this.brand;
+    this.model = !this.model;
+    this.year = !this.year;
+    this.length = !this.length;
+    this.weight = !this.weight;
+    this.pricePerHour = !this.pricePerHour;
+    this.pricePerDay = !this.pricePerDay;
+    this.peopleCapacity = !this.peopleCapacity;
+    this.active = !this.active;
+    this.comment = !this.comment;
+    this.image = !this.image;
+    this.dateCreated = !this.dateCreated;
+    this.dateUpdated = !this.dateUpdated;
+    this.selectedAll = !this.selectedAll;
   }
 
 }

@@ -27,7 +27,7 @@ export class ReportModalComponent implements OnInit {
   ngOnInit(): void {
     this.type = this.data.type;
     this.getItems();
-    if (!this.type) {this.all = 'all'}
+    if (!this.type) {this.all = 'all types'}
   }
 
   getItems(): void {
