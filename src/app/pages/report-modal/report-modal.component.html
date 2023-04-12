@@ -46,11 +46,11 @@
       <td style="border: solid black 1px" *ngIf="data.brand === true">{{ product.brand }}</td>
       <td style="border: solid black 1px" *ngIf="data.model === true">{{ product.model }}</td>
       <td style="border: solid black 1px" *ngIf="data.year === true">{{ product.year }}</td>
-      <td style="border: solid black 1px" *ngIf="data.length === true">{{ product.length }}</td>
-      <td style="border: solid black 1px" *ngIf="data.weight === true">{{ product.weight }}</td>
+      <td style="border: solid black 1px" *ngIf="data.length === true">{{ product.length | number }}</td>
+      <td style="border: solid black 1px" *ngIf="data.weight === true">{{ product.weight | number }}</td>
       <td style="border: solid black 1px" *ngIf="data.pricePerHour === true">{{ product.pricePerHour | currency:'USD':'symbol':'1.2-2' }}</td>
       <td style="border: solid black 1px" *ngIf="data.pricePerDay === true">{{ product.pricePerDay | currency:'USD':'symbol':'1.2-2' }}</td>
-      <td style="border: solid black 1px" *ngIf="data.peopleCapacity === true">{{ product.peopleCapacity }}</td>
+      <td style="border: solid black 1px" *ngIf="data.peopleCapacity === true">{{ product.peopleCapacity | number }}</td>
       <td style="border: solid black 1px" *ngIf="data.active === true">{{ product.active }}</td>
       <td style="border: solid black 1px" *ngIf="data.image === true">
         <img src="{{product.image}}" style="height: 100px">
