@@ -1,20 +1,23 @@
-<p>report-page works!</p>
-
 <button mat-raised-button class="button" (click)="onHome()">HOME PAGE</button>
 
 <div class="container">
-  <h3 class="margin-1-em">Add new brand for </h3>
+  <h3 class="margin-1-em">GENERATE REPORT</h3>
 
-  <form [formGroup]="reportPage" >
+  <div fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
+    <div fxFlex="50%">
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>SELECT TYPE</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let subType of types" [value]="subType?.type" >
+            {{subType?.type}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
 
-    <mat-form-field appearance="outline" class="form-field">
-      <mat-label>Brand of </mat-label>
-      <input matInput formControlName="brand">
-    </mat-form-field>
+    <div fxFlex="50%">
 
-    <button mat-raised-button class="button" type="submit" (click)="onSubmit()">SAVE</button>
-    <button mat-raised-button class="button" (click)="clearForm()">CLEAR FORM</button>
-    <button mat-raised-button class="button" (click)="onClose()">CLOSE</button>
+    </div>
+  </div>
 
-  </form>
 </div>

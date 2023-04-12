@@ -67,7 +67,6 @@ export class ItemsComponent implements OnInit {
         this.items = units;
         this.filteredList = this.items.filter((item: any) => item.type.toLocaleLowerCase().includes(this.type));
         this.sortedData = this.filteredList.slice();
-        //this.type = this.filteredList[0].type;
       },
       error: err => this.errorMessage = err
     });

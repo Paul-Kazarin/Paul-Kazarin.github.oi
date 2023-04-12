@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
-import {FormControl, FormGroup} from "@angular/forms";
-import {MatDialog, MatDialogRef} from "@angular/material/dialog";
+import {ItemType} from "../../interfaces/itemType";
 import {InventoryService} from "../../services/inventory.service";
 
 @Component({
@@ -11,45 +10,23 @@ import {InventoryService} from "../../services/inventory.service";
 })
 export class ReportPageComponent implements OnInit {
 
-  reportPage!: FormGroup;
+  types: ItemType[] = [];
 
   constructor(
-    public dialogRef: MatDialogRef<ReportPageComponent>,
     private router: Router,
-    private inventoryService: InventoryService,
-    public dialog: MatDialog
+    private inventoryService: InventoryService
   ) { }
 
   ngOnInit(): void {
-    this.reportPage = new FormGroup({
-      type: new FormControl('', {}),
-      dateRange: new FormControl('', {})
-    })
+    this.getTypes();
   }
 
-  clearForm(): void {
-    this.reportPage.reset();
-  }
-
-  onClose(): void {
-    this.dialogRef.close("closed");
-  }
-
-  onSubmit(): void {
-    if (this.reportPage.invalid) {
-      return;
-    } else {
-      const report = {
-        id: this.reportPage.value.id,
-        dateRange: this.reportPage.value.dateRange
-      };
-      console.log();
-      // this.inventoryService.postReportPageForm(report).subscribe(
-      //   result => console.log('success: ', result),
-      //   error => console.log('error: ', error),
-
-      this.onClose();
-    }
+  getTypes() {
+    this.inventoryService.getTypes().subscribe({
+      next: types => {
+        this.types = types;
+      }
+    });
   }
 
   onHome(): void {
