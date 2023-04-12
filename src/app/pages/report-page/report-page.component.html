@@ -29,7 +29,7 @@
           </div>
           <div fxFlex="15%">
             <button mat-raised-button class="button" (click)="selectAll()" *ngIf="selectedAll === false">SELECT ALL</button>
-            <button mat-raised-button class="button" (click)="selectAll()" *ngIf="selectedAll === true">DESELECT ALL</button>
+            <button mat-raised-button class="button" (click)="deselectAll()" *ngIf="selectedAll === true">DESELECT ALL</button>
           </div>
         </div>
         <div fxLayout="row" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">

@@ -84,22 +84,41 @@ export class ReportPageComponent implements OnInit {
   }
 
   selectAll(): void {
-    this.typeCheck = !this.typeCheck;
-    this.subType = !this.subType;
-    this.brand = !this.brand;
-    this.model = !this.model;
-    this.year = !this.year;
-    this.length = !this.length;
-    this.weight = !this.weight;
-    this.pricePerHour = !this.pricePerHour;
-    this.pricePerDay = !this.pricePerDay;
-    this.peopleCapacity = !this.peopleCapacity;
-    this.active = !this.active;
-    this.comment = !this.comment;
-    this.image = !this.image;
-    this.dateCreated = !this.dateCreated;
-    this.dateUpdated = !this.dateUpdated;
-    this.selectedAll = !this.selectedAll;
+    this.typeCheck = true;
+    this.subType = true;
+    this.brand = true;
+    this.model = true;
+    this.year = true;
+    this.length = true;
+    this.weight = true;
+    this.pricePerHour = true;
+    this.pricePerDay = true;
+    this.peopleCapacity = true;
+    this.active = true;
+    this.comment = true;
+    this.image = true;
+    this.dateCreated = true;
+    this.dateUpdated = true;
+    this.selectedAll = true;
+  }
+
+  deselectAll(): void {
+    this.typeCheck = false;
+    this.subType = false;
+    this.brand = false;
+    this.model = false;
+    this.year = false;
+    this.length = false;
+    this.weight = false;
+    this.pricePerHour = false;
+    this.pricePerDay = false;
+    this.peopleCapacity = false;
+    this.active = false;
+    this.comment = false;
+    this.image = false;
+    this.dateCreated = false;
+    this.dateUpdated = false;
+    this.selectedAll = false;
   }
 
 }
