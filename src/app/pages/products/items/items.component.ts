@@ -132,7 +132,7 @@ export class ItemsComponent implements OnInit {
         peopleCapacity: this.peopleCapacity,
         image: this.image,
         active: this.active,
-        comment: this.image
+        comment: this.comment
       }
     })
   }

@@ -16,13 +16,15 @@ import {FormsModule} from "@angular/forms";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {SharedModule} from "./shared/shared.module";
 import { ReportPageComponent } from './pages/report-page/report-page.component';
+import { ReportModalComponent } from './pages/report-modal/report-modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomepageComponent,
     HeaderComponent,
-    ReportPageComponent
+    ReportPageComponent,
+    ReportModalComponent
   ],
   imports: [
     BrowserModule,

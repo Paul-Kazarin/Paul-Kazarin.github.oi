@@ -1,13 +1,19 @@
-<button mat-raised-button class="button" (click)="onHome()">HOME PAGE</button>
-
 <div class="container">
-  <h3 class="margin-1-em">GENERATE REPORT</h3>
+  <div fxLayout="row" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
+    <div fxFlex="85%">
+      <h3 class="margin-1-em">GENERATE REPORT</h3>
+    </div>
+    <div fxFlex="15%">
+      <button mat-raised-button class="button" (click)="onHome()">HOME PAGE</button>
+    </div>
+  </div>
 
+  <h4>Select the type of inventory you want to see in the report</h4>
   <div fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
-    <div fxFlex="50%">
+    <div fxFlex="10%">
       <mat-form-field appearance="outline" class="form-field">
         <mat-label>SELECT TYPE</mat-label>
-        <mat-select>
+        <mat-select [(value)]="type">
           <mat-option *ngFor="let subType of types" [value]="subType?.type" >
             {{subType?.type}}
           </mat-option>
@@ -15,18 +21,51 @@
       </mat-form-field>
     </div>
 
-    <div fxFlex="50%">
+    <div fxFlex="40%">
+      <mat-card>
+        <h4>Select the fields you want to see in the report</h4>
+        <div fxLayout="row" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
+          <div fxFlex="33%">
+            <mat-checkbox name="type" type="boolean" [(ngModel)]="typeCheck" class="form-field">Type</mat-checkbox>
+            <mat-checkbox name="subType" type="boolean" [(ngModel)]="subType" class="form-field">Subtype</mat-checkbox>
+            <mat-checkbox name="brand" type="boolean" [(ngModel)]="brand" class="form-field">Brand</mat-checkbox>
+            <mat-checkbox name="model" type="boolean" [(ngModel)]="model" class="form-field">Model</mat-checkbox>
+            <mat-checkbox name="year" type="boolean" [(ngModel)]="year" class="form-field">Year</mat-checkbox>
+          </div>
+          <div fxFlex="33%">
+            <mat-checkbox name="length" type="boolean" [(ngModel)]="length" class="form-field">Length</mat-checkbox>
+            <mat-checkbox name="weight" type="boolean" [(ngModel)]="weight" class="form-field">Weight</mat-checkbox>
+            <mat-checkbox name="pricePerHour" type="boolean" [(ngModel)]="pricePerHour" class="form-field">Price Per Hour</mat-checkbox>
+            <mat-checkbox name="pricePerDay" type="boolean" [(ngModel)]="pricePerDay" class="form-field">Price Per Day</mat-checkbox>
+            <mat-checkbox name="peopleCapacity" type="boolean" [(ngModel)]="peopleCapacity" class="form-field">People Capacity</mat-checkbox>
+          </div>
+          <div fxFlex="33%">
+            <mat-checkbox name="image" type="boolean" [(ngModel)]="image" class="form-field">Image</mat-checkbox>
+            <mat-checkbox name="active" type="boolean" [(ngModel)]="active" class="form-field">Active</mat-checkbox>
+            <mat-checkbox name="comment" type="boolean" [(ngModel)]="comment" class="form-field">Comment</mat-checkbox>
+            <mat-checkbox name="dateCreated" type="boolean" [(ngModel)]="dateCreated" class="form-field">Date Created</mat-checkbox>
+            <mat-checkbox name="dateUpdated" type="boolean" [(ngModel)]="dateUpdated" class="form-field">Date Updated</mat-checkbox>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+
+    <div fxFlex="40%">
+      <h4>Select date range you want to see in the report</h4>
       <mat-form-field appearance="fill">
         <mat-label>Enter a date range</mat-label>
         <mat-date-range-input [rangePicker]="picker">
-          <input matStartDate placeholder="Start date">
-          <input matEndDate placeholder="End date">
+          <input matStartDate placeholder="Start date" [(ngModel)]="startDate" style="border: none">
+          <input matEndDate placeholder="End date" [(ngModel)]="endDate">
         </mat-date-range-input>
         <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-date-range-picker #picker></mat-date-range-picker>
       </mat-form-field>
     </div>
-  </div>
 
+    <div fxFlex="10%">
+      <button mat-raised-button class="button" (click)="openReportModal()">GENERATE REPORT</button>
+    </div>
+  </div>
 </div>
