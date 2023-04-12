@@ -42,5 +42,12 @@ export class ReportModalComponent implements OnInit {
   onClose(): void {
     this.dialogRef.close("closed");
   }
+  onPrint(): void {
+    print();
+  }
+
+  onSave(): void {
+
+  }
 
 }
