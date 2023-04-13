@@ -59,20 +59,41 @@
     </div>
 
     <div fxFlex="40%">
-      <h4>Select date range you want to see in the report</h4>
-      <mat-form-field appearance="fill">
-        <mat-label>Enter a date range</mat-label>
-        <mat-date-range-input [rangePicker]="picker">
-          <input matStartDate placeholder="Start date" [(ngModel)]="startDate" style="border: none">
-          <input matEndDate placeholder="End date" [(ngModel)]="endDate">
-        </mat-date-range-input>
-        <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
-        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-date-range-picker #picker></mat-date-range-picker>
-      </mat-form-field>
+      <div fxLayout="row" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
+        <div fxFlex="50%">
+          <mat-card>
+            <h4>Select created date range you want to see in the report</h4>
+            <mat-form-field appearance="fill">
+              <mat-label>Enter a date range</mat-label>
+              <mat-date-range-input [rangePicker]="createdDatepicker">
+                <input matStartDate placeholder="Start date" [(ngModel)]="createdStartDate" style="border: none" >
+                <input matEndDate placeholder="End date" [(ngModel)]="createdEndDate" style="border: none">
+              </mat-date-range-input>
+              <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+              <mat-datepicker-toggle matIconSuffix [for]="createdDatepicker"></mat-datepicker-toggle>
+              <mat-date-range-picker #createdDatepicker></mat-date-range-picker>
+            </mat-form-field>
+          </mat-card>
+        </div>
+        <div fxFlex="50%">
+          <mat-card>
+            <h4>Select updated date range you want to see in the report</h4>
+            <mat-form-field appearance="fill">
+              <mat-label>Enter a date range</mat-label>
+              <mat-date-range-input [rangePicker]="updatedDatepicker">
+                <input matStartDate placeholder="Start date" [(ngModel)]="updatedStartDate" style="border: none">
+                <input matEndDate placeholder="End date" [(ngModel)]="updatedEndDate" style="border: none">
+              </mat-date-range-input>
+              <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+              <mat-datepicker-toggle matIconSuffix [for]="updatedDatepicker"></mat-datepicker-toggle>
+              <mat-date-range-picker #updatedDatepicker></mat-date-range-picker>
+            </mat-form-field>
+          </mat-card>
+        </div>
+      </div>
     </div>
 
-    <div fxFlex="10%">
+    <div fxFlex="10%" style="text-align: center">
       <button mat-raised-button class="button" (click)="openReportModal()">GENERATE REPORT</button>
     </div>
   </div>

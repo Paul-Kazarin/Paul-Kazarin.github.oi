@@ -29,8 +29,10 @@ export class ReportPageComponent implements OnInit {
   comment: boolean = false;
   dateCreated: boolean = false;
   dateUpdated: boolean = false;
-  startDate: string = '';
-  endDate: string = '';
+  createdStartDate: string = '';
+  createdEndDate: string = '';
+  updatedStartDate: string = '';
+  updatedEndDate: string = '';
   selectedAll: boolean = false;
 
   constructor(
@@ -76,8 +78,10 @@ export class ReportPageComponent implements OnInit {
         comment: this.comment,
         dateCreated: this.dateCreated,
         dateUpdated: this.dateUpdated,
-        startDate: this.startDate,
-        endDate: this.endDate,
+        createdStartDate: this.createdStartDate,
+        createdEndDate: this.createdEndDate,
+        updatedStartDate: this.updatedStartDate,
+        updatedEndDate: this.updatedEndDate,
         selectedAll: this.selectedAll
       }
     })
