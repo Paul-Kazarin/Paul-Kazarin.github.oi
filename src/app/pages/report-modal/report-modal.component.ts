@@ -15,18 +15,10 @@ export class ReportModalComponent implements OnInit {
   filteredList: Inventory[] = [];
   type: string = '';
   all: string = '';
-  toISOStringCreatedStartDate: string = '';
-  toISOStringCreatedEndDate: string = '';
-  toISOStringUpdatedStartDate: string = '';
-  toISOStringUpdatedEndDate: string = '';
-  toLocalStringCreatedStartDate: string = '';
-  toLocalStringCreatedEndDate: string = '';
-  toLocalStringUpdatedStartDate: string = '';
-  toLocalStringUpdatedEndDate: string = '';
-  toISOStringCreatedObjectDate: string = '';
-  toISOStringUpdatedObjectDate: string = '';
-  toLocalStringCreatedObjectDate: string = '';
-  toLocalStringUpdatedObjectDate: string = '';
+  toCustomStringCreatedStartDate: string = '';
+  toCustomStringCreatedEndDate: string = '';
+  toCustomStringUpdatedStartDate: string = '';
+  toCustomStringUpdatedEndDate: string = '';
 
   constructor(
     public dialogRef: MatDialogRef<ReportModalComponent>,
@@ -41,20 +33,27 @@ export class ReportModalComponent implements OnInit {
     if (!this.data.createdStartDate && !this.data.createdEndDate && !this.data.updatedStartDate && !this.data.updatedEndDate) {
       this.getItems();
     } else if (this.data.createdStartDate && this.data.createdEndDate) {
-      // this.data.createdStartDate = this.data.createdStartDate - 1;
-      // this.data.createdEndDate = this.data.createdEndDate - 1;
-      this.toISOStringCreatedStartDate = this.data.createdStartDate.toISOString();
-      this.toISOStringCreatedEndDate = this.data.createdEndDate.toISOString();
+      this.toCustomStringCreatedStartDate = this.date_TO_String(this.data.createdStartDate);
+      this.toCustomStringCreatedEndDate = this.date_TO_String(this.data.createdEndDate);
       this.getItemsCreatedDateRange();
     } else {
-      // this.data.updatedStartDate = this.data.updatedStartDate - 1;
-      // this.data.updatedEndDate = this.data.updatedEndDate - 1;
-      this.toISOStringUpdatedStartDate = this.data.updatedStartDate.toISOString();
-      this.toISOStringUpdatedEndDate = this.data.updatedEndDate.toISOString();
+      this.toCustomStringUpdatedStartDate = this.date_TO_String(this.data.updatedStartDate);
+      this.toCustomStringUpdatedEndDate = this.date_TO_String(this.data.updatedEndDate);
       this.getItemsUpdatedDateRange();
     }
 
     if (!this.type) {this.all = 'all types'}
+  }
+
+  date_TO_String(date_Object: Date): string {
+    // get the year, month, date, hours, and minutes seprately and append to the string.
+    let date_String: string =
+      date_Object.getFullYear() +
+      "-" +
+      (date_Object.getMonth() + 1) +
+      "-" +
+      +date_Object.getDate();
+    return date_String;
   }
 
   getItems(): void {
@@ -67,7 +66,7 @@ export class ReportModalComponent implements OnInit {
   }
 
   getItemsCreatedDateRange(): void {
-    this.inventoryService.getItemsCreatedDateRange(this.toISOStringCreatedStartDate, this.toISOStringCreatedEndDate).subscribe({
+    this.inventoryService.getItemsCreatedDateRange(this.toCustomStringCreatedStartDate, this.toCustomStringCreatedEndDate).subscribe({
       next: units => {
         this.items = units;
         this.filteredList = this.items.filter((item: any) => item.type.toLocaleLowerCase().includes(this.type));
@@ -76,7 +75,7 @@ export class ReportModalComponent implements OnInit {
   }
 
   getItemsUpdatedDateRange(): void {
-    this.inventoryService.getItemsUpdatedDateRange(this.toISOStringUpdatedStartDate, this.toISOStringUpdatedEndDate).subscribe({
+    this.inventoryService.getItemsUpdatedDateRange(this.toCustomStringUpdatedStartDate, this.toCustomStringUpdatedEndDate).subscribe({
       next: units => {
         this.items = units;
         this.filteredList = this.items.filter((item: any) => item.type.toLocaleLowerCase().includes(this.type));

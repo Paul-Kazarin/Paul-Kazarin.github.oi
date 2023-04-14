@@ -118,7 +118,7 @@ export class ItemsComponent implements OnInit {
   addNewItem(): void {
     const dialogRef = this.dialog.open(AddnewitemComponent, {
       width: '70%',
-      height: '80%',
+      height: '90%',
       data: {
         type: this.type,
         subType: this.subType,

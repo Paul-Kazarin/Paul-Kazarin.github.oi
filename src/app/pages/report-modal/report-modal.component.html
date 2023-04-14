@@ -10,6 +10,8 @@
       >{{all | uppercase}}</h3>
       <h3 *ngIf="!data.type && !data.typeCheck && !data.subType && !data.brand && !data.model && !data.year && !data.length && !data.weight && !data.pricePerHour && !data.pricePerDay && !data.peopleCapacity && !data.active && !data.image && !data.comment && !data.dateCreated && !data.dateUpdated">NOTHING. You did not select any data for report.</h3>
       <h3 *ngIf="data.type && !data.typeCheck && !data.subType && !data.brand && !data.model && !data.year && !data.length && !data.weight && !data.pricePerHour && !data.pricePerDay && !data.peopleCapacity && !data.active && !data.image && !data.comment && !data.dateCreated && !data.dateUpdated">You did not select any field for report.</h3>
+      <h4 *ngIf="data.createdStartDate">CREATED DATE RANGE: {{toCustomStringCreatedStartDate}}: {{toCustomStringCreatedEndDate}}</h4>
+      <h4 *ngIf="data.updatedStartDate">UPDATED DATE RANGE: {{toCustomStringUpdatedStartDate}}: {{toCustomStringUpdatedEndDate}}</h4>
     </div>
     <div fxFlex="20%">
       <button mat-raised-button class="button" (click)="onPrint()">PRINT OR SAVE TO PDF FILE</button>
@@ -18,11 +20,6 @@
       <button mat-raised-button class="button" (click)="onClose()">CLOSE</button>
     </div>
   </div>
-
-  <h4>CREATED DATE RANGE: {{data.createdStartDate | date}}: {{data.createdEndDate | date}}</h4>
-  <h4>UPDATED DATE RANGE: {{data.updatedStartDate | date}}: {{data.updatedEndDate | date}}</h4>
-  <h4>CREATED ISO DATE RANGE: {{toISOStringCreatedStartDate}}: {{toISOStringCreatedEndDate}}</h4>
-  <h4>UPDATED ISO DATE RANGE: {{toISOStringUpdatedStartDate}}: {{toISOStringUpdatedEndDate}}</h4>
 
   <table style="border: solid black 1px">
     <thead style="border: solid black 1px">
