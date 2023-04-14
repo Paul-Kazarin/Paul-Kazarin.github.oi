@@ -15,6 +15,18 @@ export class ReportModalComponent implements OnInit {
   filteredList: Inventory[] = [];
   type: string = '';
   all: string = '';
+  toISOStringCreatedStartDate: string = '';
+  toISOStringCreatedEndDate: string = '';
+  toISOStringUpdatedStartDate: string = '';
+  toISOStringUpdatedEndDate: string = '';
+  toLocalStringCreatedStartDate: string = '';
+  toLocalStringCreatedEndDate: string = '';
+  toLocalStringUpdatedStartDate: string = '';
+  toLocalStringUpdatedEndDate: string = '';
+  toISOStringCreatedObjectDate: string = '';
+  toISOStringUpdatedObjectDate: string = '';
+  toLocalStringCreatedObjectDate: string = '';
+  toLocalStringUpdatedObjectDate: string = '';
 
   constructor(
     public dialogRef: MatDialogRef<ReportModalComponent>,
@@ -22,15 +34,23 @@ export class ReportModalComponent implements OnInit {
     public dialog: MatDialog,
     private router: Router,
     public inventoryService: InventoryService,
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.type = this.data.type;
     if (!this.data.createdStartDate && !this.data.createdEndDate && !this.data.updatedStartDate && !this.data.updatedEndDate) {
       this.getItems();
     } else if (this.data.createdStartDate && this.data.createdEndDate) {
+      // this.data.createdStartDate = this.data.createdStartDate - 1;
+      // this.data.createdEndDate = this.data.createdEndDate - 1;
+      this.toISOStringCreatedStartDate = this.data.createdStartDate.toISOString();
+      this.toISOStringCreatedEndDate = this.data.createdEndDate.toISOString();
       this.getItemsCreatedDateRange();
     } else {
+      // this.data.updatedStartDate = this.data.updatedStartDate - 1;
+      // this.data.updatedEndDate = this.data.updatedEndDate - 1;
+      this.toISOStringUpdatedStartDate = this.data.updatedStartDate.toISOString();
+      this.toISOStringUpdatedEndDate = this.data.updatedEndDate.toISOString();
       this.getItemsUpdatedDateRange();
     }
 
@@ -47,7 +67,7 @@ export class ReportModalComponent implements OnInit {
   }
 
   getItemsCreatedDateRange(): void {
-    this.inventoryService.getItemsCreatedDateRange(this.data.createdStartDate, this.data.createdEndDate).subscribe({
+    this.inventoryService.getItemsCreatedDateRange(this.toISOStringCreatedStartDate, this.toISOStringCreatedEndDate).subscribe({
       next: units => {
         this.items = units;
         this.filteredList = this.items.filter((item: any) => item.type.toLocaleLowerCase().includes(this.type));
@@ -56,7 +76,7 @@ export class ReportModalComponent implements OnInit {
   }
 
   getItemsUpdatedDateRange(): void {
-    this.inventoryService.getItemsUpdatedDateRange(this.data.updatedStartDate, this.data.updatedEndDate).subscribe({
+    this.inventoryService.getItemsUpdatedDateRange(this.toISOStringUpdatedStartDate, this.toISOStringUpdatedEndDate).subscribe({
       next: units => {
         this.items = units;
         this.filteredList = this.items.filter((item: any) => item.type.toLocaleLowerCase().includes(this.type));
