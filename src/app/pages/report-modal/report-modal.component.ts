@@ -26,12 +26,37 @@ export class ReportModalComponent implements OnInit {
 
   ngOnInit(): void {
     this.type = this.data.type;
-    this.getItems();
+    if (!this.data.createdStartDate && !this.data.createdEndDate && !this.data.updatedStartDate && !this.data.updatedEndDate) {
+      this.getItems();
+    } else if (this.data.createdStartDate && this.data.createdEndDate) {
+      this.getItemsCreatedDateRange();
+    } else {
+      this.getItemsUpdatedDateRange();
+    }
+
     if (!this.type) {this.all = 'all types'}
   }
 
   getItems(): void {
     this.inventoryService.getItems().subscribe({
+      next: units => {
+        this.items = units;
+        this.filteredList = this.items.filter((item: any) => item.type.toLocaleLowerCase().includes(this.type));
+      },
+    });
+  }
+
+  getItemsCreatedDateRange(): void {
+    this.inventoryService.getItemsCreatedDateRange(this.data.createdStartDate, this.data.createdEndDate).subscribe({
+      next: units => {
+        this.items = units;
+        this.filteredList = this.items.filter((item: any) => item.type.toLocaleLowerCase().includes(this.type));
+      },
+    });
+  }
+
+  getItemsUpdatedDateRange(): void {
+    this.inventoryService.getItemsUpdatedDateRange(this.data.updatedStartDate, this.data.updatedEndDate).subscribe({
       next: units => {
         this.items = units;
         this.filteredList = this.items.filter((item: any) => item.type.toLocaleLowerCase().includes(this.type));

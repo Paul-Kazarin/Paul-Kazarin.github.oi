@@ -56,6 +56,9 @@
           </div>
         </div>
       </mat-card>
+      <div style="text-align: center">
+        <button mat-raised-button class="button" (click)="openReportModal()">GENERATE REPORT FOR ALL DATES</button>
+      </div>
     </div>
 
     <div fxFlex="40%">
@@ -66,7 +69,7 @@
             <mat-form-field appearance="fill">
               <mat-label>Enter a date range</mat-label>
               <mat-date-range-input [rangePicker]="createdDatepicker">
-                <input matStartDate placeholder="Start date" [(ngModel)]="createdStartDate" style="border: none" >
+                <input matStartDate placeholder="Start date" [(ngModel)]="createdStartDate" style="border: none">
                 <input matEndDate placeholder="End date" [(ngModel)]="createdEndDate" style="border: none">
               </mat-date-range-input>
               <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
@@ -94,7 +97,17 @@
     </div>
 
     <div fxFlex="10%" style="text-align: center">
-      <button mat-raised-button class="button" (click)="openReportModal()">GENERATE REPORT</button>
+
+      <div fxLayout="row" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
+        <div fxFlex="50%">
+          <button mat-raised-button class="button" (click)="openReportModal()">GENERATE REPORT FOR CREATED DATE RANGE</button>
+        </div>
+
+        <div fxFlex="50%">
+          <button mat-raised-button class="button" (click)="openReportModal()">GENERATE REPORT FOR UPDATED DATE RANGE</button>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>

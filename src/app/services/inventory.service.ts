@@ -29,6 +29,14 @@ export class InventoryService {
     );
   }
 
+  getItemsCreatedDateRange(createdStartDate: string, createdEndDate: string): Observable<Inventory[]> {
+    return this.http.get<Inventory[]>(this.productUrl + '/item/createddate/' + createdStartDate + '/' + createdEndDate);
+  }
+
+  getItemsUpdatedDateRange(updatedStartDate: string, updatedEndDate: string): Observable<Inventory[]> {
+    return this.http.get<Inventory[]>(this.productUrl + '/item/updateddate/' + updatedStartDate + '/' + updatedEndDate);
+  }
+
   deleteItemById(id: number): Observable<Inventory[]> {
     return this.http.delete<Inventory[]>(this.productUrl + '/item/delete/' + id);
   }
