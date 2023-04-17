@@ -39,7 +39,6 @@ export class ItemsComponent implements OnInit {
   sortedData: Inventory[] = [];
   filteredList: Inventory[] = [];
   displayedColumns = ['image', 'subType', 'brand', 'model', 'year', 'peopleCapacity', 'length', 'weight', 'pricePerHour', 'pricePerDay', 'active'];
-  sub!: Subscription;
   errorMessage: string = '';
   private _listFilter = '';
   get listFilter(): string {
@@ -62,7 +61,11 @@ export class ItemsComponent implements OnInit {
     const type = String(this.route.snapshot.paramMap.get('type'));
     this.type = type;
     this.listFilter = '';
-    this.sub = this.inventoryService.getItems().subscribe({
+    this.getItems();
+  }
+
+  getItems(): void {
+    this.inventoryService.getItems().subscribe({
       next: units => {
         this.items = units;
         this.filteredList = this.items.filter((item: any) => item.type.toLocaleLowerCase().includes(this.type));

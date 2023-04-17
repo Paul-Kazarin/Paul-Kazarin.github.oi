@@ -1,6 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
-import {Router} from "@angular/router";
 import {InventoryService} from "../../services/inventory.service";
 import {Inventory} from "../../interfaces/inventory";
 
@@ -12,6 +11,24 @@ import {Inventory} from "../../interfaces/inventory";
 export class ReportModalComponent implements OnInit {
 
   items: Inventory[] = [];
+  item: Inventory = {
+    id: 0,
+    type: '',
+    subType: '',
+    brand: '',
+    model: '',
+    year: 0,
+    length: 0,
+    weight: 0,
+    pricePerHour: 0,
+    pricePerDay: 0,
+    peopleCapacity: 0,
+    image: '',
+    active: false,
+    comment: '',
+    dateCreated: '',
+    dateUpdated: ''
+  }
   filteredList: Inventory[] = [];
   type: string = '';
   all: string = '';
@@ -24,7 +41,6 @@ export class ReportModalComponent implements OnInit {
     public dialogRef: MatDialogRef<ReportModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialog: MatDialog,
-    private router: Router,
     public inventoryService: InventoryService,
   ) {}
 
@@ -105,8 +121,9 @@ export class ReportModalComponent implements OnInit {
     print();
   }
 
-  onSave(): void {
-
+  delete(item: Inventory): void {
+    this.items = this.items.filter(i => i !== item);
+    this.inventoryService.deleteItem(item).subscribe();
   }
 
 }
