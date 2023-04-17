@@ -61,7 +61,15 @@ mat-paginator{
 
 .button {
   background-color: lightblue !important;
-  margin: 0.5em
+  margin: 0.5em;
+  border-radius: 5px !important;
+
+}
+
+.mat-mdc-raised-button:not(:disabled) {
+  color: var(--mdc-protected-button-label-text-color, inherit);
+  height: auto !important;
+  min-height: 2em !important;
 }
 
 .form-field {

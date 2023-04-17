@@ -1,18 +1,17 @@
 <div class="container">
-  <h2 class="margin-1-em">Add new {{data.type}} </h2>
 
   <form [formGroup]="addNewItem" >
     <div fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
       <div fxFlex="10%">
         <div fxLayout="row" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
-          <div fxFlex="33%">
-            <button mat-raised-button class="button" (click)="addNewSubType()">ADD NEW TYPE</button>
+          <div fxFlex="30%">
+            <h2 class="margin-1-em">Add new {{data.type | uppercase}} </h2>
           </div>
-          <div fxFlex="33%">
-            <button mat-raised-button class="button" (click)="addNewBrand()">ADD NEW BRAND</button>
+          <div fxFlex="60%">
+            <p style="margin-top: 1em !important;">If you want to add either new type, or new brand, or new model - go back to "Items" page (close this modal), and click the appropriate button.</p>
           </div>
-          <div fxFlex="33%">
-            <button mat-raised-button class="button" (click)="addNewModel()">ADD NEW MODEL</button>
+          <div fxFlex="10%">
+            <button mat-raised-button class="button" (click)="onClose()" style="margin-top: 1em !important;">CLOSE</button>
           </div>
         </div>
       </div>

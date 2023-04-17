@@ -32,14 +32,20 @@ export class ReportModalComponent implements OnInit {
     this.type = this.data.type;
     if (!this.data.createdStartDate && !this.data.createdEndDate && !this.data.updatedStartDate && !this.data.updatedEndDate) {
       this.getItems();
-    } else if (this.data.createdStartDate && this.data.createdEndDate) {
+    } else if (this.data.createdStartDate && this.data.createdEndDate && !this.data.updatedStartDate && !this.data.updatedEndDate) {
       this.toCustomStringCreatedStartDate = this.date_TO_String(this.data.createdStartDate);
       this.toCustomStringCreatedEndDate = this.date_TO_String(this.data.createdEndDate);
       this.getItemsCreatedDateRange();
-    } else {
+    } else if (!this.data.createdStartDate && !this.data.createdEndDate && this.data.updatedStartDate && this.data.updatedEndDate) {
       this.toCustomStringUpdatedStartDate = this.date_TO_String(this.data.updatedStartDate);
       this.toCustomStringUpdatedEndDate = this.date_TO_String(this.data.updatedEndDate);
       this.getItemsUpdatedDateRange();
+    } else {
+      this.toCustomStringCreatedStartDate = this.date_TO_String(this.data.createdStartDate);
+      this.toCustomStringCreatedEndDate = this.date_TO_String(this.data.createdEndDate);
+      this.toCustomStringUpdatedStartDate = this.date_TO_String(this.data.updatedStartDate);
+      this.toCustomStringUpdatedEndDate = this.date_TO_String(this.data.updatedEndDate);
+      this.getItemsUpdatedBothRanges();
     }
 
     if (!this.type) {this.all = 'all types'}
@@ -76,6 +82,15 @@ export class ReportModalComponent implements OnInit {
 
   getItemsUpdatedDateRange(): void {
     this.inventoryService.getItemsUpdatedDateRange(this.toCustomStringUpdatedStartDate, this.toCustomStringUpdatedEndDate).subscribe({
+      next: units => {
+        this.items = units;
+        this.filteredList = this.items.filter((item: any) => item.type.toLocaleLowerCase().includes(this.type));
+      },
+    });
+  }
+
+  getItemsUpdatedBothRanges(): void {
+    this.inventoryService.getItemsBothRanges(this.toCustomStringCreatedStartDate, this.toCustomStringCreatedEndDate, this.toCustomStringUpdatedStartDate, this.toCustomStringUpdatedEndDate).subscribe({
       next: units => {
         this.items = units;
         this.filteredList = this.items.filter((item: any) => item.type.toLocaleLowerCase().includes(this.type));
