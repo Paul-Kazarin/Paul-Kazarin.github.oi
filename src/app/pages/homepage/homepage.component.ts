@@ -13,6 +13,11 @@ export class HomepageComponent implements OnInit {
   types: ItemType[] = [];
   type: string = '';
   image: string = '';
+  typeObject: ItemType = {
+    id: 0,
+    type: '',
+    image: ''
+  };
 
   constructor(
     private inventoryService: InventoryService,
@@ -29,6 +34,11 @@ export class HomepageComponent implements OnInit {
         this.types = types;
       }
     });
+  }
+
+  delete(type: ItemType): void {
+    this.types = this.types.filter(i => i !== type);
+    this.inventoryService.deleteType(type).subscribe();
   }
 
   onReport(): void {

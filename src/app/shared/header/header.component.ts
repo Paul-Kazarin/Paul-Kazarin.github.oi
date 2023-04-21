@@ -10,7 +10,6 @@ import {ItemType} from "../../interfaces/itemType";
 export class HeaderComponent implements OnInit {
 
   types: ItemType[] = [];
-  type: string = '';
 
   constructor(private inventoryService: InventoryService) { }
 

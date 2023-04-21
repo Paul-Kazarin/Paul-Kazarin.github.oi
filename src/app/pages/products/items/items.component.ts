@@ -75,6 +75,10 @@ export class ItemsComponent implements OnInit {
     });
   }
 
+  getAllItems(): void {
+    this.inventoryService.getItems().subscribe(units => this.items = units);
+  }
+
   performFilter(filterBy: string) {
     filterBy = filterBy.toLocaleLowerCase();
     return this.items.filter((item: any) =>

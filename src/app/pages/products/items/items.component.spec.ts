@@ -1,14 +1,21 @@
 import {ItemsComponent} from "./items.component";
 import {Inventory} from "../../../interfaces/inventory";
 import {of} from "rxjs";
+import {ComponentFixture, getTestBed, TestBed} from "@angular/core/testing";
+import {InventoryService} from "../../../services/inventory.service";
+import {NO_ERRORS_SCHEMA} from "@angular/core";
+import {ProductDetailComponent} from "../product-detail/product-detail.component";
+import {MatDialog} from "@angular/material/dialog";
+import {ActivatedRoute, Router} from "@angular/router";
 
 describe('ItemsComponent', () => {
   let component: ItemsComponent;
   let items: Inventory[];
-  let mockItemsService: any;
+  let mockInventoryService: any;
   let mockRouter;
   let mockRoute;
   let mockDialog;
+  let fixture: ComponentFixture<ItemsComponent>;
 
   beforeEach(() => {
     items = [
@@ -68,22 +75,42 @@ describe('ItemsComponent', () => {
       }
     ]
 
-    mockItemsService = jasmine.createSpyObj(['getItems', 'performFilter'])
+    mockInventoryService = jasmine.createSpyObj(['getItems', 'performFilter', 'getAllItems'])
     mockRouter = jasmine.createSpyObj(['navigateByUrl', 'navigate'])
-    mockRoute = jasmine.createSpyObj(['route.snapshot.paramMap.get'])
+    mockRoute = jasmine.createSpyObj(['route', 'snapshot', 'paramMap', 'get'])
     mockDialog = jasmine.createSpyObj(['open'])
 
-    component = new ItemsComponent(mockItemsService, mockRouter, mockRoute, mockDialog);
-  })
+    component = new ItemsComponent(mockInventoryService, mockRouter, mockDialog, mockRoute);
+
+    // TestBed.configureTestingModule({
+    //   declarations: [ItemsComponent],
+    //   providers: [
+    //     {provide: InventoryService, useValue: mockInventoryService},
+    //     {provide: MatDialog, useValue: mockDialog},
+    //     {provide: ActivatedRoute, use: mockRoute},
+    //     {provide: Router, use: mockRouter}
+    //   ],
+    //   schemas: [NO_ERRORS_SCHEMA]
+    // })
+    // fixture = TestBed.createComponent(ItemsComponent);
+  });
+
+  // it('should set items correctly from the service',  () => {
+  //   mockInventoryService.getItems.and.returnValue(of(items))
+  //   fixture.detectChanges();
+  //
+  //   expect(fixture.componentInstance.items.length).toBe(3);
+  // });
 
   describe('getItems', () => {
-    // it('should get all items from the items list', () => {
-    //   mockItemsService.getItems.and.returnValue(of(true))
-    //   component.items = items;
-    //
-    //   component.getItems();
-    //   expect(component.items.length).toBe(3);
-    // })
+    it('should call getItems', () => {
+      mockInventoryService.getItems.and.returnValue(of(true))
+      component.items = items;
+
+      component.getAllItems();
+
+      expect(mockInventoryService.getItems).toHaveBeenCalled();
+    })
   });
 
 });
