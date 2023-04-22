@@ -1,5 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {InventoryService} from "../../services/inventory.service";
 import {Brand} from "../../interfaces/brand";
@@ -27,7 +27,7 @@ export class AddNewBrandComponent implements OnInit {
   ngOnInit(): void {
     this.addNewBrand = new FormGroup({
       type: new FormControl(this.data.type, {}),
-      brand: new FormControl('', {})
+      brand: new FormControl('', [Validators.required])
     })
   }
 

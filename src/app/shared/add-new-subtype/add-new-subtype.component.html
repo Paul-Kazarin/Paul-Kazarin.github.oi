@@ -5,7 +5,10 @@
 
     <mat-form-field appearance="outline" class="form-field">
       <mat-label>Type of {{data.type}}</mat-label>
-      <input matInput formControlName="subType">
+      <input matInput required formControlName="subType">
+      <mat-error *ngIf="addNewSubType.controls['subType'].hasError('required')">
+        Sub-type is <strong>required</strong>
+      </mat-error>
     </mat-form-field>
 
     <button mat-raised-button class="button" type="submit" (click)="onSubmit()">SAVE</button>
