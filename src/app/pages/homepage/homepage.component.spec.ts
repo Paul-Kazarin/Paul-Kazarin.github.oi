@@ -5,6 +5,7 @@ import {ComponentFixture, TestBed} from "@angular/core/testing";
 import {InventoryService} from "../../services/inventory.service";
 import {NO_ERRORS_SCHEMA} from "@angular/core";
 import {Router} from "@angular/router";
+import {By} from "@angular/platform-browser";
 
 describe('HomepageComponent', () => {
   let component: HomepageComponent;
@@ -62,14 +63,52 @@ describe('HomepageComponent', () => {
     expect(fixture.componentInstance.typeObject.type).toEqual('jetski');
   });
 
-  it('should render type name in an anchor tag', () => {
-    mockInventoryService.getTypes.and.returnValue(of(TYPES[0]));
-    fixture.componentInstance.typeObject = TYPES[0];
-    //fixture.detectChanges();
-    //console.log(fixture.componentInstance.typeObject);
-    //console.log(fixture.nativeElement.querySelector('a').textContent);
+  it('should render type name in an anchor tag (nativeElement)', () => {
+    mockInventoryService.getTypes.and.returnValue(of(TYPES));
+    fixture.detectChanges();
+    fixture.componentInstance.types = TYPES;
 
-    //expect(fixture.nativeElement.querySelector('a').textContent.toContain('jetski'));
+    expect(fixture.nativeElement.querySelector('a').textContent).toContain('JETSKI');
+  });
+
+  it('should render type name in an anchor tag (debugElement.query)', () => {
+    mockInventoryService.getTypes.and.returnValue(of(TYPES));
+    fixture.detectChanges();
+    fixture.componentInstance.types = TYPES;
+
+    let deA = fixture.debugElement.query(By.css('a'));
+
+    expect(deA.nativeElement.textContent).toContain('JETSKI');
+  });
+
+  it('should render type name in an anchor tag (debugElement.queryAll(BOAT))', () => {
+    mockInventoryService.getTypes.and.returnValue(of(TYPES));
+    fixture.detectChanges();
+    fixture.componentInstance.types = TYPES;
+
+    let deA = fixture.debugElement.queryAll(By.css('a'));
+
+    expect(deA[1].nativeElement.innerText).toContain('BOAT');
+  });
+
+  it('should render type name in an anchor tag (debugElement.queryAll(TOUR))', () => {
+    mockInventoryService.getTypes.and.returnValue(of(TYPES));
+    fixture.detectChanges();
+    fixture.componentInstance.types = TYPES;
+
+    let deA = fixture.debugElement.queryAll(By.css('a'));
+
+    expect(deA[2].nativeElement.innerText).toContain('TOUR');
+  });
+
+  it('should set imageUrl in an img tag (for jetski)', () => {
+    mockInventoryService.getTypes.and.returnValue(of(TYPES));
+    fixture.detectChanges();
+    fixture.componentInstance.types = TYPES;
+
+    let deA = fixture.debugElement.queryAll(By.css('img'));
+
+    expect(deA[0].nativeElement.attributes[2].nodeValue).toContain('http://localhost:4200/item/files/jetski.webp');
   });
 
   describe('delete', () => {
