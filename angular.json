@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "C868-PavelKazarin": {
+    "C868PavelKazarin": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/C868-PavelKazarin",
+            "outputPath": "dist/C868PavelKazarin",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -74,15 +74,15 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "C868-PavelKazarin:build",
+            "browserTarget": "C868PavelKazarin:build",
             "proxyConfig": "proxy.config.json"
           },
           "configurations": {
             "production": {
-              "browserTarget": "C868-PavelKazarin:build:production"
+              "browserTarget": "C868PavelKazarin:build:production"
             },
             "development": {
-              "browserTarget": "C868-PavelKazarin:build:development"
+              "browserTarget": "C868PavelKazarin:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -90,7 +90,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "C868-PavelKazarin:build"
+            "browserTarget": "C868PavelKazarin:build"
           }
         },
         "test": {

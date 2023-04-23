@@ -56,16 +56,17 @@ export class ProductDetailComponent implements OnInit{
       error: err => this.errorMessage = err
     });
     this.getProduct(id);
-    this.getSubTypes();
+    this.getAllSubTypes();
     this.getBrands();
     this.getModels();
   }
 
-  getSubTypes() {
+  getAllSubTypes() {
     this.inventoryService.getSubTypes().subscribe({
       next: subTypes => {
         this.subTypes = subTypes;
-      }
+      },
+      error: err => this.errorMessage = err
     });
   }
 
@@ -73,7 +74,8 @@ export class ProductDetailComponent implements OnInit{
     this.inventoryService.getBrands().subscribe({
       next: brands => {
         this.brands = brands;
-      }
+      },
+      error: err => this.errorMessage = err
     });
   }
 
@@ -81,7 +83,17 @@ export class ProductDetailComponent implements OnInit{
     this.inventoryService.getModels().subscribe({
       next: models => {
         this.models = models;
-      }
+      },
+      error: err => this.errorMessage = err
+    });
+  }
+
+  getProducts() {
+    this.inventoryService.getItems().subscribe({
+      next: items => {
+        this.items = items;
+      },
+      error: err => this.errorMessage = err
     });
   }
 
@@ -114,6 +126,11 @@ export class ProductDetailComponent implements OnInit{
       });
     });
     this.onBack();
+  }
+
+  deleteProduct(item: Inventory): void {
+    this.items = this.items.filter(i => i !== item);
+    this.inventoryService.deleteItem(item).subscribe();
   }
 
   onBack(): void {

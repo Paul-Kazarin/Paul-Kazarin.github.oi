@@ -1,8 +1,8 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {FormControl, FormGroup} from "@angular/forms";
-import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
-import {Router} from "@angular/router";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {InventoryService} from "../../services/inventory.service";
+import {Brand} from "../../interfaces/brand";
 
 @Component({
   selector: 'app-add-new-brand',
@@ -12,19 +12,22 @@ import {InventoryService} from "../../services/inventory.service";
 export class AddNewBrandComponent implements OnInit {
 
   addNewBrand!: FormGroup;
+  brands: Brand[] = [];
+  brand: Brand = {
+    id: 0,
+    brand: '',
+  }
 
   constructor(
     public dialogRef: MatDialogRef<AddNewBrandComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private router: Router,
     private inventoryService: InventoryService,
-    public dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
     this.addNewBrand = new FormGroup({
       type: new FormControl(this.data.type, {}),
-      brand: new FormControl('', {})
+      brand: new FormControl('', [Validators.required])
     })
   }
 
@@ -50,6 +53,19 @@ export class AddNewBrandComponent implements OnInit {
       );
       this.onClose();
     }
+  }
+
+  getBrands() {
+    this.inventoryService.getBrands().subscribe({
+      next: brands => {
+        this.brands = brands;
+      }
+    });
+  }
+
+  delete(brand: Brand): void {
+    this.brands = this.brands.filter(i => i !== brand);
+    this.inventoryService.deleteBrand(brand).subscribe();
   }
 
 }

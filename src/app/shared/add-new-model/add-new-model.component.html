@@ -5,7 +5,10 @@
 
     <mat-form-field appearance="outline" class="form-field">
       <mat-label>Model of {{data.type}}</mat-label>
-      <input matInput formControlName="model">
+      <input matInput required formControlName="model">
+      <mat-error *ngIf="addNewModel.controls['model'].hasError('required')">
+        Model is <strong>required</strong>
+      </mat-error>
     </mat-form-field>
 
     <button mat-raised-button class="button" type="submit" (click)="onSubmit()">SAVE</button>

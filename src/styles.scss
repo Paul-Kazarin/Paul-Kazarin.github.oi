@@ -4,7 +4,7 @@ html, body { height: 100%;}
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 input {
-  border: solid 1px darkblue !important;
+  border: solid 1px darkblue;
   border-radius: 5px;
   height: 2em !important;
   min-width: 100px;
@@ -61,7 +61,15 @@ mat-paginator{
 
 .button {
   background-color: lightblue !important;
-  margin: 0.5em
+  margin: 0.5em;
+  border-radius: 5px !important;
+
+}
+
+.mat-mdc-raised-button:not(:disabled) {
+  color: var(--mdc-protected-button-label-text-color, inherit);
+  height: auto !important;
+  min-height: 2em !important;
 }
 
 .form-field {
@@ -74,6 +82,7 @@ mat-paginator{
   width: 95% !important;
   height: 85% !important;
   background-color: #b0bec5 !important;
+  border-radius: 10px !important;
 }
 
 

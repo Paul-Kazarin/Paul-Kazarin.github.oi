@@ -1,18 +1,17 @@
 <div class="container">
-  <h2 class="margin-1-em">Add new {{data.type}} </h2>
 
   <form [formGroup]="addNewItem" >
     <div fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
       <div fxFlex="10%">
         <div fxLayout="row" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
-          <div fxFlex="33%">
-            <button mat-raised-button class="button" (click)="addNewSubType()">ADD NEW TYPE</button>
+          <div fxFlex="30%">
+            <h2 class="margin-1-em">Add new {{data.type | uppercase}} </h2>
           </div>
-          <div fxFlex="33%">
-            <button mat-raised-button class="button" (click)="addNewBrand()">ADD NEW BRAND</button>
+          <div fxFlex="60%">
+            <p style="margin-top: 1em !important;">If you want to add either new type, or new brand, or new model - go back to "Items" page (close this modal), and click the appropriate button.</p>
           </div>
-          <div fxFlex="33%">
-            <button mat-raised-button class="button" (click)="addNewModel()">ADD NEW MODEL</button>
+          <div fxFlex="10%">
+            <button mat-raised-button class="button" (click)="onClose()" style="margin-top: 1em !important;">CLOSE</button>
           </div>
         </div>
       </div>
@@ -24,11 +23,14 @@
               <div fxFlex="33%">
                 <mat-form-field appearance="outline" class="form-field">
                   <mat-label>Type of {{data.type}}</mat-label>
-                  <mat-select formControlName="subType">
+                  <mat-select formControlName="subType" required>
                     <mat-option *ngFor="let subType of subTypes" [value]="subType?.subType" >
                       {{subType?.subType}}
                     </mat-option>
                   </mat-select>
+                  <mat-error *ngIf="addNewItem.controls['subType'].hasError('required')">
+                    Type is <strong>required</strong>
+                  </mat-error>
                 </mat-form-field>
               </div>
               <div fxFlex="33%">
@@ -40,7 +42,10 @@
               <div fxFlex="33%">
                 <mat-form-field appearance="outline" class="form-field">
                   <mat-label>Price per hour, $</mat-label>
-                  <input matInput formControlName="pricePerHour" type="number">
+                  <input matInput formControlName="pricePerHour" type="number" required>
+                  <mat-error *ngIf="addNewItem.controls['pricePerHour'].hasError('required')">
+                    Price per hour is <strong>required</strong>
+                  </mat-error>
                 </mat-form-field>
               </div>
             </div>
@@ -67,7 +72,10 @@
               <div fxFlex="33%">
                 <mat-form-field appearance="outline" class="form-field">
                   <mat-label>Price per day, $</mat-label>
-                  <input matInput formControlName="pricePerDay" type="number">
+                  <input matInput formControlName="pricePerDay" type="number" required>
+                  <mat-error *ngIf="addNewItem.controls['pricePerDay'].hasError('required')">
+                    Price per day is <strong>required</strong>
+                  </mat-error>
                 </mat-form-field>
               </div>
             </div>
@@ -94,7 +102,10 @@
               <div fxFlex="33%">
                 <mat-form-field appearance="outline" class="form-field">
                   <mat-label>People Capacity</mat-label>
-                  <input matInput formControlName="peopleCapacity" type="number">
+                  <input matInput formControlName="peopleCapacity" type="number" required>
+                  <mat-error *ngIf="addNewItem.controls['peopleCapacity'].hasError('required')">
+                    People capacity is <strong>required</strong>
+                  </mat-error>
                 </mat-form-field>
               </div>
             </div>

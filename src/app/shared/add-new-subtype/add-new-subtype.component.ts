@@ -1,8 +1,8 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
-import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
-import {Router} from "@angular/router";
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {InventoryService} from "../../services/inventory.service";
+import {SubTypes} from "../../interfaces/subTypes";
 
 @Component({
   selector: 'app-add-new-subtype',
@@ -12,13 +12,16 @@ import {InventoryService} from "../../services/inventory.service";
 export class AddNewSubtypeComponent implements OnInit {
 
   addNewSubType!: FormGroup;
+  subTypes: SubTypes[] = [];
+  subType: SubTypes = {
+    id: 0,
+    subType: '',
+  }
 
   constructor(
     public dialogRef: MatDialogRef<AddNewSubtypeComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private router: Router,
-    private inventoryService: InventoryService,
-    public dialog: MatDialog
+    private inventoryService: InventoryService
   ) { }
 
   ngOnInit(): void {
@@ -50,6 +53,19 @@ export class AddNewSubtypeComponent implements OnInit {
       );
       this.onClose();
     }
+  }
+
+  getSubTypes() {
+    this.inventoryService.getSubTypes().subscribe({
+      next: subTypes => {
+        this.subTypes = subTypes;
+      }
+    });
+  }
+
+  delete(subType: SubTypes): void {
+    this.subTypes = this.subTypes.filter(i => i !== subType);
+    this.inventoryService.deleteSubType(subType).subscribe();
   }
 
 }

@@ -2,40 +2,59 @@
 
   <div fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
     <div fxFlex="10%">
-      <h2>Welcome to Inventory working page!</h2>
-      <h3>Select the type of inventory you want to work with.</h3>
+      <div fxLayout="row" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
+        <div fxFlex="90%" style="text-align: center !important;" id="homepage_title">
+          <h2>Welcome to Inventory working page!</h2>
+          <h3>Select the type of inventory you want to work with.</h3>
+        </div>
+        <div fxFlex="10%">
+          <button mat-raised-button class="button" (click)="onReport()" id="button_from_homepage_to_report-page">REPORT PAGE</button>
+        </div>
+      </div>
     </div>
   </div>
 
-  <div fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
+  <div fxLayout="row" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
+    <div fxFlex="10%">
+
+    </div>
     <div fxFlex="80%">
-      <mat-grid-list cols="4" rowHeight="1.05:1" gutterSize="5">
-        <mat-grid-tile *ngFor="let type of types">
-          <mat-card class="card">
-            <div fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
-              <div fxFlex="100%">
-                <a [routerLink]="['/products/', type.type]">
+      <div fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
+        <div fxFlex="80%">
+          <mat-grid-list cols="4" rowHeight="0.85:1" gutterSize="5">
+            <mat-grid-tile *ngFor="let type of types">
+              <mat-card class="card">
+                <div fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
+                  <div fxFlex="100%">
+                    <a [routerLink]="['/products/', type.type]">
 
-                  <div fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
-                    <div fxFlex="90%">
-                      <img src="{{type.image}}" style="width: 80%; height: 90% !important;">
-                    </div>
+                      <div fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
+                        <div fxFlex="90%">
+                          <img src="{{type.image}}" style="width: 80%; height: 90% !important; border-radius: 10px">
+                        </div>
+                      </div>
+
+                      <div fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
+                        <div fxFlex="10%">
+                          <mat-card-content>
+                            <button mat-raised-button class="button">
+                              <h4 style="margin-top: 0.5em !important;">{{type.type | uppercase}}</h4>
+                            </button>
+                          </mat-card-content>
+                        </div>
+                      </div>
+
+                    </a>
                   </div>
+                </div>
+              </mat-card>
+            </mat-grid-tile>
+          </mat-grid-list>
+        </div>
+      </div>
+    </div>
+    <div fxFlex="10%">
 
-                  <div fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
-                    <div fxFlex="10%">
-                      <mat-card-content>
-                        <h4>{{type.type | uppercase}}</h4>
-                      </mat-card-content>
-                    </div>
-                  </div>
-
-                </a>
-              </div>
-            </div>
-          </mat-card>
-        </mat-grid-tile>
-      </mat-grid-list>
     </div>
   </div>
 

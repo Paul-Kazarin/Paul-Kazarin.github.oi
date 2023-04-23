@@ -1,8 +1,8 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
-import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
-import {Router} from "@angular/router";
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {InventoryService} from "../../services/inventory.service";
+import {Model} from "../../interfaces/model";
 
 @Component({
   selector: 'app-add-new-model',
@@ -12,13 +12,16 @@ import {InventoryService} from "../../services/inventory.service";
 export class AddNewModelComponent implements OnInit {
 
   addNewModel!: FormGroup;
+  models: Model[] = [];
+  model: Model = {
+    id: 0,
+    model: '',
+  }
 
   constructor(
     public dialogRef: MatDialogRef<AddNewModelComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private router: Router,
-    private inventoryService: InventoryService,
-    public dialog: MatDialog
+    private inventoryService: InventoryService
   ) { }
 
   ngOnInit(): void {
@@ -50,6 +53,19 @@ export class AddNewModelComponent implements OnInit {
       );
       this.onClose();
     }
+  }
+
+  getModels() {
+    this.inventoryService.getModels().subscribe({
+      next: models => {
+        this.models = models;
+      }
+    });
+  }
+
+  delete(model: Model): void {
+    this.models = this.models.filter(i => i !== model);
+    this.inventoryService.deleteModel(model).subscribe();
   }
 
 }

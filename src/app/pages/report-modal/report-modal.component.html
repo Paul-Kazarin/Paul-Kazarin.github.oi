@@ -1,0 +1,66 @@
+<div class="margin-1-em">
+
+  <div fxLayout="row" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
+    <div fxFlex="20%">
+      <h3>REPORT FOR {{data.type | uppercase}}</h3>
+    </div>
+    <div fxFlex="50%">
+      <h3 *ngIf="!data.type &&
+      (data.typeCheck || data.subType || data.brand || data.model || data.year || data.length || data.weight || data.pricePerDay || data.pricePerHour || data.peopleCapacity || data.active || data.image || data.comment || data.dateCreated || data.dateUpdated)"
+      >{{all | uppercase}}</h3>
+      <h3 *ngIf="!data.type && !data.typeCheck && !data.subType && !data.brand && !data.model && !data.year && !data.length && !data.weight && !data.pricePerHour && !data.pricePerDay && !data.peopleCapacity && !data.active && !data.image && !data.comment && !data.dateCreated && !data.dateUpdated">NOTHING. You did not select any data for report.</h3>
+      <h3 *ngIf="data.type && !data.typeCheck && !data.subType && !data.brand && !data.model && !data.year && !data.length && !data.weight && !data.pricePerHour && !data.pricePerDay && !data.peopleCapacity && !data.active && !data.image && !data.comment && !data.dateCreated && !data.dateUpdated">You did not select any field for report.</h3>
+      <h4 *ngIf="data.createdStartDate">CREATED DATE RANGE: {{toCustomStringCreatedStartDate}}: {{toCustomStringCreatedEndDate}}</h4>
+      <h4 *ngIf="data.updatedStartDate">UPDATED DATE RANGE: {{toCustomStringUpdatedStartDate}}: {{toCustomStringUpdatedEndDate}}</h4>
+    </div>
+    <div fxFlex="20%">
+      <button mat-raised-button class="button" (click)="onPrint()">PRINT OR SAVE TO PDF FILE</button>
+    </div>
+    <div fxFlex="10%">
+      <button mat-raised-button class="button" (click)="onClose()">CLOSE</button>
+    </div>
+  </div>
+
+  <table style="border: solid black 1px">
+    <thead style="border: solid black 1px">
+    <tr style="border: solid black 1px">
+      <th style="border: solid black 1px" *ngIf="!data.type && data.typeCheck === true">Type</th>
+      <th style="border: solid black 1px" *ngIf="data.subType === true">Subtype</th>
+      <th style="border: solid black 1px" *ngIf="data.brand === true">Brand</th>
+      <th style="border: solid black 1px" *ngIf="data.model === true">Model</th>
+      <th style="border: solid black 1px" *ngIf="data.year === true">Year</th>
+      <th style="border: solid black 1px" *ngIf="data.length === true">Length</th>
+      <th style="border: solid black 1px" *ngIf="data.weight === true">Weight</th>
+      <th style="border: solid black 1px" *ngIf="data.pricePerHour === true">Price Per Hour</th>
+      <th style="border: solid black 1px" *ngIf="data.pricePerDay === true">Price Per Day</th>
+      <th style="border: solid black 1px" *ngIf="data.peopleCapacity === true">People Capacity</th>
+      <th style="border: solid black 1px" *ngIf="data.active === true">Active</th>
+      <th style="border: solid black 1px" *ngIf="data.image === true">Image</th>
+      <th style="border: solid black 1px" *ngIf="data.comment === true">Comment</th>
+      <th style="border: solid black 1px" *ngIf="data.dateCreated === true">Date Created</th>
+      <th style="border: solid black 1px" *ngIf="data.dateUpdated === true">Date Updated</th>
+    </tr>
+    </thead>
+    <tbody style="border: solid black 1px">
+    <tr *ngFor='let product of filteredList' style="border: solid black 1px">
+      <td style="border: solid black 1px" *ngIf="!data.type && data.typeCheck === true">{{ product.type }}</td>
+      <td style="border: solid black 1px" *ngIf="data.subType === true">{{ product.subType }}</td>
+      <td style="border: solid black 1px" *ngIf="data.brand === true">{{ product.brand }}</td>
+      <td style="border: solid black 1px" *ngIf="data.model === true">{{ product.model }}</td>
+      <td style="border: solid black 1px" *ngIf="data.year === true">{{ product.year }}</td>
+      <td style="border: solid black 1px" *ngIf="data.length === true">{{ product.length | number }}</td>
+      <td style="border: solid black 1px" *ngIf="data.weight === true">{{ product.weight | number }}</td>
+      <td style="border: solid black 1px" *ngIf="data.pricePerHour === true">{{ product.pricePerHour | currency:'USD':'symbol':'1.2-2' }}</td>
+      <td style="border: solid black 1px" *ngIf="data.pricePerDay === true">{{ product.pricePerDay | currency:'USD':'symbol':'1.2-2' }}</td>
+      <td style="border: solid black 1px" *ngIf="data.peopleCapacity === true">{{ product.peopleCapacity | number }}</td>
+      <td style="border: solid black 1px" *ngIf="data.active === true">{{ product.active }}</td>
+      <td style="border: solid black 1px" *ngIf="data.image === true">
+        <img src="{{product.image}}" style="height: 100px">
+      </td>
+      <td style="border: solid black 1px" *ngIf="data.comment === true">{{ product.comment }}</td>
+      <td style="border: solid black 1px" *ngIf="data.dateCreated === true">{{ product.dateCreated | date}}</td>
+      <td style="border: solid black 1px" *ngIf="data.dateUpdated === true">{{ product.dateUpdated | date}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

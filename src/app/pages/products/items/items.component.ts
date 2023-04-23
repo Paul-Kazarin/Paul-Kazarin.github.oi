@@ -39,7 +39,6 @@ export class ItemsComponent implements OnInit {
   sortedData: Inventory[] = [];
   filteredList: Inventory[] = [];
   displayedColumns = ['image', 'subType', 'brand', 'model', 'year', 'peopleCapacity', 'length', 'weight', 'pricePerHour', 'pricePerDay', 'active'];
-  sub!: Subscription;
   errorMessage: string = '';
   private _listFilter = '';
   get listFilter(): string {
@@ -62,15 +61,22 @@ export class ItemsComponent implements OnInit {
     const type = String(this.route.snapshot.paramMap.get('type'));
     this.type = type;
     this.listFilter = '';
-    this.sub = this.inventoryService.getItems().subscribe({
+    this.getItems();
+  }
+
+  getItems(): void {
+    this.inventoryService.getItems().subscribe({
       next: units => {
         this.items = units;
         this.filteredList = this.items.filter((item: any) => item.type.toLocaleLowerCase().includes(this.type));
         this.sortedData = this.filteredList.slice();
-        //this.type = this.filteredList[0].type;
       },
       error: err => this.errorMessage = err
     });
+  }
+
+  getAllItems(): void {
+    this.inventoryService.getItems().subscribe(units => this.items = units);
   }
 
   performFilter(filterBy: string) {
@@ -119,7 +125,7 @@ export class ItemsComponent implements OnInit {
   addNewItem(): void {
     const dialogRef = this.dialog.open(AddnewitemComponent, {
       width: '70%',
-      height: '80%',
+      height: '90%',
       data: {
         type: this.type,
         subType: this.subType,
@@ -133,7 +139,7 @@ export class ItemsComponent implements OnInit {
         peopleCapacity: this.peopleCapacity,
         image: this.image,
         active: this.active,
-        comment: this.image
+        comment: this.comment
       }
     })
   }

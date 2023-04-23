@@ -12,5 +12,7 @@ export interface Inventory {
   peopleCapacity: number;
   image: string;
   active: boolean;
-  comment: string;
+  comment: string | null;
+  dateCreated: string;
+  dateUpdated: string;
 }
