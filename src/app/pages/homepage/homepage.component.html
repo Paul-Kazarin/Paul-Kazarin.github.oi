@@ -3,12 +3,12 @@
   <div fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
     <div fxFlex="10%">
       <div fxLayout="row" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
-        <div fxFlex="90%" style="text-align: center !important;">
+        <div fxFlex="90%" style="text-align: center !important;" id="homepage_title">
           <h2>Welcome to Inventory working page!</h2>
           <h3>Select the type of inventory you want to work with.</h3>
         </div>
         <div fxFlex="10%">
-          <button mat-raised-button class="button" (click)="onReport()">REPORT PAGE</button>
+          <button mat-raised-button class="button" (click)="onReport()" id="button_from_homepage_to_report-page">REPORT PAGE</button>
         </div>
       </div>
     </div>
@@ -30,7 +30,7 @@
 
                       <div fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
                         <div fxFlex="90%">
-                          <img src="{{type.image}}" style="width: 80%; height: 90% !important;">
+                          <img src="{{type.image}}" style="width: 80%; height: 90% !important; border-radius: 10px">
                         </div>
                       </div>
 
